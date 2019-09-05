@@ -3,19 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <title>Dimension tolerances</title>
+
+    <link type="text/css" rel="stylesheet" href="style/homeStyle.css" />
 </head>
 <body>
+    
 
-<h3>Dimension tolerances calculator</h3>
+<div class="container">
+    <div class="main__title uppercase">
+            <h2>
+                    Dimension Tolerances Calculator
+            </h2>
+    </div>
 
 
-<hr>
+	<div class="container__item">
+		<form id="dimension">
+			<input type="text" class="form__field" name="valueDimension" placeholder="Diameter of the dimension (e.g. 45H7)" />
+			<button id="btnId" class="btn btn--primary btn--inside uppercase">Calculate</button>
+		</form>
+	</div>
+	
+	<div class="container__item container__item--bottom">
+		<p>Inspired by <a target="_blank">Cezary Zalewski</a>.</p>
+	</div>
+</div>
 
-<a href=http://localhost:8083/test/hello>Hello </a>
+<script>
+	const form = document.getElementById('dimension');
+	document.getElementById('btnId').addEventListener('click', (event) =>{
+	    event.preventDefault();
+	    const formObj = {
+	        value: form.elements.valueDimension.value
+        };
+	    alert(new URLSearchParams(formObj));
+    });
 
-<hr>
+</script>
 
-<a href=http://localhost:8083/test/value>Value </a>
 
 </body>
 </html>
