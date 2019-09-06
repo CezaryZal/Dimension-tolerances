@@ -28,7 +28,7 @@ html, body{
     padding-top: 1em;
     max-width: 100%;
     height: auto;
-    background-image: url('graphics/caliper.jpg') ;
+    background-image: url('/resources/graphics/caliper.jpg') ;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -65,8 +65,7 @@ html, body{
   h2 {
     font-family: 'Comic Sans MS';
     color: rgba(255, 255, 255, 0.836);
-    font-size: 2em;
-    font-size: 3vw;
+    font-size: 2.5vw;
     text-shadow: 0 0.15em 0.3em rgba(36, 39, 39, 0.952);
 }
   

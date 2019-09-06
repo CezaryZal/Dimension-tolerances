@@ -1,46 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Dimension tolerances</title>
+	<meta charset="UTF-8">
+	<title>Dimension tolerances</title>
 
-    <link type="text/css" rel="stylesheet" href="style/homeStyle.css" />
+	<link type="text/css" rel="stylesheet" href="style/homeStyle.css"/>
 </head>
 <body>
-    
+
 
 <div class="container">
-    <div class="main__title uppercase">
-            <h2>
-                    Dimension Tolerances Calculator
-            </h2>
-    </div>
-
+	<div class="main__title uppercase">
+		<h2>
+			Dimension Tolerances Calculator
+		</h2>
+	</div>
 
 	<div class="container__item">
-		<form id="dimension">
-			<input type="text" class="form__field" name="valueDimension" placeholder="Diameter of the dimension (e.g. 45H7)" />
-			<button id="btnId" class="btn btn--primary btn--inside uppercase">Calculate</button>
+		<form id="dimension" method="get" action="/test">
+			<input id="inputDimension" type="text" class="form__field" name="valueDimension"
+				   placeholder="Diameter of the dimension (e.g. 45H7)"/>
+			<button id="btnId" type="button" class="btn btn--primary btn--inside uppercase">Calculate</button>
 		</form>
 	</div>
-	
+	<div id="forResult">
+
+	</div>
+
 	<div class="container__item container__item--bottom">
-		<p>Inspired by <a target="_blank">Cezary Zalewski</a>.</p>
+		<p>Inspired by <a target="_blank">Cezary Zalewski gggg</a>.</p>
 	</div>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
-	const form = document.getElementById('dimension');
-	document.getElementById('btnId').addEventListener('click', (event) =>{
-	    event.preventDefault();
-	    const formObj = {
-	        value: form.elements.valueDimension.value
-        };
-	    alert(new URLSearchParams(formObj));
-    });
 
+	var calculateValue = function () {
+		var inputValue = document.getElementById("inputDimension");
+		var input = inputValue.value;
+
+		$.ajax({
+			url: "http://localhost:8084/test/value/" + input,
+			data: {},
+			type: "GET",
+			dataType: "json",
+			success: function (json) {
+
+				var resultElement = document.getElementById("forResult");
+				resultElement.innerHTML = "";
+				var dimension = document.createElement("p");
+				var dimensionValue = document.createElement("p");
+				var lowerDeviation = document.createElement("p");
+				var lowerDeviationValue = document.createElement("p");
+				var upperDeviation = document.createElement("p");
+				var upperDeviationValue = document.createElement("p");
+
+				dimension.innerText = 'Dimension'
+				dimensionValue.innerText = json.valueOfDimension;
+				lowerDeviation.innerText = 'Lower Deviation';
+				lowerDeviationValue.innerText = json.lowerDeviation;
+				upperDeviation.innerText = 'Upper Deviation';
+				upperDeviationValue.innerText = json.upperDeviation;
+
+				resultElement.appendChild(dimension);
+				resultElement.appendChild(dimensionValue);
+				resultElement.appendChild(lowerDeviation);
+				resultElement.appendChild(lowerDeviationValue);
+				resultElement.appendChild(upperDeviation);
+				resultElement.appendChild(upperDeviationValue);
+			},
+			error: function (xhr, status,
+							 errorThrown) {
+			},
+			complete: function (xhr, status) {
+			}
+		});
+
+	};
+
+	var button = document.getElementById("btnId");
+	button.addEventListener("click", calculateValue);
 </script>
-
-
 </body>
 </html>

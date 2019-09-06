@@ -13,9 +13,10 @@ public class TestController {
         return "Hello!? success?";
     }
 
-    @GetMapping("/value")
-    public Dimension dimension(){
-        return new Dimension(20, 5,-6);
+    @GetMapping("/value/{diameter}")
+    public Dimension dimension(@PathVariable String diameter){
+        Dimension temDimension = new Dimension(Integer.parseInt(diameter), 10, -8);
+        return temDimension;
     }
 
 }
