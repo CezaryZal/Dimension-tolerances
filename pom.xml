@@ -11,11 +11,12 @@
 
     <properties>
         <springframework.version>5.0.6.RELEASE</springframework.version>
+        <javax.servlet.version>3.1.0</javax.servlet.version>
         <hibernate.version>5.4.1.Final</hibernate.version>
-        <mysql.connector.version>5.1.16</mysql.connector.version>
-        <c3po.version>0.9.5.2</c3po.version>
+        <hibernate-c3p0.version>5.3.6.Final</hibernate-c3p0.version>
+        <mysql.connector.version>8.0.16</mysql.connector.version>
 
-<!--        Add new line...-->
+
 
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
@@ -30,16 +31,11 @@
             <artifactId>spring-webmvc</artifactId>
             <version>${springframework.version}</version>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>org.springframework</groupId>-->
-<!--            <artifactId>spring-tx</artifactId>-->
-<!--            <version>${springframework.version}</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>org.springframework</groupId>-->
-<!--            <artifactId>spring-orm</artifactId>-->
-<!--            <version>${springframework.version}</version>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>${springframework.version}</version>
+        </dependency>
 
         <!-- Add Jackson for JSON converters -->
         <dependency>
@@ -49,11 +45,16 @@
         </dependency>
 
         <!--        Hibernate       -->
-<!--        <dependency>-->
-<!--            <groupId>org.hibernate</groupId>-->
-<!--            <artifactId>hibernate-core</artifactId>-->
-<!--            <version>${hibernate.version}</version>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>${hibernate.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-c3p0</artifactId>
+            <version>${hibernate-c3p0.version}</version>
+        </dependency>
 
         <!--        MySQL       -->
         <dependency>
@@ -62,23 +63,11 @@
             <version>${mysql.connector.version}</version>
         </dependency>
 
-        <!--        C3P0        -->
-<!--        <dependency>-->
-<!--            <groupId>com.mchange</groupId>-->
-<!--            <artifactId>c3p0</artifactId>-->
-<!--            <version>0.9.5.2</version>-->
-<!--        </dependency>-->
-
         <!--        Servlet + JSP     -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
-            <version>3.1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>javax.servlet.jsp</groupId>
-            <artifactId>javax.servlet.jsp-api</artifactId>
-            <version>2.3.1</version>
+            <version>${javax.servlet.version}</version>
         </dependency>
 
         <!-- to compensate for java 9 not including jaxb -->
