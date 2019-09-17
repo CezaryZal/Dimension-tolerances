@@ -1,14 +1,11 @@
 package com.CezaryZal.rest;
 
-import com.CezaryZal.dto.DimensionDTO;
-import com.CezaryZal.dto.DimensionDTOImpl;
 import com.CezaryZal.entity.BasicDeviations;
-import com.CezaryZal.entity.Dimension;
+import com.CezaryZal.entity.NominalTolerance;
 import com.CezaryZal.service.BasicDeviationService;
+import com.CezaryZal.service.NominalToleranceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/test")
@@ -30,7 +27,10 @@ public class TestController {
     @Autowired
     private BasicDeviationService basicDeviationService;
 
-    @GetMapping("/value")
+    @Autowired
+    private NominalToleranceService nominalToleranceService;
+
+    @GetMapping("/valueDeviation")
     public BasicDeviations showValueOfBasicDeviations(){
         String inputSign = "c";
         int inputValue = 2;
@@ -41,18 +41,16 @@ public class TestController {
         return tmpDeviations;
     }
 
-    @GetMapping("/list")
-    public List<BasicDeviations> showListDeviations(){
-        String inputSign = "c";
+    @GetMapping("/valueTolerance")
+    public NominalTolerance showValueOfNominalTolerance(){
+        String inputSign = "IT7";
         int inputValue = 2;
-        return basicDeviationService.getListDeviations(inputSign, inputValue);
-    }
 
-    @GetMapping("/id/{id}")
-    public BasicDeviations getDeviations (@PathVariable int id){
-        BasicDeviations tmpDeviations = basicDeviationService.getRecordById(id);
+        NominalTolerance tmpTolerance = nominalToleranceService.getSingleResultBySignAndValueFromInput(inputSign, inputValue);
+        System.out.println(tmpTolerance.toString());
+        System.out.println(tmpTolerance.getValue());
 
-        return tmpDeviations;
+        return tmpTolerance;
     }
 
 }

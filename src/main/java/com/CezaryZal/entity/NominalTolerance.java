@@ -3,8 +3,8 @@ package com.CezaryZal.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "basic_deviations")
-public class BasicDeviations implements RecordToDb {
+@Table(name = "nominal_tolerance")
+public class NominalTolerance implements RecordToDb {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,10 +23,10 @@ public class BasicDeviations implements RecordToDb {
     @Column(name = "value")
     private int value;
 
-    public BasicDeviations() {
+    public NominalTolerance() {
     }
 
-    public BasicDeviations(int dimensionMin, int dimensionMax, String sign, int value) {
+    public NominalTolerance(int dimensionMin, int dimensionMax, String sign, int value) {
         this.dimensionMin = dimensionMin;
         this.dimensionMax = dimensionMax;
         this.sign = sign;
@@ -58,10 +58,9 @@ public class BasicDeviations implements RecordToDb {
         return value;
     }
 
-
     @Override
     public String toString() {
-        return "BasicDeviations{" +
+        return "NominalTolerance{" +
                 "id=" + id +
                 ", dimensionMin=" + dimensionMin +
                 ", dimensionMax=" + dimensionMax +

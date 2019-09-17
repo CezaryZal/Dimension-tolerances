@@ -1,12 +1,7 @@
 package com.CezaryZal.service;
 
-import com.CezaryZal.config.DbConnector;
-import com.CezaryZal.entity.Dimension;
+import com.CezaryZal.entity.score.Dimension;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 

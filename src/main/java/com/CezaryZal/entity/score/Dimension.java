@@ -1,4 +1,4 @@
-package com.CezaryZal.entity;
+package com.CezaryZal.entity.score;
 
 public class Dimension {
 
