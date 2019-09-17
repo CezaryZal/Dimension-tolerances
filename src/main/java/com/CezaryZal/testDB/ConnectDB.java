@@ -22,8 +22,7 @@ public class ConnectDB {
 
 
             PreparedStatement stat = connection.prepareStatement("SELECT value FROM dimension_tolerance.basic_deviations " +
-                    "where ? between nominal_dimension_min and nominal_dimension_max " +
-                    "and sign=?");
+                    "where ? between nominal_dimension_min and nominal_dimension_max and sign=?");
             stat.setInt(1, currentNominalDimension);
             stat.setString(2, currentSign);
             ResultSet resultSet = stat.executeQuery();
