@@ -1,7 +1,9 @@
 package com.CezaryZal.rest;
 
+import com.CezaryZal.entity.AdditionalDataToBasicDeviations;
 import com.CezaryZal.entity.BasicDeviations;
 import com.CezaryZal.entity.NominalTolerance;
+import com.CezaryZal.service.AdditionalDataToBasicDeviationsService;
 import com.CezaryZal.service.BasicDeviationService;
 import com.CezaryZal.service.NominalToleranceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +32,9 @@ public class TestController {
     @Autowired
     private NominalToleranceService nominalToleranceService;
 
+    @Autowired
+    private AdditionalDataToBasicDeviationsService additionalDataService;
+
     @GetMapping("/valueDeviation")
     public BasicDeviations showValueOfBasicDeviations(){
         String inputSign = "c";
@@ -51,6 +56,18 @@ public class TestController {
         System.out.println(tmpTolerance.getValue());
 
         return tmpTolerance;
+    }
+
+    @GetMapping("/valueAddData")
+    public AdditionalDataToBasicDeviations showValueOfAdditionalData(){
+        String inputSign = "IT7";
+        int inputValue = 5;
+
+        AdditionalDataToBasicDeviations tmpData = additionalDataService.getSingleResultBySignAndValueFromInput(inputSign, inputValue);
+        System.out.println(tmpData.toString());
+        System.out.println(tmpData.getValue());
+
+        return tmpData;
     }
 
 }
