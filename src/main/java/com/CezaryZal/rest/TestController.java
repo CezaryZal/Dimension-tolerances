@@ -32,13 +32,20 @@ public class TestController {
 
     @GetMapping("/value")
     public BasicDeviations showValueOfBasicDeviations(){
+        String inputSign = "c";
+        int inputValue = 2;
+        BasicDeviations tmpDeviations = basicDeviationService.getSingleResultBySignAndValueFromInput(inputSign, inputValue);
+        System.out.println(tmpDeviations.toString());
+        System.out.println(tmpDeviations.getValue());
 
-        return basicDeviationService.getBasicDeviations(6, "'c'");
+        return tmpDeviations;
     }
 
     @GetMapping("/list")
     public List<BasicDeviations> showListDeviations(){
-        return basicDeviationService.getListDeviations();
+        String inputSign = "c";
+        int inputValue = 2;
+        return basicDeviationService.getListDeviations(inputSign, inputValue);
     }
 
     @GetMapping("/id/{id}")

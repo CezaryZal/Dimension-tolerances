@@ -15,13 +15,13 @@ public class BasicDeviationService {
     private BasicDeviationsRepository deviationsRepo;
 
     @Transactional
-    public BasicDeviations getBasicDeviations(int currentNominalDimension, String currentSign){
-        return deviationsRepo.getRecord(currentNominalDimension, currentSign);
+    public BasicDeviations getSingleResultBySignAndValueFromInput (String inputSign, int inputValue){
+        return deviationsRepo.getRecord(inputSign, inputValue);
     }
 
     @Transactional
-    public List<BasicDeviations> getListDeviations(){
-        return deviationsRepo.getList();
+    public List<BasicDeviations> getListDeviations(String inputSign, int inputValue){
+        return deviationsRepo.getList(inputSign, inputValue);
     }
 
     @Transactional
