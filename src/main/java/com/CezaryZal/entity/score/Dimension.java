@@ -2,25 +2,25 @@ package com.CezaryZal.entity.score;
 
 public class Dimension {
 
-    private int valueOfDimension;
-    private int lowerDeviation;
-    private int upperDeviation;
+    private double valueOfDimension;
+    private double lowerDeviation;
+    private double upperDeviation;
 
-    public Dimension(int valueOfDimension, int lowerDeviation, int upperDeviation) {
+    public Dimension(double valueOfDimension, double lowerDeviation, double upperDeviation) {
         this.valueOfDimension = valueOfDimension;
         this.lowerDeviation = lowerDeviation;
         this.upperDeviation = upperDeviation;
     }
 
-    public int getValueOfDimension() {
+    public double getValueOfDimension() {
         return valueOfDimension;
     }
 
-    public int getLowerDeviation() {
+    public double getLowerDeviation() {
         return lowerDeviation;
     }
 
-    public int getUpperDeviation() {
+    public double getUpperDeviation() {
         return upperDeviation;
     }
 

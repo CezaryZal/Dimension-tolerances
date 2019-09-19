@@ -21,12 +21,12 @@ public class NominalTolerance implements EntityToDb {
     private String sign;
 
     @Column(name = "value")
-    private int value;
+    private double value;
 
     public NominalTolerance() {
     }
 
-    public NominalTolerance(int dimensionMin, int dimensionMax, String sign, int value) {
+    public NominalTolerance(int dimensionMin, int dimensionMax, String sign, double value) {
         this.dimensionMin = dimensionMin;
         this.dimensionMax = dimensionMax;
         this.sign = sign;
@@ -54,8 +54,8 @@ public class NominalTolerance implements EntityToDb {
     }
 
     @Override
-    public int getValue() {
-        return value;
+    public double getValue() {
+        return value/10;
     }
 
     @Override

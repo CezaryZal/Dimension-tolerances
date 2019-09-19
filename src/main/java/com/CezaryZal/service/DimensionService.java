@@ -31,7 +31,6 @@ public class DimensionService {
         shareInput(input);
         takeResultsFromRepository();
 
-//        return new Dimension(5 , 6, 7);
         return new Dimension(valueOfDimension, makeLowerDeviation(), makeUpperDeviation());
     }
 
@@ -47,14 +46,12 @@ public class DimensionService {
             if (isSymbolOverH){
                 isSymbolBetweenHAndP = Character.toLowerCase(symbolFromInput) < 'p';
             }
-            System.out.println(toString()); //działa właściwie
-
         } else {
             error = true;
         }
     }
 
-    private int makeUpperDeviation() {
+    private double makeUpperDeviation() {
         if (Character.isLowerCase(symbolFromInput)) {
             if (isSymbolOverH){
                 return basicDeviations.getValue() + nominalTolerance.getValue();
@@ -67,11 +64,10 @@ public class DimensionService {
             }
             return basicDeviations.getValue()*(-1);
         }
-        System.out.println("gorna odchylka");
         return (basicDeviations.getValue()*(-1)) + nominalTolerance.getValue();
     }
 
-    private int makeLowerDeviation() {
+    private double makeLowerDeviation() {
         if (Character.isLowerCase(symbolFromInput)) {
             if (isSymbolOverH){
                 return basicDeviations.getValue();
@@ -84,7 +80,6 @@ public class DimensionService {
             }
             return basicDeviations.getValue()*(-1) - nominalTolerance.getValue();
         }
-        System.out.println("dolna odchylka");
         return basicDeviations.getValue()*(-1);
 
     }
@@ -98,21 +93,17 @@ public class DimensionService {
         basicDeviations = resultsFromRepository.getSingleResultFromBasicDeviationsRepo(
                 String.valueOf(symbolFromInput), valueOfDimension);
 
-        System.out.println("Inside basic deviations: " + basicDeviations.toString());
-
         nominalTolerance = resultsFromRepository.getSingleResultFromNominalToleranceRepo(
                     "IT" + String.valueOf(valueITFromInput), valueOfDimension);
 
-        System.out.println("Inside nominal tolrancje: " + nominalTolerance.toString());
-
         if (isSymbolOverH && isSymbolBetweenHAndP) {
-            additionalData = resultsFromRepository.getSingleResultFromAdditionalDataRepo(
-                    "IT" + String.valueOf(valueITFromInput), valueOfDimension);
-
-            System.out.println("\n IT10: " + additionalData.toString());
-
+            if (valueITFromInput < 3 || valueITFromInput > 8) {
+                additionalData = new AdditionalDataToBasicDeviations(0, 0, null, 0);
+            } else {
+                additionalData = resultsFromRepository.getSingleResultFromAdditionalDataRepo(
+                        "IT" + String.valueOf(valueITFromInput), valueOfDimension);
+            }
         }
-
     }
 
     @Override

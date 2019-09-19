@@ -21,12 +21,12 @@ public class BasicDeviations implements EntityToDb {
     private String sign;
 
     @Column(name = "value")
-    private int value;
+    private double value;
 
     public BasicDeviations() {
     }
 
-    public BasicDeviations(int dimensionMin, int dimensionMax, String sign, int value) {
+    public BasicDeviations(int dimensionMin, int dimensionMax, String sign, double value) {
         this.dimensionMin = dimensionMin;
         this.dimensionMax = dimensionMax;
         this.sign = sign;
@@ -54,7 +54,7 @@ public class BasicDeviations implements EntityToDb {
     }
 
     @Override
-    public int getValue() {
+    public double getValue() {
         return value;
     }
 

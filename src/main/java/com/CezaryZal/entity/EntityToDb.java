@@ -10,5 +10,5 @@ public interface EntityToDb {
 
     String getSign();
 
-    int getValue();
+    double getValue();
 }

@@ -4,9 +4,9 @@ import com.CezaryZal.entity.score.Dimension;
 
 public class DimensionDTOImpl implements DimensionDTO {
 
-    private int valueOfDimension;
-    private int lowerDeviation;
-    private int upperDeviation;
+    private double valueOfDimension;
+    private double lowerDeviation;
+    private double upperDeviation;
 
     public DimensionDTOImpl(Dimension dimension) {
         this.valueOfDimension = dimension.getValueOfDimension();
@@ -15,17 +15,17 @@ public class DimensionDTOImpl implements DimensionDTO {
     }
 
     @Override
-    public int getValueOfDimension() {
+    public double getValueOfDimension() {
         return valueOfDimension;
     }
 
     @Override
-    public int getLowerDeviation() {
+    public double getLowerDeviation() {
         return lowerDeviation;
     }
 
     @Override
-    public int getUpperDeviation() {
+    public double getUpperDeviation() {
         return upperDeviation;
     }
 }
