@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "basic_deviations")
-public class BasicDeviations implements RecordToDb {
+public class BasicDeviations implements EntityToDb {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -16,14 +16,11 @@
         <hibernate-c3p0.version>5.3.6.Final</hibernate-c3p0.version>
         <mysql.connector.version>8.0.16</mysql.connector.version>
 
-
-
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
     </properties>
 
     <dependencies>
-
 
         <!--        Spring      -->
         <dependency>
@@ -63,7 +60,7 @@
             <version>${mysql.connector.version}</version>
         </dependency>
 
-        <!--        Servlet + JSP     -->
+        <!--        Servlet     -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>

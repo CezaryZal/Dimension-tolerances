@@ -19,7 +19,7 @@
 	<div class="container__item">
 		<form id="dimension" method="get" action="/test">
 			<input id="inputDimension" type="text" class="form__field" name="valueDimension"
-				   placeholder="Diameter of the dimension (e.g. 45H7)"/>
+				   placeholder="Diameter of the dimension (e.g. 52H7)"/>
 			<button id="btnId" type="button" class="btn btn--primary btn--inside uppercase">Calculate</button>
 		</form>
 	</div>
@@ -28,7 +28,7 @@
 	</div>
 
 	<div class="container__item container__item--bottom">
-		<p>Inspired by <a target="_blank">Cezary Zalewski L</a>.</p>
+		<p>Inspired by <a target="_blank">Cezary Zalewski TTTTT</a>.</p>
 	</div>
 </div>
 
@@ -40,7 +40,7 @@
 		var input = inputValue.value;
 
 		$.ajax({
-			url: "http://localhost:8084/api/value/" + input,
+			url: "http://localhost:8086/api/value/" + input,
 			data: {},
 			type: "GET",
 			dataType: "json",
