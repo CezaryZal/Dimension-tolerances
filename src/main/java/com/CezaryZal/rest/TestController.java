@@ -4,10 +4,7 @@ import com.CezaryZal.dto.DimensionDTOImpl;
 import com.CezaryZal.entity.AdditionalDataToBasicDeviations;
 import com.CezaryZal.entity.BasicDeviations;
 import com.CezaryZal.entity.NominalTolerance;
-import com.CezaryZal.entity.score.Dimension;
-import com.CezaryZal.service.BasicDeviationService;
-import com.CezaryZal.service.DimensionService;
-import com.CezaryZal.service.TestServer;
+import com.CezaryZal.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +12,17 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/test")
 public class TestController {
 
+
+    @Autowired
+    DimensionService service;
+
+    @GetMapping("/start/{input}")
+    public DimensionDTOImpl testStart(@PathVariable String input){
+
+        DimensionDTOImpl dimensionDTO = new DimensionDTOImpl(service.createDimensionTolerance(input));
+
+        return dimensionDTO;
+    }
 
 
     @ResponseBody
@@ -29,28 +37,13 @@ public class TestController {
         return name;
     }
 
-//    @GetMapping("/input/{name}")
-//    public NominalTolerance showValueOfNominalFromInput(@PathVariable String name) {
-//
-//        int inputValue = 2;
-//        NominalTolerance tmpTolerance = nominalToleranceService.getSingleResultBySignAndValueFromInput(name, inputValue);
-//
-//        return tmpTolerance;
-//    }
+    @GetMapping("/input/{name}")
+    public NominalTolerance showValueOfNominalFromInput(@PathVariable String name) {
 
+        int inputValue = 2;
+        NominalTolerance tmpTolerance = nominalToleranceService.getSingleResultBySignAndValueFromInput(name, inputValue);
 
-    @Autowired
-    DimensionService service;
-
-    @GetMapping("/start/{input}")
-    public DimensionDTOImpl testStart(@PathVariable String input){
-
-        System.out.println(input);
-        String inputValue = "45K7";
-
-        DimensionDTOImpl dimensionDTO = new DimensionDTOImpl(service.createDimensionTolerance(inputValue));
-
-        return dimensionDTO;
+        return tmpTolerance;
     }
 
     @Autowired
@@ -82,36 +75,36 @@ public class TestController {
     }
 
 
-//
-//    @Autowired
-//    private NominalToleranceService nominalToleranceService;
-//
-//    @GetMapping("/valueTolerance")
-//    public NominalTolerance showValueOfNominalTolerance(){
-//        String inputSign = "IT7";
-//        int inputValue = 2;
-//
-//        NominalTolerance tmpTolerance = nominalToleranceService.getSingleResultBySignAndValueFromInput(inputSign, inputValue);
-//        System.out.println(tmpTolerance.toString());
-//        System.out.println(tmpTolerance.getValue());
-//
-//        return tmpTolerance;
-//    }
-//
-//    @Autowired
-//    private AdditionalDataToBasicDeviationsService additionalDataService;
-//
-//    @GetMapping("/valueAddData")
-//    public AdditionalDataToBasicDeviations showValueOfAdditionalData(){
-//        String inputSign = "IT7";
-//        int inputValue = 5;
-//
-//        AdditionalDataToBasicDeviations tmpData = additionalDataService.getSingleResultBySignAndValueFromInput(inputSign, inputValue);
-//        System.out.println(tmpData.toString());
-//        System.out.println(tmpData.getValue());
-//
-//        return tmpData;
-//    }
+
+    @Autowired
+    private NominalToleranceService nominalToleranceService;
+
+    @GetMapping("/valueTolerance")
+    public NominalTolerance showValueOfNominalTolerance(){
+        String inputSign = "IT7";
+        int inputValue = 2;
+
+        NominalTolerance tmpTolerance = nominalToleranceService.getSingleResultBySignAndValueFromInput(inputSign, inputValue);
+        System.out.println(tmpTolerance.toString());
+        System.out.println(tmpTolerance.getValue());
+
+        return tmpTolerance;
+    }
+
+    @Autowired
+    private AdditionalDataToBasicDeviationsService additionalDataService;
+
+    @GetMapping("/valueAddData")
+    public AdditionalDataToBasicDeviations showValueOfAdditionalData(){
+        String inputSign = "IT7";
+        int inputValue = 5;
+
+        AdditionalDataToBasicDeviations tmpData = additionalDataService.getSingleResultBySignAndValueFromInput(inputSign, inputValue);
+        System.out.println(tmpData.toString());
+        System.out.println(tmpData.getValue());
+
+        return tmpData;
+    }
 
 
 }

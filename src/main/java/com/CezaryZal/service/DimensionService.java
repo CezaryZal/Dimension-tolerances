@@ -21,9 +21,9 @@ public class DimensionService {
 
     private boolean error = false;
 
-//    BasicDeviations basicDeviations;
-//    NominalTolerance nominalTolerance;
-//    AdditionalDataToBasicDeviations additionalData;
+    BasicDeviations basicDeviations;
+    NominalTolerance nominalTolerance;
+    AdditionalDataToBasicDeviations additionalData;
 
 
     public Dimension createDimensionTolerance (String input) {
@@ -31,8 +31,8 @@ public class DimensionService {
         shareInput(input);
         takeResultsFromRepository();
 
-        return new Dimension(5 , 6, 7);
-//        return new Dimension(valueOfDimension, makeLowerDeviation(), makeUpperDeviation());
+//        return new Dimension(5 , 6, 7);
+        return new Dimension(valueOfDimension, makeLowerDeviation(), makeUpperDeviation());
     }
 
     private void shareInput(String input) {
@@ -54,83 +54,66 @@ public class DimensionService {
         }
     }
 
-//    private int makeUpperDeviation() {
-//        if (Character.isLowerCase(symbolFromInput)) {
-//            if (isSymbolOverH){
-//                return basicDeviations.getValue() + nominalTolerance.getValue();
-//            }
-//            return  basicDeviations.getValue()-nominalTolerance.getValue();
-//        }
-//        if(isSymbolOverH){
-//            if(isSymbolBetweenHAndP){
-//                return (basicDeviations.getValue()*(-1)) + (additionalData.getValue());
-//            }
-//            return basicDeviations.getValue()*(-1);
-//        }
-//        System.out.println("gorna odchylka");
-//        return (basicDeviations.getValue()*(-1)) + nominalTolerance.getValue();
-//    }
-//
-//    private int makeLowerDeviation() {
-//        if (Character.isLowerCase(symbolFromInput)) {
-//            if (isSymbolOverH){
-//                return basicDeviations.getValue();
-//            }
-//            return  basicDeviations.getValue();
-//        }
-//        if(isSymbolOverH){
-//            if(isSymbolBetweenHAndP){
-//                return (basicDeviations.getValue()*(-1)) + (additionalData.getValue()) - nominalTolerance.getValue();
-//            }
-//            return basicDeviations.getValue()*(-1) - nominalTolerance.getValue();
-//        }
-//        System.out.println("dolna odchylka");
-//        return basicDeviations.getValue()*(-1);
-//
-//    }
+    private int makeUpperDeviation() {
+        if (Character.isLowerCase(symbolFromInput)) {
+            if (isSymbolOverH){
+                return basicDeviations.getValue() + nominalTolerance.getValue();
+            }
+            return  basicDeviations.getValue()-nominalTolerance.getValue();
+        }
+        if(isSymbolOverH){
+            if(isSymbolBetweenHAndP){
+                return (basicDeviations.getValue()*(-1)) + (additionalData.getValue());
+            }
+            return basicDeviations.getValue()*(-1);
+        }
+        System.out.println("gorna odchylka");
+        return (basicDeviations.getValue()*(-1)) + nominalTolerance.getValue();
+    }
 
-
-//    @Autowired
-//    private ResultsBySignAndValueFromRepository resultsFromRepository;
-
-    @Autowired
-    private BasicDeviationService basicDeviationServ;
-
-    private void takeResultsFromRepository() {
-
-
-        System.out.println("Before basic deviation");
-        String inputSign = "c";
-        int inputValue = 2;
-        BasicDeviations tmpDeviations = basicDeviationServ.getSingleResultBySignAndValueFromInput(inputSign, inputValue);
-        System.out.println(tmpDeviations.toString());
-        System.out.println(tmpDeviations.getValue());
+    private int makeLowerDeviation() {
+        if (Character.isLowerCase(symbolFromInput)) {
+            if (isSymbolOverH){
+                return basicDeviations.getValue();
+            }
+            return  basicDeviations.getValue();
+        }
+        if(isSymbolOverH){
+            if(isSymbolBetweenHAndP){
+                return (basicDeviations.getValue()*(-1)) + (additionalData.getValue()) - nominalTolerance.getValue();
+            }
+            return basicDeviations.getValue()*(-1) - nominalTolerance.getValue();
+        }
+        System.out.println("dolna odchylka");
+        return basicDeviations.getValue()*(-1);
 
     }
 
 
+    @Autowired
+    private ResultsBySignAndValueFromRepository resultsFromRepository;
 
+    private void takeResultsFromRepository() {
 
+        basicDeviations = resultsFromRepository.getSingleResultFromBasicDeviationsRepo(
+                String.valueOf(symbolFromInput), valueOfDimension);
 
-//        BasicDeviations basicDeviations = resultsFromRepository.getSingleResultFromBasicDeviationsRepo(
-//                inputSign, inputValue);
+        System.out.println("Inside basic deviations: " + basicDeviations.toString());
 
-//        basicDeviations = resultsFromRepository.getSingleResultFromBasicDeviationsRepo(
-//                String.valueOf(symbolFromInput), valueOfDimension);
+        nominalTolerance = resultsFromRepository.getSingleResultFromNominalToleranceRepo(
+                    "IT" + String.valueOf(valueITFromInput), valueOfDimension);
 
-//        System.out.println("Inside basic deviations: " + basicDeviations.toString());
+        System.out.println("Inside nominal tolrancje: " + nominalTolerance.toString());
 
-//        nominalTolerance = resultsFromRepository.getSingleResultFromNominalToleranceRepo(
-//                    "IT" + String.valueOf(valueITFromInput), valueOfDimension);
-//
-//        System.out.println("Inside nominal tolrancje: " + nominalTolerance.toString());
-//
-//        if (isSymbolOverH && isSymbolBetweenHAndP) {
-//            additionalData = resultsFromRepository.getSingleResultFromAdditionalDataRepo(
-//                    "IT" + String.valueOf(valueITFromInput), valueOfDimension);
-//        }
-//
-//    }
+        if (isSymbolOverH && isSymbolBetweenHAndP) {
+            additionalData = resultsFromRepository.getSingleResultFromAdditionalDataRepo(
+                    "IT" + String.valueOf(valueITFromInput), valueOfDimension);
+
+            System.out.println("\n IT10: " + additionalData.toString());
+
+        }
+
+    }
 
     @Override
     public String toString() {
