@@ -1,6 +1,6 @@
 package com.CezaryZal.dto;
 
-import com.CezaryZal.entity.Dimension;
+import com.CezaryZal.entity.score.Dimension;
 
 public class DimensionDTOImpl implements DimensionDTO {
 
