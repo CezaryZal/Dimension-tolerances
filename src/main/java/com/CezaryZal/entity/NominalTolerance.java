@@ -55,7 +55,7 @@ public class NominalTolerance implements EntityToDb {
 
     @Override
     public double getValue() {
-        return value/10;
+        return value;
     }
 
     @Override

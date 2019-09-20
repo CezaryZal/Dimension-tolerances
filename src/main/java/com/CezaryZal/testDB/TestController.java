@@ -26,7 +26,7 @@ public class TestController {
     @GetMapping("/start")
     public DimensionDTOImpl start(){
 
-        DimensionDTOImpl dimensionDTO = new DimensionDTOImpl(new Dimension(0.2, 0.3, 0.4));
+        DimensionDTOImpl dimensionDTO = new DimensionDTOImpl(new Dimension(2, 0.3, 0.4));
 
         return dimensionDTO;
     }

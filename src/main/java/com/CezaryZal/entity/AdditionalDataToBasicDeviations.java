@@ -56,7 +56,7 @@ public class AdditionalDataToBasicDeviations implements EntityToDb {
 
     @Override
     public double getValue() {
-        return value/10;
+        return value;
     }
 
     @Override
