@@ -10,8 +10,12 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class NominalToleranceRepositoryDbImpl implements RepositoryDb{
 
-    @Autowired
     private SessionFactory sessionFactory;
+
+    @Autowired
+    public NominalToleranceRepositoryDbImpl(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
 
     @Override
     public NominalTolerance getRecord(String inputSign, int inputValue) {

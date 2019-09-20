@@ -13,15 +13,18 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class ResultsBySignAndValueFromRepository {
 
-    @Autowired
     private NominalToleranceRepositoryDbImpl toleranceRepository;
-
-    @Autowired
     private BasicDeviationsRepositoryDbImpl deviationsRepository;
-
-    @Autowired
     private AdditionalDataToBasicDeviationsRepoDbImpl additionalDataRepository;
 
+    @Autowired
+    public ResultsBySignAndValueFromRepository(NominalToleranceRepositoryDbImpl toleranceRepository,
+                                               BasicDeviationsRepositoryDbImpl deviationsRepository,
+                                               AdditionalDataToBasicDeviationsRepoDbImpl additionalDataRepository) {
+        this.toleranceRepository = toleranceRepository;
+        this.deviationsRepository = deviationsRepository;
+        this.additionalDataRepository = additionalDataRepository;
+    }
 
     @Transactional
     public NominalTolerance getSingleResultFromNominalToleranceRepo (String inputSign, int inputValue) {

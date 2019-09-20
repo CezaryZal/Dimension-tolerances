@@ -21,10 +21,15 @@ public class DimensionService {
 
     private boolean error = false;
 
+    private ResultsBySignAndValueFromRepository resultsFromRepository;
     BasicDeviations basicDeviations;
     NominalTolerance nominalTolerance;
     AdditionalDataToBasicDeviations additionalData;
 
+    @Autowired
+    public DimensionService(ResultsBySignAndValueFromRepository resultsFromRepository) {
+        this.resultsFromRepository = resultsFromRepository;
+    }
 
     public Dimension createDimensionTolerance (String input) {
 
@@ -83,10 +88,6 @@ public class DimensionService {
         return basicDeviations.getValue()*(-1);
 
     }
-
-
-    @Autowired
-    private ResultsBySignAndValueFromRepository resultsFromRepository;
 
     private void takeResultsFromRepository() {
 

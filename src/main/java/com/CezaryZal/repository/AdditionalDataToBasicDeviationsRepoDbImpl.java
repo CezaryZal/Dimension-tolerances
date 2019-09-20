@@ -10,8 +10,12 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class AdditionalDataToBasicDeviationsRepoDbImpl implements RepositoryDb {
 
-    @Autowired
     private SessionFactory sessionFactory;
+
+    @Autowired
+    public AdditionalDataToBasicDeviationsRepoDbImpl(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
 
     @Override
     public AdditionalDataToBasicDeviations getRecord(String inputSign, int inputValue) {
