@@ -1,5 +1,6 @@
 package com.CezaryZal.service;
 
+import com.CezaryZal.dto.DimensionDTOImpl;
 import com.CezaryZal.entity.AdditionalDataToBasicDeviations;
 import com.CezaryZal.entity.BasicDeviations;
 import com.CezaryZal.entity.NominalTolerance;
@@ -31,12 +32,13 @@ public class DimensionService {
         this.resultsFromRepository = resultsFromRepository;
     }
 
-    public Dimension createDimensionTolerance (String input) {
+    public DimensionDTOImpl createDimensionTolerance (String input) {
 
         shareInput(input);
         takeResultsFromRepository();
+        Dimension dimension = new Dimension(valueOfDimension, makeLowerDeviation(), makeUpperDeviation());
 
-        return new Dimension(valueOfDimension, makeLowerDeviation(), makeUpperDeviation());
+        return dimension.makeDimensionDto();
     }
 
     private void shareInput(String input) {

@@ -1,5 +1,7 @@
 package com.CezaryZal.entity.score;
 
+import com.CezaryZal.dto.DimensionDTOImpl;
+
 public class Dimension {
 
     private int valueOfDimension;
@@ -12,7 +14,13 @@ public class Dimension {
         this.upperDeviation = upperDeviation;
     }
 
-    public double getValueOfDimension() {
+    public DimensionDTOImpl makeDimensionDto (){
+        DimensionDTOImpl dimensionDTO = new DimensionDTOImpl(valueOfDimension, lowerDeviation, upperDeviation);
+
+        return dimensionDTO;
+    }
+
+    public int getValueOfDimension() {
         return valueOfDimension;
     }
 

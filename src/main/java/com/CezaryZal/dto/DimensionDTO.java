@@ -2,7 +2,7 @@ package com.CezaryZal.dto;
 
 public interface DimensionDTO {
 
-double getValueOfDimension();
+int getValueOfDimension();
 
 double getLowerDeviation();
 

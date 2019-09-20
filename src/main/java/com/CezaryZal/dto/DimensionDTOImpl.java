@@ -1,21 +1,19 @@
 package com.CezaryZal.dto;
 
-import com.CezaryZal.entity.score.Dimension;
-
 public class DimensionDTOImpl implements DimensionDTO {
 
-    private double valueOfDimension;
+    private int valueOfDimension;
     private double lowerDeviation;
     private double upperDeviation;
 
-    public DimensionDTOImpl(Dimension dimension) {
-        this.valueOfDimension = dimension.getValueOfDimension();
-        this.lowerDeviation = dimension.getLowerDeviation();
-        this.upperDeviation = dimension.getUpperDeviation();
+    public DimensionDTOImpl(int valueOfDimension, double lowerDeviation, double upperDeviation) {
+        this.valueOfDimension = valueOfDimension;
+        this.lowerDeviation = lowerDeviation;
+        this.upperDeviation = upperDeviation;
     }
 
     @Override
-    public double getValueOfDimension() {
+    public int getValueOfDimension() {
         return valueOfDimension;
     }
 
