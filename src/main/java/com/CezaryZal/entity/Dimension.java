@@ -1,4 +1,4 @@
-package com.CezaryZal.entity.score;
+package com.CezaryZal.entity;
 
 import com.CezaryZal.dto.DimensionDTOImpl;
 
@@ -19,17 +19,4 @@ public class Dimension {
 
         return dimensionDTO;
     }
-
-    public int getValueOfDimension() {
-        return valueOfDimension;
-    }
-
-    public double getLowerDeviation() {
-        return lowerDeviation;
-    }
-
-    public double getUpperDeviation() {
-        return upperDeviation;
-    }
-
 }

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+@Transactional
 @Service
 public class ResultsBySignAndValueFromRepository {
 
@@ -26,17 +27,14 @@ public class ResultsBySignAndValueFromRepository {
         this.additionalDataRepository = additionalDataRepository;
     }
 
-    @Transactional
     public NominalTolerance getSingleResultFromNominalToleranceRepo (String inputSign, int inputValue) {
         return toleranceRepository.getRecord(inputSign, inputValue);
     }
 
-    @Transactional
     public BasicDeviations getSingleResultFromBasicDeviationsRepo (String inputSign, int inputValue){
         return deviationsRepository.getRecord(inputSign, inputValue);
     }
 
-    @Transactional
     public AdditionalDataToBasicDeviations getSingleResultFromAdditionalDataRepo (String inputSign, int inputValue) {
         return additionalDataRepository.getRecord(inputSign, inputValue);
     }

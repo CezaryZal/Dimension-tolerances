@@ -4,7 +4,7 @@ import com.CezaryZal.dto.DimensionDTOImpl;
 import com.CezaryZal.entity.AdditionalDataToBasicDeviations;
 import com.CezaryZal.entity.BasicDeviations;
 import com.CezaryZal.entity.NominalTolerance;
-import com.CezaryZal.entity.score.Dimension;
+import com.CezaryZal.entity.Dimension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,12 +20,10 @@ public class DimensionService {
     private boolean isSymbolOverH = false;
     private boolean isSymbolBetweenHAndP = false;
 
-    private boolean error = false;
-
     private ResultsBySignAndValueFromRepository resultsFromRepository;
-    BasicDeviations basicDeviations;
-    NominalTolerance nominalTolerance;
-    AdditionalDataToBasicDeviations additionalData;
+    private BasicDeviations basicDeviations;
+    private NominalTolerance nominalTolerance;
+    private AdditionalDataToBasicDeviations additionalData;
 
     @Autowired
     public DimensionService(ResultsBySignAndValueFromRepository resultsFromRepository) {
@@ -53,8 +51,6 @@ public class DimensionService {
             if (isSymbolOverH){
                 isSymbolBetweenHAndP = Character.toLowerCase(symbolFromInput) < 'p';
             }
-        } else {
-            error = true;
         }
     }
 

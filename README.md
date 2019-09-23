@@ -1,11 +1,11 @@
 # ContactsDatabaseREST
 
-The project is a library for business and private contacts details.
+The project is a metrological calculated to show upper and lower deviation of the entered dimension
 
 ## Applied technologies
 Backend:
 - Maven
-- Spring (validator moze)
+- Spring
 - Hibernate
 - REST API
 
