@@ -8,8 +8,8 @@ Backend:
 - Spring
 - Hibernate
 - REST API
+- ajax
 
 ## To do
 - validation input
-- add table to show score 
-- connect 'calculate' button with ENTER
+

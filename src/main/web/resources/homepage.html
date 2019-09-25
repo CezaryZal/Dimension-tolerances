@@ -19,55 +19,63 @@
 	<div class="container__item">
 		<form id="dimension" method="get" action="/test">
 			<input id="inputDimension" type="text" class="form__field" name="valueDimension"
-				   placeholder="Diameter of the dimension (e.g. 52H7)"/>
+				   placeholder="Diameter of the dimension (e.g. 52H7)" />
 			<button id="btnId" type="button" class="btn btn--primary btn--inside uppercase">Calculate</button>
 		</form>
 	</div>
 	<div id="forResult">
 
+
+		<table class="Table">
+			<thead>
+			<tr>
+				<th>Diameter</th>
+				<th>Lower Deviation</th>
+				<th>Upper deviation</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr>
+				<td id="dimensionDiameter">ø52mm</td>
+				<td id="lowerDeviation">0μm</td>
+				<td id="upperDeviation">30μm</td>
+			</tr>
+			</tbody>
+		</table>
 	</div>
 
 	<div class="container__item container__item--bottom">
-		<p>Inspired by <a target="_blank">Cezary Zalewski TTTTT</a>.</p>
+		<p>Inspired by <a target="_blank">Cezary Zalewski oo</a>.</p>
 	</div>
 </div>
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
 
-	var calculateValue = function () {
+	var calculateValue = function (event) {
+		event.preventDefault();
 		var inputValue = document.getElementById("inputDimension");
 		var input = inputValue.value;
 
 		$.ajax({
-			url: "http://localhost:8086/api/value/" + input,
+			url: "http://localhost:8085/api/value/" + input,
 			data: {},
 			type: "GET",
 			dataType: "json",
 			success: function (json) {
 
-				var resultElement = document.getElementById("forResult");
-				resultElement.innerHTML = "";
-				var dimension = document.createElement("p");
-				var dimensionValue = document.createElement("p");
-				var lowerDeviation = document.createElement("p");
-				var lowerDeviationValue = document.createElement("p");
-				var upperDeviation = document.createElement("p");
-				var upperDeviationValue = document.createElement("p");
+				var dimensionValue = document.getElementById("dimensionDiameter");
+				var lowerDeviationValue = document.getElementById("lowerDeviation");
+				var upperDeviationValue = document.getElementById("upperDeviation");
 
-				dimension.innerText = 'Dimension'
-				dimensionValue.innerText = json.valueOfDimension;
-				lowerDeviation.innerText = 'Lower Deviation';
-				lowerDeviationValue.innerText = json.lowerDeviation;
-				upperDeviation.innerText = 'Upper Deviation';
-				upperDeviationValue.innerText = json.upperDeviation;
+				dimensionValue.innerText = 'ø' + json.valueOfDimension + 'mm';
+				lowerDeviationValue.innerText = json.lowerDeviation + 'μm';
+				upperDeviationValue.innerText = json.upperDeviation + 'μm';
 
-				resultElement.appendChild(dimension);
-				resultElement.appendChild(dimensionValue);
-				resultElement.appendChild(lowerDeviation);
-				resultElement.appendChild(lowerDeviationValue);
-				resultElement.appendChild(upperDeviation);
-				resultElement.appendChild(upperDeviationValue);
+				dimensionValue.appendChild(dimensionValue);
+				lowerDeviationValue.appendChild(lowerDeviationValue);
+				upperDeviationValue.appendChild(upperDeviationValue);
 			},
 			error: function (xhr, status,
 							 errorThrown) {
@@ -78,8 +86,13 @@
 
 	};
 
+	const form  = $('form');
+	form.submit(calculateValue);
+
 	var button = document.getElementById("btnId");
 	button.addEventListener("click", calculateValue);
+
+
 </script>
 </body>
 </html>

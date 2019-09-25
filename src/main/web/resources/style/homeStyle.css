@@ -113,3 +113,42 @@ html, body{
     outline: 0;
     padding: 22px 18px;
   }
+
+table.Table {
+  border: 2px solid #948473;
+  background-color: #FFE3C6;
+  width: 470px;
+  text-align: center;
+  margin-top: 30px;
+  box-shadow: 0 0 10px 2px;
+  opacity: 0.85;
+}
+
+table.Table td, table.Table th {
+  border: 1px solid #948473;
+  padding: 4px 4px;
+}
+
+table.Table tbody td {
+  font-size: 17px;
+}
+
+table.Table thead {
+  background: #948473;
+  background: -moz-linear-gradient(top, #afa396 0%, #9e9081 66%, #948473 100%);
+  background: -webkit-linear-gradient(top, #afa396 0%, #9e9081 66%, #948473 100%);
+  background: linear-gradient(to bottom, #afa396 0%, #9e9081 66%, #948473 100%);
+}
+
+table.Table thead th {
+  font-size: 15px;
+  font-weight: bold;
+  color: #F0F0F0;
+  text-align: left;
+  border-left: 2px solid #ac9389;
+}
+
+table.Table thead th:first-child {
+  border-left: none;
+}
+
