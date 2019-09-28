@@ -26,12 +26,6 @@ public class BasicDeviations implements EntityToDb {
     public BasicDeviations() {
     }
 
-    public BasicDeviations(int dimensionMin, int dimensionMax, String sign, double value) {
-        this.dimensionMin = dimensionMin;
-        this.dimensionMax = dimensionMax;
-        this.sign = sign;
-        this.value = value;
-    }
 
     @Override
     public int getId() {
