@@ -9,6 +9,7 @@ Backend:
 - Hibernate
 - REST API
 - ajax
+- deploy to api servlet Tomcat
 
 ## To do
 - validation input
