@@ -5,7 +5,7 @@ The project is a metrological calculated to show upper and lower deviation of th
 ## Applied technologies
 Backend:
 - Maven
-- Spring
+- Spring Framework
 - Hibernate
 - REST API
 - ajax
@@ -13,4 +13,6 @@ Backend:
 
 ## To do
 - validation input
+- change database to H2
+- add flyway
 

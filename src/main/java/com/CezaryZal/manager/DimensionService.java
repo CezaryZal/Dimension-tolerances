@@ -1,18 +1,21 @@
-package com.CezaryZal.service;
+package com.CezaryZal.manager;
 
 import com.CezaryZal.dto.DimensionDTOImpl;
-import com.CezaryZal.entity.AdditionalDataToBasicDeviations;
-import com.CezaryZal.entity.BasicDeviations;
-import com.CezaryZal.entity.NominalTolerance;
-import com.CezaryZal.entity.Dimension;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import com.CezaryZal.entity.*;
+import com.CezaryZal.manager.serviceByRepo.AdditionalDataToBasicDeviationsServiceByRepoImp;
+import com.CezaryZal.manager.serviceByRepo.BasicDeviationsServiceByRepoImp;
+import com.CezaryZal.manager.serviceByRepo.NominalToleranceServiceByRepoImp;
+import org.springframework.stereotype.Component;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-@Service
+@Component
 public class DimensionService {
+
+    private NominalToleranceServiceByRepoImp toleranceServiceByRepoImp;
+    private BasicDeviationsServiceByRepoImp deviationsServiceByRepoImp;
+    private AdditionalDataToBasicDeviationsServiceByRepoImp additionalDataServiceByRepoImp;
 
     private int valueOfDimension;
     private char symbolFromInput;
@@ -20,14 +23,16 @@ public class DimensionService {
     private boolean isSymbolOverH = false;
     private boolean isSymbolBetweenHAndP = false;
 
-    private ResultsBySignAndValueFromRepository resultsFromRepository;
     private BasicDeviations basicDeviations;
     private NominalTolerance nominalTolerance;
     private AdditionalDataToBasicDeviations additionalData;
 
-    @Autowired
-    public DimensionService(ResultsBySignAndValueFromRepository resultsFromRepository) {
-        this.resultsFromRepository = resultsFromRepository;
+    public DimensionService(NominalToleranceServiceByRepoImp toleranceServiceByRepoImp,
+                            BasicDeviationsServiceByRepoImp deviationsServiceByRepoImp,
+                            AdditionalDataToBasicDeviationsServiceByRepoImp additionalDataServiceByRepoImp) {
+        this.toleranceServiceByRepoImp = toleranceServiceByRepoImp;
+        this.deviationsServiceByRepoImp = deviationsServiceByRepoImp;
+        this.additionalDataServiceByRepoImp = additionalDataServiceByRepoImp;
     }
 
     public DimensionDTOImpl createDimensionTolerance (String input) {
@@ -89,17 +94,17 @@ public class DimensionService {
 
     private void takeResultsFromRepository() {
 
-        basicDeviations = resultsFromRepository.getSingleResultFromBasicDeviationsRepo(
+        basicDeviations = deviationsServiceByRepoImp.getRecordBySignAndValue(
                 String.valueOf(symbolFromInput), valueOfDimension);
 
-        nominalTolerance = resultsFromRepository.getSingleResultFromNominalToleranceRepo(
+        nominalTolerance = toleranceServiceByRepoImp.getRecordBySignAndValue(
                     "IT" + String.valueOf(valueITFromInput), valueOfDimension);
 
         if (isSymbolOverH && isSymbolBetweenHAndP) {
             if (valueITFromInput < 3 || valueITFromInput > 8) {
                 additionalData = new AdditionalDataToBasicDeviations(0, 0, null, 0);
             } else {
-                additionalData = resultsFromRepository.getSingleResultFromAdditionalDataRepo(
+                additionalData = additionalDataServiceByRepoImp.getRecordBySignAndValue(
                         "IT" + String.valueOf(valueITFromInput), valueOfDimension);
             }
         }

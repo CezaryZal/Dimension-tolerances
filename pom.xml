@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>CezaryZal</groupId>
-    <artifactId>Project_Dimension_tolerances</artifactId>
+    <artifactId>DimensionTolerances</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
@@ -16,8 +16,8 @@
         <hibernate-c3p0.version>5.3.6.Final</hibernate-c3p0.version>
         <mysql.connector.version>8.0.16</mysql.connector.version>
 
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
 
     <dependencies>
@@ -68,18 +68,18 @@
         </dependency>
 
         <!-- to compensate for java 9 not including jaxb -->
-        <dependency>
-            <groupId>javax.xml.bind</groupId>
-            <artifactId>jaxb-api</artifactId>
-            <version>2.3.0</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>javax.xml.bind</groupId>-->
+<!--            <artifactId>jaxb-api</artifactId>-->
+<!--            <version>2.3.0</version>-->
+<!--        </dependency>-->
 
     </dependencies>
 
     <!-- Support for Maven WAR Plugin -->
 
     <build>
-        <finalName>spring-rest-demo</finalName>
+        <finalName>DimensionTolerances</finalName>
 
         <pluginManagement>
             <plugins>
@@ -94,6 +94,7 @@
                     <version>2.2</version>
                     <configuration>
                         <url>http://localhost:8081/manager/text/</url>
+                        <server>TomcatServer</server>
                         <path>/DimensionTolerances</path>
                         <!-- Set update to true to avoid exist war package can not be override error -->
                         <update>true</update>

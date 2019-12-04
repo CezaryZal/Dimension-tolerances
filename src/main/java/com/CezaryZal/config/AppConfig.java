@@ -11,6 +11,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -27,9 +28,12 @@ import java.util.logging.Logger;
 @PropertySource("classpath:persistence-mysql.properties")
 public class AppConfig implements WebMvcConfigurer {
 
-    @Autowired
-    private Environment environment;
+    private final Environment environment;
     private Logger logger = Logger.getLogger(getClass().getName());
+
+    public AppConfig(Environment environment) {
+        this.environment = environment;
+    }
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
@@ -40,6 +44,11 @@ public class AppConfig implements WebMvcConfigurer {
         registry.addResourceHandler("/graphics/**")
                 .addResourceLocations("/resources/graphics/");
 
+    }
+
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**");
     }
 
     @Bean
