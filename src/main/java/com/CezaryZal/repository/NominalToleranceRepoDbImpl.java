@@ -4,14 +4,16 @@ import com.CezaryZal.entity.NominalTolerance;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
 
 public class NominalToleranceRepoDbImpl implements RepositoryDb{
 
-    private SessionFactory sessionFactory;
+    private final SessionFactory sessionFactory;
 
+    @Autowired
     public NominalToleranceRepoDbImpl(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
@@ -26,8 +28,6 @@ public class NominalToleranceRepoDbImpl implements RepositoryDb{
         query.setParameter("name", inputSign);
         query.setParameter("value", inputValue);
 
-        NominalTolerance tolerance = query.getSingleResult();
-
-        return tolerance;
+        return query.getSingleResult();
     }
 }

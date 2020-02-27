@@ -2,14 +2,16 @@ package com.CezaryZal.manager.serviceByRepo;
 
 import com.CezaryZal.entity.BasicDeviations;
 import com.CezaryZal.repository.BasicDeviationsRepoDbImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class BasicDeviationsServiceByRepoImp {
 
-    private BasicDeviationsRepoDbImpl deviationsRepository;
+    private final BasicDeviationsRepoDbImpl deviationsRepository;
 
+    @Autowired
     public BasicDeviationsServiceByRepoImp(BasicDeviationsRepoDbImpl deviationsRepository) {
         this.deviationsRepository = deviationsRepository;
     }

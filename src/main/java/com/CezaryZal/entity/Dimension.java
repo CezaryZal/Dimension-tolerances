@@ -15,8 +15,7 @@ public class Dimension {
     }
 
     public DimensionDTOImpl makeDimensionDto (){
-        DimensionDTOImpl dimensionDTO = new DimensionDTOImpl(valueOfDimension, lowerDeviation, upperDeviation);
 
-        return dimensionDTO;
+        return new DimensionDTOImpl(valueOfDimension, lowerDeviation, upperDeviation);
     }
 }

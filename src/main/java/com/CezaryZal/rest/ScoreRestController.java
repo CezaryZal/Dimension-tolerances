@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api")
 public class ScoreRestController {
 
-    private DimensionService service;
+    private final DimensionService service;
 
     @Autowired
     public ScoreRestController(DimensionService service) {
@@ -22,9 +22,7 @@ public class ScoreRestController {
     @GetMapping("/value/{input}")
     public DimensionDTOImpl dimension(@PathVariable String input){
 
-        DimensionDTOImpl dimensionDTO = service.createDimensionTolerance(input);
-
-        return dimensionDTO;
+        return service.createDimensionTolerance(input);
     }
 
 

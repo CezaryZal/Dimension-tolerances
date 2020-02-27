@@ -13,9 +13,7 @@ public class TestController {
     public DimensionDTOImpl start(){
 
         Dimension dimension = new Dimension(2, 0.3, 0.4);
-        DimensionDTOImpl dimensionDTO = dimension.makeDimensionDto();
-
-        return dimensionDTO;
+        return dimension.makeDimensionDto();
     }
 
 

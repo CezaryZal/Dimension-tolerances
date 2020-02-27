@@ -45,13 +45,13 @@ public class DimensionService {
     }
 
     private void shareInput(String input) {
-        final Pattern pattern = Pattern.compile("([1-9][0-9]*)([a-zA-Z])([1-9][0-8]*)");
+        final Pattern PATTERN = Pattern.compile("([1-9]\\d*)([a-zA-Z])([1-9][0-8]*)");
 
-        Matcher matcher = pattern.matcher(input);
+        Matcher matcher = PATTERN.matcher(input);
         if (matcher.find()) {
-            valueOfDimension = Integer.valueOf(matcher.group(1));
+            valueOfDimension = Integer.parseInt(matcher.group(1));
             symbolFromInput = matcher.group(2).charAt(0);
-            valueITFromInput = Integer.valueOf(matcher.group(3));
+            valueITFromInput = Integer.parseInt(matcher.group(3));
             isSymbolOverH = Character.toLowerCase(symbolFromInput) > 'h';
             if (isSymbolOverH){
                 isSymbolBetweenHAndP = Character.toLowerCase(symbolFromInput) < 'p';
@@ -98,14 +98,14 @@ public class DimensionService {
                 String.valueOf(symbolFromInput), valueOfDimension);
 
         nominalTolerance = toleranceServiceByRepoImp.getRecordBySignAndValue(
-                    "IT" + String.valueOf(valueITFromInput), valueOfDimension);
+                    "IT" + valueITFromInput, valueOfDimension);
 
         if (isSymbolOverH && isSymbolBetweenHAndP) {
             if (valueITFromInput < 3 || valueITFromInput > 8) {
                 additionalData = new AdditionalDataToBasicDeviations(0, 0, null, 0);
             } else {
                 additionalData = additionalDataServiceByRepoImp.getRecordBySignAndValue(
-                        "IT" + String.valueOf(valueITFromInput), valueOfDimension);
+                        "IT" + valueITFromInput, valueOfDimension);
             }
         }
     }

@@ -23,9 +23,6 @@ public class NominalTolerance implements EntityToDb {
     @Column(name = "value")
     private double value;
 
-    public NominalTolerance() {
-    }
-
 
     @Override
     public int getId() {

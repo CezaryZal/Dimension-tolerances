@@ -23,9 +23,6 @@ public class BasicDeviations implements EntityToDb {
     @Column(name = "value")
     private double value;
 
-    public BasicDeviations() {
-    }
-
 
     @Override
     public int getId() {

@@ -4,6 +4,7 @@ import com.CezaryZal.entity.BasicDeviations;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 
@@ -11,8 +12,9 @@ import org.springframework.stereotype.Repository;
 
 public class BasicDeviationsRepoDbImpl implements RepositoryDb {
 
-    private SessionFactory sessionFactory;
+    private final SessionFactory sessionFactory;
 
+    @Autowired
     public BasicDeviationsRepoDbImpl(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
@@ -27,9 +29,7 @@ public class BasicDeviationsRepoDbImpl implements RepositoryDb {
         query.setParameter("name", inputSign);
         query.setParameter("value", inputValue);
 
-        BasicDeviations deviations = query.getSingleResult();
-
-        return deviations;
+        return query.getSingleResult();
     }
 
 }

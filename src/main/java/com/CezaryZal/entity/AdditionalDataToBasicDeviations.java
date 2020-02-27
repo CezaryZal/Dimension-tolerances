@@ -24,9 +24,6 @@ public class AdditionalDataToBasicDeviations implements EntityToDb {
     private double value;
 
 
-    public AdditionalDataToBasicDeviations() {
-    }
-
     public AdditionalDataToBasicDeviations(int dimensionMin, int dimensionMax, String sign, double value) {
         this.dimensionMin = dimensionMin;
         this.dimensionMax = dimensionMax;
