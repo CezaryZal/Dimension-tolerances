@@ -6,8 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-@Service
-public class NominalToleranceServiceByRepoImp {
+public class NominalToleranceServiceByRepoImp implements ServiceByRepo{
 
     private final NominalToleranceRepoDbImpl toleranceRepository;
 
@@ -17,6 +16,7 @@ public class NominalToleranceServiceByRepoImp {
     }
 
     @Transactional
+    @Override
     public NominalTolerance getRecordBySignAndValue(String inputSign, int inputValue) {
         return toleranceRepository.getRecord(inputSign, inputValue);
     }

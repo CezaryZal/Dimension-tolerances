@@ -7,8 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 
-@Service
-public class AdditionalDataToBasicDeviationsServiceByRepoImp {
+public class AdditionalDataToBasicDeviationsServiceByRepoImp implements ServiceByRepo{
 
     private final AdditionalDataToBasicDeviationsRepoDbImpl additionalDataRepository;
 
@@ -18,6 +17,7 @@ public class AdditionalDataToBasicDeviationsServiceByRepoImp {
     }
 
     @Transactional
+    @Override
     public AdditionalDataToBasicDeviations getRecordBySignAndValue(String inputSign, int inputValue) {
         return additionalDataRepository.getRecord(inputSign, inputValue);
     }

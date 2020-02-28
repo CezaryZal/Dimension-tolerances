@@ -6,8 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-@Service
-public class BasicDeviationsServiceByRepoImp {
+public class BasicDeviationsServiceByRepoImp implements ServiceByRepo{
 
     private final BasicDeviationsRepoDbImpl deviationsRepository;
 
@@ -16,8 +15,8 @@ public class BasicDeviationsServiceByRepoImp {
         this.deviationsRepository = deviationsRepository;
     }
 
-//    @Override
     @Transactional
+    @Override
     public BasicDeviations getRecordBySignAndValue(String inputSign, int inputValue) {
         return deviationsRepository.getRecord(inputSign, inputValue);
     }

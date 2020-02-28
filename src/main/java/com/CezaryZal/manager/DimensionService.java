@@ -5,6 +5,8 @@ import com.CezaryZal.entity.*;
 import com.CezaryZal.manager.serviceByRepo.AdditionalDataToBasicDeviationsServiceByRepoImp;
 import com.CezaryZal.manager.serviceByRepo.BasicDeviationsServiceByRepoImp;
 import com.CezaryZal.manager.serviceByRepo.NominalToleranceServiceByRepoImp;
+import com.CezaryZal.manager.serviceByRepo.ServiceByRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.regex.Matcher;
@@ -13,9 +15,10 @@ import java.util.regex.Pattern;
 @Component
 public class DimensionService {
 
-    private NominalToleranceServiceByRepoImp toleranceServiceByRepoImp;
-    private BasicDeviationsServiceByRepoImp deviationsServiceByRepoImp;
-    private AdditionalDataToBasicDeviationsServiceByRepoImp additionalDataServiceByRepoImp;
+//    private NominalToleranceServiceByRepoImp toleranceServiceByRepoImp;
+//    private BasicDeviationsServiceByRepoImp deviationsServiceByRepoImp;
+//    private AdditionalDataToBasicDeviationsServiceByRepoImp additionalDataServiceByRepoImp;
+    private final ServiceByRepo serviceByRepo;
 
     private int valueOfDimension;
     private char symbolFromInput;
@@ -27,12 +30,9 @@ public class DimensionService {
     private NominalTolerance nominalTolerance;
     private AdditionalDataToBasicDeviations additionalData;
 
-    public DimensionService(NominalToleranceServiceByRepoImp toleranceServiceByRepoImp,
-                            BasicDeviationsServiceByRepoImp deviationsServiceByRepoImp,
-                            AdditionalDataToBasicDeviationsServiceByRepoImp additionalDataServiceByRepoImp) {
-        this.toleranceServiceByRepoImp = toleranceServiceByRepoImp;
-        this.deviationsServiceByRepoImp = deviationsServiceByRepoImp;
-        this.additionalDataServiceByRepoImp = additionalDataServiceByRepoImp;
+    @Autowired
+    public DimensionService(ServiceByRepo serviceByRepo) {
+        this.serviceByRepo = serviceByRepo;
     }
 
     public DimensionDTOImpl createDimensionTolerance (String input) {
@@ -94,17 +94,17 @@ public class DimensionService {
 
     private void takeResultsFromRepository() {
 
-        basicDeviations = deviationsServiceByRepoImp.getRecordBySignAndValue(
+        basicDeviations = (BasicDeviations) serviceByRepo.getRecordBySignAndValue(
                 String.valueOf(symbolFromInput), valueOfDimension);
 
-        nominalTolerance = toleranceServiceByRepoImp.getRecordBySignAndValue(
+        nominalTolerance = (NominalTolerance) serviceByRepo.getRecordBySignAndValue(
                     "IT" + valueITFromInput, valueOfDimension);
 
         if (isSymbolOverH && isSymbolBetweenHAndP) {
             if (valueITFromInput < 3 || valueITFromInput > 8) {
                 additionalData = new AdditionalDataToBasicDeviations(0, 0, null, 0);
             } else {
-                additionalData = additionalDataServiceByRepoImp.getRecordBySignAndValue(
+                additionalData = (AdditionalDataToBasicDeviations) serviceByRepo.getRecordBySignAndValue(
                         "IT" + valueITFromInput, valueOfDimension);
             }
         }
