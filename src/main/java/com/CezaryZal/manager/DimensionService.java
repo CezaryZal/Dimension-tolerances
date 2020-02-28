@@ -5,6 +5,7 @@ import com.CezaryZal.entity.*;
 import com.CezaryZal.manager.serviceByRepo.AdditionalDataToBasicDeviationsServiceByRepoImp;
 import com.CezaryZal.manager.serviceByRepo.BasicDeviationsServiceByRepoImp;
 import com.CezaryZal.manager.serviceByRepo.NominalToleranceServiceByRepoImp;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.regex.Matcher;
@@ -13,9 +14,11 @@ import java.util.regex.Pattern;
 @Component
 public class DimensionService {
 
-    private NominalToleranceServiceByRepoImp toleranceServiceByRepoImp;
-    private BasicDeviationsServiceByRepoImp deviationsServiceByRepoImp;
-    private AdditionalDataToBasicDeviationsServiceByRepoImp additionalDataServiceByRepoImp;
+    private final Pattern PATTERN = Pattern.compile("([1-9]\\d*)([a-zA-Z])([1-9][0-8]*)");
+
+    private final NominalToleranceServiceByRepoImp toleranceServiceByRepoImp;
+    private final BasicDeviationsServiceByRepoImp deviationsServiceByRepoImp;
+    private final AdditionalDataToBasicDeviationsServiceByRepoImp additionalDataServiceByRepoImp;
 
     private int valueOfDimension;
     private char symbolFromInput;
@@ -27,6 +30,7 @@ public class DimensionService {
     private NominalTolerance nominalTolerance;
     private AdditionalDataToBasicDeviations additionalData;
 
+    @Autowired
     public DimensionService(NominalToleranceServiceByRepoImp toleranceServiceByRepoImp,
                             BasicDeviationsServiceByRepoImp deviationsServiceByRepoImp,
                             AdditionalDataToBasicDeviationsServiceByRepoImp additionalDataServiceByRepoImp) {
@@ -35,7 +39,7 @@ public class DimensionService {
         this.additionalDataServiceByRepoImp = additionalDataServiceByRepoImp;
     }
 
-    public DimensionDTOImpl createDimensionTolerance (String input) {
+    public DimensionDTOImpl createDimensionTolerance(String input) {
 
         shareInput(input);
         takeResultsFromRepository();
@@ -45,7 +49,6 @@ public class DimensionService {
     }
 
     private void shareInput(String input) {
-        final Pattern PATTERN = Pattern.compile("([1-9]\\d*)([a-zA-Z])([1-9][0-8]*)");
 
         Matcher matcher = PATTERN.matcher(input);
         if (matcher.find()) {
@@ -53,7 +56,7 @@ public class DimensionService {
             symbolFromInput = matcher.group(2).charAt(0);
             valueITFromInput = Integer.parseInt(matcher.group(3));
             isSymbolOverH = Character.toLowerCase(symbolFromInput) > 'h';
-            if (isSymbolOverH){
+            if (isSymbolOverH) {
                 isSymbolBetweenHAndP = Character.toLowerCase(symbolFromInput) < 'p';
             }
         }
@@ -61,34 +64,34 @@ public class DimensionService {
 
     private double makeUpperDeviation() {
         if (Character.isLowerCase(symbolFromInput)) {
-            if (isSymbolOverH){
+            if (isSymbolOverH) {
                 return basicDeviations.getValue() + nominalTolerance.getValue();
             }
-            return  basicDeviations.getValue()-nominalTolerance.getValue();
+            return basicDeviations.getValue() - nominalTolerance.getValue();
         }
-        if(isSymbolOverH){
-            if(isSymbolBetweenHAndP){
-                return (basicDeviations.getValue()*(-1)) + (additionalData.getValue());
+        if (isSymbolOverH) {
+            if (isSymbolBetweenHAndP) {
+                return (basicDeviations.getValue() * (-1)) + (additionalData.getValue());
             }
-            return basicDeviations.getValue()*(-1);
+            return basicDeviations.getValue() * (-1);
         }
-        return (basicDeviations.getValue()*(-1)) + nominalTolerance.getValue();
+        return (basicDeviations.getValue() * (-1)) + nominalTolerance.getValue();
     }
 
     private double makeLowerDeviation() {
         if (Character.isLowerCase(symbolFromInput)) {
-            if (isSymbolOverH){
+            if (isSymbolOverH) {
                 return basicDeviations.getValue();
             }
-            return  basicDeviations.getValue();
+            return basicDeviations.getValue();
         }
-        if(isSymbolOverH){
-            if(isSymbolBetweenHAndP){
-                return (basicDeviations.getValue()*(-1)) + (additionalData.getValue()) - nominalTolerance.getValue();
+        if (isSymbolOverH) {
+            if (isSymbolBetweenHAndP) {
+                return (basicDeviations.getValue() * (-1)) + (additionalData.getValue()) - nominalTolerance.getValue();
             }
-            return basicDeviations.getValue()*(-1) - nominalTolerance.getValue();
+            return basicDeviations.getValue() * (-1) - nominalTolerance.getValue();
         }
-        return basicDeviations.getValue()*(-1);
+        return basicDeviations.getValue() * (-1);
 
     }
 
@@ -98,7 +101,7 @@ public class DimensionService {
                 String.valueOf(symbolFromInput), valueOfDimension);
 
         nominalTolerance = toleranceServiceByRepoImp.getRecordBySignAndValue(
-                    "IT" + valueITFromInput, valueOfDimension);
+                "IT" + valueITFromInput, valueOfDimension);
 
         if (isSymbolOverH && isSymbolBetweenHAndP) {
             if (valueITFromInput < 3 || valueITFromInput > 8) {
