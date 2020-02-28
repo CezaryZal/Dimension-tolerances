@@ -1,10 +1,13 @@
-package com.CezaryZal.manager;
+package com.CezaryZal.api.manager;
 
-import com.CezaryZal.dto.DimensionDTOImpl;
-import com.CezaryZal.entity.*;
-import com.CezaryZal.manager.serviceByRepo.AdditionalDataToBasicDeviationsServiceByRepoImp;
-import com.CezaryZal.manager.serviceByRepo.BasicDeviationsServiceByRepoImp;
-import com.CezaryZal.manager.serviceByRepo.NominalToleranceServiceByRepoImp;
+import com.CezaryZal.api.model.Dimension;
+import com.CezaryZal.api.model.dto.DimensionDTOImpl;
+import com.CezaryZal.api.model.entity.AdditionalDataToBasicDeviations;
+import com.CezaryZal.api.model.entity.BasicDeviations;
+import com.CezaryZal.api.model.entity.NominalTolerance;
+import com.CezaryZal.api.manager.serviceByRepo.AdditionalDataToBasicDeviationsServiceByRepoImp;
+import com.CezaryZal.api.manager.serviceByRepo.BasicDeviationsServiceByRepoImp;
+import com.CezaryZal.api.manager.serviceByRepo.NominalToleranceServiceByRepoImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

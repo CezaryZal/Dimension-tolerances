@@ -1,6 +1,6 @@
-package com.CezaryZal.entity;
+package com.CezaryZal.api.model;
 
-import com.CezaryZal.dto.DimensionDTOImpl;
+import com.CezaryZal.api.model.dto.DimensionDTOImpl;
 
 public class Dimension {
 

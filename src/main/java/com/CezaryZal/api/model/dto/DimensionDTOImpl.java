@@ -1,4 +1,4 @@
-package com.CezaryZal.dto;
+package com.CezaryZal.api.model.dto;
 
 public class DimensionDTOImpl implements DimensionDTO {
 

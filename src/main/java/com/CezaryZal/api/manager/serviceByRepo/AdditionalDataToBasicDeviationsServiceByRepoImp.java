@@ -1,7 +1,7 @@
-package com.CezaryZal.manager.serviceByRepo;
+package com.CezaryZal.api.manager.serviceByRepo;
 
-import com.CezaryZal.entity.AdditionalDataToBasicDeviations;
-import com.CezaryZal.repository.AdditionalDataToBasicDeviationsRepoDbImpl;
+import com.CezaryZal.api.model.entity.AdditionalDataToBasicDeviations;
+import com.CezaryZal.api.repository.AdditionalDataToBasicDeviationsRepoDbImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

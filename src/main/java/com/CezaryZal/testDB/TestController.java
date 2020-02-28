@@ -1,7 +1,7 @@
 package com.CezaryZal.testDB;
 
-import com.CezaryZal.dto.DimensionDTOImpl;
-import com.CezaryZal.entity.Dimension;
+import com.CezaryZal.api.model.dto.DimensionDTOImpl;
+import com.CezaryZal.api.model.Dimension;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

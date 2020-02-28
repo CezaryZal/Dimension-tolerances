@@ -1,4 +1,4 @@
-package com.CezaryZal.entity;
+package com.CezaryZal.api.model.entity;
 
 public interface EntityToDb {
 

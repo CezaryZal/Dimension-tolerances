@@ -1,6 +1,6 @@
-package com.CezaryZal.manager.serviceByRepo;
+package com.CezaryZal.api.manager.serviceByRepo;
 
-import com.CezaryZal.entity.EntityToDb;
+import com.CezaryZal.api.model.entity.EntityToDb;
 
 public interface ServiceByRepo {
 

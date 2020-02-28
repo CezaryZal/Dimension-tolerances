@@ -1,7 +1,7 @@
-package com.CezaryZal.manager.serviceByRepo;
+package com.CezaryZal.api.manager.serviceByRepo;
 
-import com.CezaryZal.entity.NominalTolerance;
-import com.CezaryZal.repository.NominalToleranceRepoDbImpl;
+import com.CezaryZal.api.model.entity.NominalTolerance;
+import com.CezaryZal.api.repository.NominalToleranceRepoDbImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

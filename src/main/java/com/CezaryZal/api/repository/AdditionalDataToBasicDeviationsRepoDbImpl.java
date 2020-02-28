@@ -1,6 +1,6 @@
-package com.CezaryZal.repository;
+package com.CezaryZal.api.repository;
 
-import com.CezaryZal.entity.AdditionalDataToBasicDeviations;
+import com.CezaryZal.api.model.entity.AdditionalDataToBasicDeviations;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;

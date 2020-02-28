@@ -1,6 +1,6 @@
-package com.CezaryZal.repository;
+package com.CezaryZal.api.repository;
 
-import com.CezaryZal.entity.EntityToDb;
+import com.CezaryZal.api.model.entity.EntityToDb;
 
 public interface RepositoryDb {
 
