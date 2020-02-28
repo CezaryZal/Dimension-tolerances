@@ -1,6 +1,7 @@
 package com.CezaryZal.api.manager;
 
 import com.CezaryZal.api.model.ParsedInputDimension;
+import com.CezaryZal.api.model.ValuesFromRepoByInputDimension;
 import com.CezaryZal.api.model.dto.DimensionDTOImpl;
 import com.CezaryZal.api.model.entity.AdditionalDataToBasicDeviations;
 import com.CezaryZal.api.model.entity.BasicDeviations;
@@ -23,13 +24,6 @@ public class DimensionService {
     private final BasicDeviationsServiceByRepoImp deviationsServiceByRepoImp;
     private final AdditionalDataToBasicDeviationsServiceByRepoImp additionalDataServiceByRepoImp;
 
-    private boolean isSymbolOverH = false;
-    private boolean isSymbolBetweenHAndP = false;
-
-    private BasicDeviations basicDeviations;
-    private NominalTolerance nominalTolerance;
-    private AdditionalDataToBasicDeviations additionalData;
-
     @Autowired
     public DimensionService(NominalToleranceServiceByRepoImp toleranceServiceByRepoImp,
                             BasicDeviationsServiceByRepoImp deviationsServiceByRepoImp,
@@ -42,17 +36,19 @@ public class DimensionService {
     public DimensionDTOImpl createDimensionTolerance(String input) {
 
         ParsedInputDimension parsedInputDimension = shareInput(input);
-        takeResultsFromRepository(parsedInputDimension);
+        ValuesFromRepoByInputDimension valuesFromRepoByInputDimension = takeResultsFromRepository(parsedInputDimension);
         return new DimensionDTOImpl(
                 parsedInputDimension.getValueOfDimension(),
-                makeLowerDeviation(parsedInputDimension),
-                makeUpperDeviation(parsedInputDimension));
+                makeLowerDeviation(parsedInputDimension, valuesFromRepoByInputDimension),
+                makeUpperDeviation(parsedInputDimension, valuesFromRepoByInputDimension));
     }
 
     private ParsedInputDimension shareInput(String input) {
         int valueOfDimension = 0;
         char symbolFromInput = 'a';
         int valueITFromInput = 0;
+        boolean isSymbolOverH = false;
+        boolean isSymbolBetweenHAndP = false;
 
         Matcher matcher = PATTERN.matcher(input);
         if (matcher.find()) {
@@ -64,57 +60,70 @@ public class DimensionService {
                 isSymbolBetweenHAndP = Character.toLowerCase(symbolFromInput) < 'p';
             }
         }
-        return new ParsedInputDimension(valueOfDimension, symbolFromInput, valueITFromInput);
+        return new ParsedInputDimension(valueOfDimension, symbolFromInput, valueITFromInput, isSymbolOverH, isSymbolBetweenHAndP);
     }
 
-    private double makeUpperDeviation(ParsedInputDimension parsedInputDimension) {
+    private double makeUpperDeviation(
+            ParsedInputDimension parsedInputDimension,
+            ValuesFromRepoByInputDimension valuesByInputDimension) {
         if (Character.isLowerCase(parsedInputDimension.getSymbolFromInput())) {
-            if (isSymbolOverH) {
-                return basicDeviations.getValue() + nominalTolerance.getValue();
+            if (parsedInputDimension.isSymbolOverH()) {
+                return valuesByInputDimension.getValueOfBasicDeviations() +
+                        valuesByInputDimension.getValueOfNominalTolerance();
             }
-            return basicDeviations.getValue() - nominalTolerance.getValue();
+            return valuesByInputDimension.getValueOfBasicDeviations() -
+                    valuesByInputDimension.getValueOfNominalTolerance();
         }
-        if (isSymbolOverH) {
-            if (isSymbolBetweenHAndP) {
-                return (basicDeviations.getValue() * (-1)) + (additionalData.getValue());
+        if (parsedInputDimension.isSymbolOverH()) {
+            if (parsedInputDimension.isSymbolBetweenHAndP()) {
+                return (valuesByInputDimension.getValueOfBasicDeviations() * (-1)) +
+                        (valuesByInputDimension.getValueOfAdditionalData());
             }
-            return basicDeviations.getValue() * (-1);
+            return valuesByInputDimension.getValueOfBasicDeviations() * (-1);
         }
-        return (basicDeviations.getValue() * (-1)) + nominalTolerance.getValue();
+        return (valuesByInputDimension.getValueOfBasicDeviations() * (-1)) +
+                valuesByInputDimension.getValueOfNominalTolerance();
     }
 
-    private double makeLowerDeviation(ParsedInputDimension parsedInputDimension) {
+    private double makeLowerDeviation(
+            ParsedInputDimension parsedInputDimension,
+            ValuesFromRepoByInputDimension valuesByInputDimension) {
         if (Character.isLowerCase(parsedInputDimension.getSymbolFromInput())) {
-            if (isSymbolOverH) {
-                return basicDeviations.getValue();
+            if (parsedInputDimension.isSymbolOverH()) {
+                return valuesByInputDimension.getValueOfBasicDeviations();
             }
-            return basicDeviations.getValue();
+            return valuesByInputDimension.getValueOfBasicDeviations();
         }
-        if (isSymbolOverH) {
-            if (isSymbolBetweenHAndP) {
-                return (basicDeviations.getValue() * (-1)) + (additionalData.getValue()) - nominalTolerance.getValue();
+        if (parsedInputDimension.isSymbolOverH()) {
+            if (parsedInputDimension.isSymbolBetweenHAndP()) {
+                return (valuesByInputDimension.getValueOfBasicDeviations() * (-1)) +
+                        (valuesByInputDimension.getValueOfAdditionalData()) -
+                        valuesByInputDimension.getValueOfNominalTolerance();
             }
-            return basicDeviations.getValue() * (-1) - nominalTolerance.getValue();
+            return valuesByInputDimension.getValueOfBasicDeviations() * (-1) -
+                    valuesByInputDimension.getValueOfNominalTolerance();
         }
-        return basicDeviations.getValue() * (-1);
+        return valuesByInputDimension.getValueOfBasicDeviations() * (-1);
 
     }
 
-    private void takeResultsFromRepository(ParsedInputDimension parsedInputDimension) {
+    private ValuesFromRepoByInputDimension takeResultsFromRepository(ParsedInputDimension parsedInputDimension) {
 
-        basicDeviations = deviationsServiceByRepoImp.getRecordBySignAndValue(
+        AdditionalDataToBasicDeviations additionalData = new AdditionalDataToBasicDeviations(0, 0, null, 0);
+        BasicDeviations basicDeviations = deviationsServiceByRepoImp.getRecordBySignAndValue(
                 String.valueOf(parsedInputDimension.getSymbolFromInput()), parsedInputDimension.getValueOfDimension());
-
-        nominalTolerance = toleranceServiceByRepoImp.getRecordBySignAndValue(
+        NominalTolerance nominalTolerance = toleranceServiceByRepoImp.getRecordBySignAndValue(
                 "IT" + parsedInputDimension.getValueITFromInput(), parsedInputDimension.getValueOfDimension());
 
-        if (isSymbolOverH && isSymbolBetweenHAndP) {
-            if (parsedInputDimension.getValueITFromInput() < 3 || parsedInputDimension.getValueITFromInput() > 8) {
-                additionalData = new AdditionalDataToBasicDeviations(0, 0, null, 0);
-            } else {
+        if (parsedInputDimension.isSymbolOverH() && parsedInputDimension.isSymbolBetweenHAndP()) {
+            if (!(parsedInputDimension.getValueITFromInput() < 3 || parsedInputDimension.getValueITFromInput() > 8)) {
                 additionalData = additionalDataServiceByRepoImp.getRecordBySignAndValue(
                         "IT" + parsedInputDimension.getValueITFromInput(), parsedInputDimension.getValueOfDimension());
             }
         }
+        return new ValuesFromRepoByInputDimension(
+                basicDeviations.getValue(),
+                nominalTolerance.getValue(),
+                additionalData.getValue());
     }
 }
