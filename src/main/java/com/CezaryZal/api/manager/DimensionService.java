@@ -1,6 +1,5 @@
 package com.CezaryZal.api.manager;
 
-import com.CezaryZal.api.model.Dimension;
 import com.CezaryZal.api.model.dto.DimensionDTOImpl;
 import com.CezaryZal.api.model.entity.AdditionalDataToBasicDeviations;
 import com.CezaryZal.api.model.entity.BasicDeviations;
@@ -46,9 +45,7 @@ public class DimensionService {
 
         shareInput(input);
         takeResultsFromRepository();
-        Dimension dimension = new Dimension(valueOfDimension, makeLowerDeviation(), makeUpperDeviation());
-
-        return dimension.makeDimensionDto();
+        return new DimensionDTOImpl(valueOfDimension, makeLowerDeviation(), makeUpperDeviation());
     }
 
     private void shareInput(String input) {

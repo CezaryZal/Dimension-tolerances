@@ -1,7 +1,6 @@
 package com.CezaryZal.testDB;
 
 import com.CezaryZal.api.model.dto.DimensionDTOImpl;
-import com.CezaryZal.api.model.Dimension;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -12,8 +11,7 @@ public class TestController {
     @GetMapping("/start")
     public DimensionDTOImpl start(){
 
-        Dimension dimension = new Dimension(2, 0.3, 0.4);
-        return dimension.makeDimensionDto();
+        return new DimensionDTOImpl(2, 0.3, 0.4);
     }
 
 

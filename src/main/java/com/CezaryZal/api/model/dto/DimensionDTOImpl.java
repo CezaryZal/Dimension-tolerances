@@ -26,4 +26,13 @@ public class DimensionDTOImpl implements DimensionDTO {
     public double getUpperDeviation() {
         return upperDeviation;
     }
+
+    @Override
+    public String toString() {
+        return "DimensionDTOImpl{" +
+                "valueOfDimension=" + valueOfDimension +
+                ", lowerDeviation=" + lowerDeviation +
+                ", upperDeviation=" + upperDeviation +
+                '}';
+    }
 }
