@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "nominal_tolerance")
-public class NominalTolerance implements EntityToDb {
+public class NominalTolerance implements EntityForm {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

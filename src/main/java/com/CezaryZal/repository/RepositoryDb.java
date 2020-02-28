@@ -1,8 +1,8 @@
 package com.CezaryZal.repository;
 
-import com.CezaryZal.entity.EntityToDb;
+import com.CezaryZal.entity.EntityForm;
 
 public interface RepositoryDb {
 
-    EntityToDb getRecord(String inputSign, int inputValue);
+    EntityForm getRecord(String inputSign, int inputValue);
 }

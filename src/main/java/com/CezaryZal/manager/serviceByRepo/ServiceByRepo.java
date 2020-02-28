@@ -1,8 +1,8 @@
 package com.CezaryZal.manager.serviceByRepo;
 
-import com.CezaryZal.entity.EntityToDb;
+import com.CezaryZal.entity.EntityForm;
 
 public interface ServiceByRepo {
 
-    EntityToDb getRecordBySignAndValue(String inputSign, int inputValue);
+    EntityForm getRecordBySignAndValue(String inputSign, int inputValue);
 }

@@ -1,6 +1,6 @@
 package com.CezaryZal.entity;
 
-public interface EntityToDb {
+public interface EntityForm {
 
     int getId();
 
