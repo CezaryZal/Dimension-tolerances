@@ -1,7 +1,9 @@
 package com.CezaryZal.api.manager;
 
+import com.CezaryZal.api.manager.calculation.ResultForShaft;
 import com.CezaryZal.api.model.ParsedInputDimension;
 import com.CezaryZal.api.model.ValuesFromRepoByInputDimension;
+import com.CezaryZal.api.model.dto.DimensionDTO;
 import com.CezaryZal.api.model.dto.DimensionDTOImpl;
 import com.CezaryZal.api.model.entity.AdditionalDataToBasicDeviations;
 import com.CezaryZal.api.model.entity.BasicDeviations;
@@ -23,24 +25,27 @@ public class DimensionService {
     private final NominalToleranceServiceByRepoImp toleranceServiceByRepoImp;
     private final BasicDeviationsServiceByRepoImp deviationsServiceByRepoImp;
     private final AdditionalDataToBasicDeviationsServiceByRepoImp additionalDataServiceByRepoImp;
+    private final ResultForShaft resultForShaft;
 
     @Autowired
     public DimensionService(NominalToleranceServiceByRepoImp toleranceServiceByRepoImp,
                             BasicDeviationsServiceByRepoImp deviationsServiceByRepoImp,
-                            AdditionalDataToBasicDeviationsServiceByRepoImp additionalDataServiceByRepoImp) {
+                            AdditionalDataToBasicDeviationsServiceByRepoImp additionalDataServiceByRepoImp,
+                            ResultForShaft resultForShaft) {
         this.toleranceServiceByRepoImp = toleranceServiceByRepoImp;
         this.deviationsServiceByRepoImp = deviationsServiceByRepoImp;
         this.additionalDataServiceByRepoImp = additionalDataServiceByRepoImp;
+        this.resultForShaft = resultForShaft;
     }
 
-    public DimensionDTOImpl createDimensionTolerance(String input) {
+    public DimensionDTO createDimensionTolerance(String input) {
 
         ParsedInputDimension parsedInputDimension = shareInput(input);
         ValuesFromRepoByInputDimension valuesFromRepoByInputDimension = takeResultsFromRepository(parsedInputDimension);
-        return new DimensionDTOImpl(
-                parsedInputDimension.getValueOfDimension(),
-                makeLowerDeviation(parsedInputDimension, valuesFromRepoByInputDimension),
-                makeUpperDeviation(parsedInputDimension, valuesFromRepoByInputDimension));
+        if (Character.isLowerCase(parsedInputDimension.getSymbolFromInput())) {
+            return resultForShaft.calculate(valuesFromRepoByInputDimension, parsedInputDimension);
+        }
+        return null;
     }
 
     private ParsedInputDimension shareInput(String input) {
@@ -60,9 +65,10 @@ public class DimensionService {
                 isSymbolBetweenHAndP = Character.toLowerCase(symbolFromInput) < 'p';
             }
         }
-        return new ParsedInputDimension(valueOfDimension, symbolFromInput, valueITFromInput, isSymbolOverH, isSymbolBetweenHAndP);
+        return new ParsedInputDimension(valueOfDimension, symbolFromInput, valueITFromInput, isSymbolOverH, isSymbolBetweenHAndP, true);
     }
 
+    //method from the previous solution
     private double makeUpperDeviation(
             ParsedInputDimension parsedInputDimension,
             ValuesFromRepoByInputDimension valuesByInputDimension) {
@@ -85,6 +91,7 @@ public class DimensionService {
                 valuesByInputDimension.getValueOfNominalTolerance();
     }
 
+    //method from the previous solution
     private double makeLowerDeviation(
             ParsedInputDimension parsedInputDimension,
             ValuesFromRepoByInputDimension valuesByInputDimension) {
