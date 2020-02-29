@@ -1,4 +1,4 @@
-package com.CezaryZal.api.manager.calculation;
+package com.CezaryZal.api.manager.calculation.deviation;
 
 public class LowerDeviationForShaft implements LowerDeviation{
 

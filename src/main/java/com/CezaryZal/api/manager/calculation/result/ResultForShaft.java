@@ -1,5 +1,7 @@
-package com.CezaryZal.api.manager.calculation;
+package com.CezaryZal.api.manager.calculation.result;
 
+import com.CezaryZal.api.manager.calculation.deviation.LowerDeviationForShaft;
+import com.CezaryZal.api.manager.calculation.deviation.UpperDeviationForShaft;
 import com.CezaryZal.api.model.dto.DimensionDTO;
 import com.CezaryZal.api.model.dto.DimensionDTOImpl;
 import org.springframework.stereotype.Service;
