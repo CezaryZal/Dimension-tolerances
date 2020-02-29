@@ -1,10 +1,9 @@
 package com.CezaryZal.api.manager;
 
-import com.CezaryZal.api.manager.calculation.ResultForShaft;
+import com.CezaryZal.api.manager.calculation.result.ResultForShaft;
 import com.CezaryZal.api.model.ParsedInputDimension;
 import com.CezaryZal.api.model.ValuesFromRepoByInputDimension;
 import com.CezaryZal.api.model.dto.DimensionDTO;
-import com.CezaryZal.api.model.dto.DimensionDTOImpl;
 import com.CezaryZal.api.model.entity.AdditionalDataToBasicDeviations;
 import com.CezaryZal.api.model.entity.BasicDeviations;
 import com.CezaryZal.api.model.entity.NominalTolerance;
@@ -65,7 +64,7 @@ public class DimensionService {
                 isSymbolBetweenHAndP = Character.toLowerCase(symbolFromInput) < 'p';
             }
         }
-        return new ParsedInputDimension(valueOfDimension, symbolFromInput, valueITFromInput, isSymbolOverH, isSymbolBetweenHAndP, true);
+        return new ParsedInputDimension(valueOfDimension, symbolFromInput, valueITFromInput, isSymbolOverH, isSymbolBetweenHAndP);
     }
 
     //method from the previous solution

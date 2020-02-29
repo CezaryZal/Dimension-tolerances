@@ -7,21 +7,18 @@ public class ParsedInputDimension {
     private int valueITFromInput;
     private boolean isSymbolOverH;
     private boolean isSymbolBetweenHAndP;
-    private boolean isForShaft;
 
     public ParsedInputDimension(
             int valueOfDimension,
             char symbolFromInput,
             int valueITFromInput,
             boolean isSymbolOverH,
-            boolean isSymbolBetweenHAndP,
-            boolean isForShaft) {
+            boolean isSymbolBetweenHAndP) {
         this.valueOfDimension = valueOfDimension;
         this.symbolFromInput = symbolFromInput;
         this.valueITFromInput = valueITFromInput;
         this.isSymbolOverH = isSymbolOverH;
         this.isSymbolBetweenHAndP = isSymbolBetweenHAndP;
-        this.isForShaft = isForShaft;
     }
 
     public int getValueOfDimension() {
@@ -44,10 +41,6 @@ public class ParsedInputDimension {
         return isSymbolBetweenHAndP;
     }
 
-    public boolean isForShaft() {
-        return isForShaft;
-    }
-
     @Override
     public String toString() {
         return "ParsedInputDimension{" +
@@ -56,7 +49,6 @@ public class ParsedInputDimension {
                 ", valueITFromInput=" + valueITFromInput +
                 ", isSymbolOverH=" + isSymbolOverH +
                 ", isSymbolBetweenHAndP=" + isSymbolBetweenHAndP +
-                ", isForShaft=" + isForShaft +
                 '}';
     }
 }
