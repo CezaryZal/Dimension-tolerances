@@ -28,11 +28,11 @@ public abstract class Result {
 
     abstract DimensionDTO calculateForSymbolOverH(
             int valueOfDimension,
-            double valueOfLowerDeviation,
+            double valueOfDeviation,
             double valueOfNominalTolerance);
 
     abstract DimensionDTO calculateForSymbolBelowAndWithH(
             int valueOfDimension,
-            double valueOfUpperDeviation,
+            double valueOfDeviation,
             double valueOfNominalTolerance);
 }

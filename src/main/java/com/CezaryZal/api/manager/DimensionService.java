@@ -1,5 +1,6 @@
 package com.CezaryZal.api.manager;
 
+import com.CezaryZal.api.manager.calculation.result.ResultForHole;
 import com.CezaryZal.api.manager.calculation.result.ResultForShaft;
 import com.CezaryZal.api.model.ParsedInputDimension;
 import com.CezaryZal.api.model.ValuesFromRepoByInputDimension;
@@ -25,16 +26,19 @@ public class DimensionService {
     private final BasicDeviationsServiceByRepoImp deviationsServiceByRepoImp;
     private final AdditionalDataToBasicDeviationsServiceByRepoImp additionalDataServiceByRepoImp;
     private final ResultForShaft resultForShaft;
+    private final ResultForHole resultForHole;
 
     @Autowired
     public DimensionService(NominalToleranceServiceByRepoImp toleranceServiceByRepoImp,
                             BasicDeviationsServiceByRepoImp deviationsServiceByRepoImp,
                             AdditionalDataToBasicDeviationsServiceByRepoImp additionalDataServiceByRepoImp,
-                            ResultForShaft resultForShaft) {
+                            ResultForShaft resultForShaft,
+                            ResultForHole resultForHole) {
         this.toleranceServiceByRepoImp = toleranceServiceByRepoImp;
         this.deviationsServiceByRepoImp = deviationsServiceByRepoImp;
         this.additionalDataServiceByRepoImp = additionalDataServiceByRepoImp;
         this.resultForShaft = resultForShaft;
+        this.resultForHole = resultForHole;
     }
 
     public DimensionDTO createDimensionTolerance(String input) {
@@ -44,7 +48,7 @@ public class DimensionService {
         if (Character.isLowerCase(parsedInputDimension.getSymbolFromInput())) {
             return resultForShaft.calculate(valuesFromRepoByInputDimension, parsedInputDimension);
         }
-        return null;
+        return resultForHole.calculate(valuesFromRepoByInputDimension, parsedInputDimension);
     }
 
     private ParsedInputDimension shareInput(String input) {
