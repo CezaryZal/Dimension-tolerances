@@ -20,12 +20,10 @@ public class ResultForHole extends Result {
             double valueOfUpperDeviation,
             double valueOfNominalTolerance) {
 
-        double realUpperDeviationValue = createOppositeNumber(valueOfUpperDeviation);
-
         return new DimensionDTOImpl(
                 valueOfDimension,
-                lowerDeviation.calculateLowerDeviation(realUpperDeviationValue, valueOfNominalTolerance),
-                realUpperDeviationValue);
+                lowerDeviation.calculateLowerDeviation(valueOfUpperDeviation, valueOfNominalTolerance),
+                valueOfUpperDeviation);
     }
 
     @Override
@@ -34,15 +32,9 @@ public class ResultForHole extends Result {
             double valueOfLowerDeviation,
             double valueOfNominalTolerance) {
 
-        double realLowerDeviationValue = createOppositeNumber(valueOfLowerDeviation);
-
         return new DimensionDTOImpl(
                 valueOfDimension,
-                realLowerDeviationValue,
-                upperDeviation.calculateUpperDeviation(realLowerDeviationValue, valueOfNominalTolerance));
-    }
-
-    private double createOppositeNumber(double valueOfDeviation){
-        return valueOfDeviation * (-1);
+                valueOfLowerDeviation,
+                upperDeviation.calculateUpperDeviation(valueOfLowerDeviation, valueOfNominalTolerance));
     }
 }

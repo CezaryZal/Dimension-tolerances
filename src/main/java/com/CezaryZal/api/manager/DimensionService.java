@@ -56,7 +56,6 @@ public class DimensionService {
         char symbolFromInput = 'a';
         int valueITFromInput = 0;
         boolean isSymbolOverH = false;
-        boolean isSymbolBetweenHAndP = false;
 
         Matcher matcher = PATTERN.matcher(input);
         if (matcher.find()) {
@@ -64,76 +63,39 @@ public class DimensionService {
             symbolFromInput = matcher.group(2).charAt(0);
             valueITFromInput = Integer.parseInt(matcher.group(3));
             isSymbolOverH = Character.toLowerCase(symbolFromInput) > 'h';
-            if (isSymbolOverH) {
-                isSymbolBetweenHAndP = Character.toLowerCase(symbolFromInput) < 'p';
-            }
         }
-        return new ParsedInputDimension(valueOfDimension, symbolFromInput, valueITFromInput, isSymbolOverH, isSymbolBetweenHAndP);
-    }
-
-    //method from the previous solution
-    private double makeUpperDeviation(
-            ParsedInputDimension parsedInputDimension,
-            ValuesFromRepoByInputDimension valuesByInputDimension) {
-        if (Character.isLowerCase(parsedInputDimension.getSymbolFromInput())) {
-            if (parsedInputDimension.isSymbolOverH()) {
-                return valuesByInputDimension.getValueOfBasicDeviations() +
-                        valuesByInputDimension.getValueOfNominalTolerance();
-            }
-            return valuesByInputDimension.getValueOfBasicDeviations() -
-                    valuesByInputDimension.getValueOfNominalTolerance();
-        }
-        if (parsedInputDimension.isSymbolOverH()) {
-            if (parsedInputDimension.isSymbolBetweenHAndP()) {
-                return (valuesByInputDimension.getValueOfBasicDeviations() * (-1)) +
-                        (valuesByInputDimension.getValueOfAdditionalData());
-            }
-            return valuesByInputDimension.getValueOfBasicDeviations() * (-1);
-        }
-        return (valuesByInputDimension.getValueOfBasicDeviations() * (-1)) +
-                valuesByInputDimension.getValueOfNominalTolerance();
-    }
-
-    //method from the previous solution
-    private double makeLowerDeviation(
-            ParsedInputDimension parsedInputDimension,
-            ValuesFromRepoByInputDimension valuesByInputDimension) {
-        if (Character.isLowerCase(parsedInputDimension.getSymbolFromInput())) {
-            if (parsedInputDimension.isSymbolOverH()) {
-                return valuesByInputDimension.getValueOfBasicDeviations();
-            }
-            return valuesByInputDimension.getValueOfBasicDeviations();
-        }
-        if (parsedInputDimension.isSymbolOverH()) {
-            if (parsedInputDimension.isSymbolBetweenHAndP()) {
-                return (valuesByInputDimension.getValueOfBasicDeviations() * (-1)) +
-                        (valuesByInputDimension.getValueOfAdditionalData()) -
-                        valuesByInputDimension.getValueOfNominalTolerance();
-            }
-            return valuesByInputDimension.getValueOfBasicDeviations() * (-1) -
-                    valuesByInputDimension.getValueOfNominalTolerance();
-        }
-        return valuesByInputDimension.getValueOfBasicDeviations() * (-1);
-
+        return new ParsedInputDimension(valueOfDimension, symbolFromInput, valueITFromInput, isSymbolOverH);
     }
 
     private ValuesFromRepoByInputDimension takeResultsFromRepository(ParsedInputDimension parsedInputDimension) {
 
-        AdditionalDataToBasicDeviations additionalData = new AdditionalDataToBasicDeviations(0, 0, null, 0);
-        BasicDeviations basicDeviations = deviationsServiceByRepoImp.getRecordBySignAndValue(
-                String.valueOf(parsedInputDimension.getSymbolFromInput()), parsedInputDimension.getValueOfDimension());
+        double valueOfBasicDeviation =  deviationsServiceByRepoImp.getRecordBySignAndValue(
+                String.valueOf(parsedInputDimension.getSymbolFromInput()),
+                parsedInputDimension.getValueOfDimension())
+                .getValue();
+
         NominalTolerance nominalTolerance = toleranceServiceByRepoImp.getRecordBySignAndValue(
                 "IT" + parsedInputDimension.getValueITFromInput(), parsedInputDimension.getValueOfDimension());
 
-        if (parsedInputDimension.isSymbolOverH() && parsedInputDimension.isSymbolBetweenHAndP()) {
+        if (parsedInputDimension.getSymbolFromInput() < 97){
+            valueOfBasicDeviation = createOppositeNumber(valueOfBasicDeviation);
+        }
+
+        if (parsedInputDimension.isSymbolOverH() && parsedInputDimension.getSymbolFromInput() < 'P') {
             if (!(parsedInputDimension.getValueITFromInput() < 3 || parsedInputDimension.getValueITFromInput() > 8)) {
-                additionalData = additionalDataServiceByRepoImp.getRecordBySignAndValue(
-                        "IT" + parsedInputDimension.getValueITFromInput(), parsedInputDimension.getValueOfDimension());
+                double valueOfAdditionalData = additionalDataServiceByRepoImp.getRecordBySignAndValue(
+                        "IT" + parsedInputDimension.getValueITFromInput(),
+                        parsedInputDimension.getValueOfDimension())
+                        .getValue();
+
+                valueOfBasicDeviation += valueOfAdditionalData;
             }
         }
-        return new ValuesFromRepoByInputDimension(
-                basicDeviations.getValue(),
-                nominalTolerance.getValue(),
-                additionalData.getValue());
+
+        return new ValuesFromRepoByInputDimension(valueOfBasicDeviation, nominalTolerance.getValue());
+    }
+
+    private double createOppositeNumber(double valueOfDeviation){
+        return valueOfDeviation * -1;
     }
 }

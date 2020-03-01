@@ -4,15 +4,10 @@ public class ValuesFromRepoByInputDimension {
 
     double valueOfBasicDeviations;
     double valueOfNominalTolerance;
-    double valueOfAdditionalData;
 
-    public ValuesFromRepoByInputDimension(
-            double valueOfBasicDeviations,
-            double valueOfNominalTolerance,
-            double valueOfAdditionalData) {
+    public ValuesFromRepoByInputDimension(double valueOfBasicDeviations, double valueOfNominalTolerance) {
         this.valueOfBasicDeviations = valueOfBasicDeviations;
         this.valueOfNominalTolerance = valueOfNominalTolerance;
-        this.valueOfAdditionalData = valueOfAdditionalData;
     }
 
     public double getValueOfBasicDeviations() {
@@ -23,16 +18,11 @@ public class ValuesFromRepoByInputDimension {
         return valueOfNominalTolerance;
     }
 
-    public double getValueOfAdditionalData() {
-        return valueOfAdditionalData;
-    }
-
     @Override
     public String toString() {
         return "ValuesFromRepoByInputDimension{" +
                 "valueOfBasicDeviations=" + valueOfBasicDeviations +
                 ", valueOfNominalTolerance=" + valueOfNominalTolerance +
-                ", valueOfAdditionalData=" + valueOfAdditionalData +
                 '}';
     }
 }
