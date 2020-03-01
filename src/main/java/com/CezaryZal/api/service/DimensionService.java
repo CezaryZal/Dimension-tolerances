@@ -1,16 +1,14 @@
-package com.CezaryZal.api.manager;
+package com.CezaryZal.api.service;
 
-import com.CezaryZal.api.manager.calculation.result.ResultForHole;
-import com.CezaryZal.api.manager.calculation.result.ResultForShaft;
+import com.CezaryZal.api.service.calculation.result.ResultForHole;
+import com.CezaryZal.api.service.calculation.result.ResultForShaft;
 import com.CezaryZal.api.model.ParsedInputDimension;
 import com.CezaryZal.api.model.ValuesFromRepoByInputDimension;
 import com.CezaryZal.api.model.dto.DimensionDTO;
-import com.CezaryZal.api.model.entity.AdditionalDataToBasicDeviations;
-import com.CezaryZal.api.model.entity.BasicDeviations;
 import com.CezaryZal.api.model.entity.NominalTolerance;
-import com.CezaryZal.api.manager.serviceByRepo.AdditionalDataToBasicDeviationsServiceByRepoImp;
-import com.CezaryZal.api.manager.serviceByRepo.BasicDeviationsServiceByRepoImp;
-import com.CezaryZal.api.manager.serviceByRepo.NominalToleranceServiceByRepoImp;
+import com.CezaryZal.api.service.repo.AdditionalDataToBasicDeviationServiceRepoImp;
+import com.CezaryZal.api.service.repo.BasicDeviationServiceRepoImp;
+import com.CezaryZal.api.service.repo.NominalToleranceServiceRepoImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,16 +20,16 @@ public class DimensionService {
 
     private final Pattern PATTERN = Pattern.compile("([1-9]\\d*)([a-zA-Z])([1-9][0-8]*)");
 
-    private final NominalToleranceServiceByRepoImp toleranceServiceByRepoImp;
-    private final BasicDeviationsServiceByRepoImp deviationsServiceByRepoImp;
-    private final AdditionalDataToBasicDeviationsServiceByRepoImp additionalDataServiceByRepoImp;
+    private final NominalToleranceServiceRepoImp toleranceServiceByRepoImp;
+    private final BasicDeviationServiceRepoImp deviationsServiceByRepoImp;
+    private final AdditionalDataToBasicDeviationServiceRepoImp additionalDataServiceByRepoImp;
     private final ResultForShaft resultForShaft;
     private final ResultForHole resultForHole;
 
     @Autowired
-    public DimensionService(NominalToleranceServiceByRepoImp toleranceServiceByRepoImp,
-                            BasicDeviationsServiceByRepoImp deviationsServiceByRepoImp,
-                            AdditionalDataToBasicDeviationsServiceByRepoImp additionalDataServiceByRepoImp,
+    public DimensionService(NominalToleranceServiceRepoImp toleranceServiceByRepoImp,
+                            BasicDeviationServiceRepoImp deviationsServiceByRepoImp,
+                            AdditionalDataToBasicDeviationServiceRepoImp additionalDataServiceByRepoImp,
                             ResultForShaft resultForShaft,
                             ResultForHole resultForHole) {
         this.toleranceServiceByRepoImp = toleranceServiceByRepoImp;

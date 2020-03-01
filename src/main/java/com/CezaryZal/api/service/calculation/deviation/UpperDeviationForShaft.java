@@ -1,4 +1,4 @@
-package com.CezaryZal.api.manager.calculation.deviation;
+package com.CezaryZal.api.service.calculation.deviation;
 
 public class UpperDeviationForShaft implements UpperDeviation {
 

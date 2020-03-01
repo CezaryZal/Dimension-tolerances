@@ -1,7 +1,7 @@
-package com.CezaryZal.api.manager.calculation.result;
+package com.CezaryZal.api.service.calculation.result;
 
-import com.CezaryZal.api.manager.calculation.deviation.LowerDeviationForHole;
-import com.CezaryZal.api.manager.calculation.deviation.UpperDeviationForHole;
+import com.CezaryZal.api.service.calculation.deviation.LowerDeviationForHole;
+import com.CezaryZal.api.service.calculation.deviation.UpperDeviationForHole;
 import com.CezaryZal.api.model.dto.DimensionDTO;
 import com.CezaryZal.api.model.dto.DimensionDTOImpl;
 import org.springframework.stereotype.Service;

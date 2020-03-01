@@ -1,4 +1,4 @@
-package com.CezaryZal.api.manager.serviceByRepo;
+package com.CezaryZal.api.service.repo;
 
 import com.CezaryZal.api.model.entity.BasicDeviations;
 import com.CezaryZal.api.repository.BasicDeviationsRepoDbImpl;
@@ -7,12 +7,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class BasicDeviationsServiceByRepoImp {
+public class BasicDeviationServiceRepoImp {
 
     private final BasicDeviationsRepoDbImpl deviationsRepository;
 
     @Autowired
-    public BasicDeviationsServiceByRepoImp(BasicDeviationsRepoDbImpl deviationsRepository) {
+    public BasicDeviationServiceRepoImp(BasicDeviationsRepoDbImpl deviationsRepository) {
         this.deviationsRepository = deviationsRepository;
     }
 

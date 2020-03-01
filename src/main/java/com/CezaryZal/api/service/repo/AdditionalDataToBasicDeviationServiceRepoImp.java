@@ -1,4 +1,4 @@
-package com.CezaryZal.api.manager.serviceByRepo;
+package com.CezaryZal.api.service.repo;
 
 import com.CezaryZal.api.model.entity.AdditionalDataToBasicDeviations;
 import com.CezaryZal.api.repository.AdditionalDataToBasicDeviationsRepoDbImpl;
@@ -8,12 +8,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 @Service
-public class AdditionalDataToBasicDeviationsServiceByRepoImp {
+public class AdditionalDataToBasicDeviationServiceRepoImp {
 
     private final AdditionalDataToBasicDeviationsRepoDbImpl additionalDataRepository;
 
     @Autowired
-    public AdditionalDataToBasicDeviationsServiceByRepoImp(AdditionalDataToBasicDeviationsRepoDbImpl additionalDataRepository) {
+    public AdditionalDataToBasicDeviationServiceRepoImp(AdditionalDataToBasicDeviationsRepoDbImpl additionalDataRepository) {
         this.additionalDataRepository = additionalDataRepository;
     }
 

@@ -1,4 +1,4 @@
-package com.CezaryZal.api.manager.serviceByRepo;
+package com.CezaryZal.api.service.repo;
 
 import com.CezaryZal.api.model.entity.NominalTolerance;
 import com.CezaryZal.api.repository.NominalToleranceRepoDbImpl;
@@ -7,12 +7,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class NominalToleranceServiceByRepoImp {
+public class NominalToleranceServiceRepoImp {
 
     private final NominalToleranceRepoDbImpl toleranceRepository;
 
     @Autowired
-    public NominalToleranceServiceByRepoImp(NominalToleranceRepoDbImpl toleranceRepository) {
+    public NominalToleranceServiceRepoImp(NominalToleranceRepoDbImpl toleranceRepository) {
         this.toleranceRepository = toleranceRepository;
     }
 

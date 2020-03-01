@@ -1,7 +1,7 @@
 package com.CezaryZal.api.rest;
 
 import com.CezaryZal.api.model.dto.DimensionDTO;
-import com.CezaryZal.api.manager.DimensionService;
+import com.CezaryZal.api.service.DimensionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
