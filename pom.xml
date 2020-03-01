@@ -79,7 +79,7 @@
     <!-- Support for Maven WAR Plugin -->
 
     <build>
-        <finalName>DimensionTolerances</finalName>
+        <finalName>dimension-tolerances</finalName>
 
         <pluginManagement>
             <plugins>
@@ -95,7 +95,7 @@
                     <configuration>
                         <url>http://localhost:8081/manager/text/</url>
                         <server>TomcatServer</server>
-                        <path>/DimensionTolerances</path>
+                        <path>/dimension-tolerances</path>
                         <!-- Set update to true to avoid exist war package can not be override error -->
                         <update>true</update>
                         <!-- Because deploy this maven project using plugin in pom so use the manager-script role user. -->
