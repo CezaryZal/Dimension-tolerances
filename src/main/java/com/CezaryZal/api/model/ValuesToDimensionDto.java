@@ -1,11 +1,11 @@
 package com.CezaryZal.api.model;
 
-public class ValuesToDimensionDTO {
+public class ValuesToDimensionDto {
 
     double valueOfBasicDeviations;
     double valueOfNominalTolerance;
 
-    public ValuesToDimensionDTO(double valueOfBasicDeviations, double valueOfNominalTolerance) {
+    public ValuesToDimensionDto(double valueOfBasicDeviations, double valueOfNominalTolerance) {
         this.valueOfBasicDeviations = valueOfBasicDeviations;
         this.valueOfNominalTolerance = valueOfNominalTolerance;
     }
@@ -20,7 +20,7 @@ public class ValuesToDimensionDTO {
 
     @Override
     public String toString() {
-        return "ValuesFromRepoByInputDimension{" +
+        return "ValuesToDimensionDto{" +
                 "valueOfBasicDeviations=" + valueOfBasicDeviations +
                 ", valueOfNominalTolerance=" + valueOfNominalTolerance +
                 '}';

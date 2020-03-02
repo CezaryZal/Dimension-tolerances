@@ -3,9 +3,9 @@ package com.CezaryZal.api.service;
 import com.CezaryZal.api.service.calculation.result.ResultForHole;
 import com.CezaryZal.api.service.calculation.result.ResultForShaft;
 import com.CezaryZal.api.model.ParsedInputDimension;
-import com.CezaryZal.api.model.ValuesToDimensionDTO;
-import com.CezaryZal.api.model.dto.DimensionDTO;
-import com.CezaryZal.api.service.creator.ValueToDimensionDTOCreator;
+import com.CezaryZal.api.model.ValuesToDimensionDto;
+import com.CezaryZal.api.model.dto.DimensionDto;
+import com.CezaryZal.api.service.creator.ValueToDimensionDtoCreator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,35 +15,36 @@ import java.util.regex.Pattern;
 @Service
 public class DimensionService {
 
-    private final Pattern PATTERN = Pattern.compile("([1-9]\\d*)([a-zA-Z])([1-9][0-8]*)");
+    private final int hInAscii = 104;
+    private final Pattern pattern = Pattern.compile("([1-9]\\d*)([a-zA-Z])([1-9][0-8]*)");
 
     private final ResultForShaft resultForShaft;
     private final ResultForHole resultForHole;
-    private final ValueToDimensionDTOCreator valueToDimensionDTOCreator;
+    private final ValueToDimensionDtoCreator valueToDimensionDtoCreator;
 
     @Autowired
     public DimensionService(
             ResultForShaft resultForShaft,
             ResultForHole resultForHole,
-            ValueToDimensionDTOCreator valueToDimensionDTOCreator) {
+            ValueToDimensionDtoCreator valueToDimensionDtoCreator) {
         this.resultForShaft = resultForShaft;
         this.resultForHole = resultForHole;
-        this.valueToDimensionDTOCreator = valueToDimensionDTOCreator;
+        this.valueToDimensionDtoCreator = valueToDimensionDtoCreator;
     }
 
-    public DimensionDTO createDimensionTolerance(String input) {
+    public DimensionDto createDimensionTolerance(String input) {
         ParsedInputDimension parsedInputDimension = shareInput(input);
-        ValuesToDimensionDTO valuesToDimensionDTO =
-                valueToDimensionDTOCreator.createValuesToDimensionDTO(parsedInputDimension);
+        ValuesToDimensionDto valuesToDimensionDto =
+                valueToDimensionDtoCreator.createValuesToDimensionDto(parsedInputDimension);
 
         return (Character.isLowerCase(parsedInputDimension.getSymbol()) ?
-                resultForShaft.calculate(valuesToDimensionDTO, parsedInputDimension) :
-                resultForHole.calculate(valuesToDimensionDTO, parsedInputDimension));
+                resultForShaft.calculate(valuesToDimensionDto, parsedInputDimension) :
+                resultForHole.calculate(valuesToDimensionDto, parsedInputDimension));
     }
 
     private ParsedInputDimension shareInput(String input) {
         char symbolFromInput;
-        Matcher matcher = PATTERN.matcher(input);
+        Matcher matcher = pattern.matcher(input);
 
         if (matcher.find()) {
             symbolFromInput = matcher.group(2).charAt(0);
@@ -52,7 +53,7 @@ public class DimensionService {
                     Integer.parseInt(matcher.group(1)),
                     symbolFromInput,
                     Integer.parseInt(matcher.group(3)),
-                    Character.toLowerCase(symbolFromInput) > 'h');
+                    Character.toLowerCase(symbolFromInput) > hInAscii);
         }
         //add Exception class
         return null;

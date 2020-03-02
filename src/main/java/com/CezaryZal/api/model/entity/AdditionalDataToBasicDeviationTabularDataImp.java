@@ -3,8 +3,8 @@ package com.CezaryZal.api.model.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "basic_deviations")
-public class BasicDeviationsTabularDataImp implements TabularData {
+@Table(name = "addition_table_to_basic_deviations")
+public class AdditionalDataToBasicDeviationTabularDataImp implements TabularData {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,6 +23,15 @@ public class BasicDeviationsTabularDataImp implements TabularData {
     @Column(name = "value")
     private double value;
 
+    public AdditionalDataToBasicDeviationTabularDataImp() {
+    }
+
+    public AdditionalDataToBasicDeviationTabularDataImp(int dimensionMin, int dimensionMax, String sign, double value) {
+        this.dimensionMin = dimensionMin;
+        this.dimensionMax = dimensionMax;
+        this.sign = sign;
+        this.value = value;
+    }
 
     @Override
     public int getId() {
@@ -49,10 +58,9 @@ public class BasicDeviationsTabularDataImp implements TabularData {
         return value;
     }
 
-
     @Override
     public String toString() {
-        return "BasicDeviations{" +
+        return "AdditionalDataToBasicDeviationTabularDataImp{" +
                 "id=" + id +
                 ", dimensionMin=" + dimensionMin +
                 ", dimensionMax=" + dimensionMax +

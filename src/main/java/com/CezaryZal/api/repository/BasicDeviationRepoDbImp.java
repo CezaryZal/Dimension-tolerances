@@ -7,13 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-
-public class AdditionalDataToBasicDeviationsRepoDbImp implements RepositoryDb {
+public class BasicDeviationRepoDbImp implements RepositoryDb {
 
     private final SessionFactory sessionFactory;
 
     @Autowired
-    public AdditionalDataToBasicDeviationsRepoDbImp(SessionFactory sessionFactory) {
+    public BasicDeviationRepoDbImp(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
 
@@ -22,11 +21,14 @@ public class AdditionalDataToBasicDeviationsRepoDbImp implements RepositoryDb {
         Session currentSession = sessionFactory.getCurrentSession();
 
         Query<Double> query = currentSession.createQuery(
-                "SELECT value FROM AdditionalDataToBasicDeviationsTabularDataImp " +
-                "WHERE sign=:name AND :value BETWEEN nominal_dimension_min and nominal_dimension_max");
+                "SELECT value FROM BasicDeviationsTabularDataImp WHERE sign=:name " +
+                "AND :value BETWEEN nominal_dimension_min and nominal_dimension_max");
         query.setParameter("name", inputSign);
         query.setParameter("value", inputDimension);
 
         return query.getSingleResult();
     }
+
 }
+
+

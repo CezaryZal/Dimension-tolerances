@@ -1,7 +1,7 @@
 package com.CezaryZal.api.service.creator;
 
 import com.CezaryZal.api.model.ParsedInputDimension;
-import com.CezaryZal.api.model.ValuesToDimensionDTO;
+import com.CezaryZal.api.model.ValuesToDimensionDto;
 import com.CezaryZal.api.service.repo.AdditionalDataToBasicDeviationServiceRepoImp;
 import com.CezaryZal.api.service.repo.BasicDeviationServiceRepoImp;
 import com.CezaryZal.api.service.repo.NominalToleranceServiceRepoImp;
@@ -9,14 +9,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ValueToDimensionDTOCreator {
+public class ValueToDimensionDtoCreator {
+
+    private final int aInAscii = 97;
+    private final int PInAscii = 80;
+    private final int minValueOfItToModifyValueOfBasicDeviation = 3;
+    private final int maxValueOfItToModifyValueOfBasicDeviation = 8;
 
     private final NominalToleranceServiceRepoImp toleranceServiceByRepoImp;
     private final BasicDeviationServiceRepoImp deviationsServiceByRepoImp;
     private final AdditionalDataToBasicDeviationServiceRepoImp additionalDataServiceByRepoImp;
 
     @Autowired
-    public ValueToDimensionDTOCreator(
+    public ValueToDimensionDtoCreator(
             NominalToleranceServiceRepoImp toleranceServiceByRepoImp,
             BasicDeviationServiceRepoImp deviationsServiceByRepoImp,
             AdditionalDataToBasicDeviationServiceRepoImp additionalDataServiceByRepoImp) {
@@ -25,19 +30,19 @@ public class ValueToDimensionDTOCreator {
         this.additionalDataServiceByRepoImp = additionalDataServiceByRepoImp;
     }
 
-    public ValuesToDimensionDTO createValuesToDimensionDTO(ParsedInputDimension parsedInputDimension) {
+    public ValuesToDimensionDto createValuesToDimensionDto(ParsedInputDimension parsedInputDimension) {
 
         double valueOfBasicDeviation =  deviationsServiceByRepoImp.getValueOfRecordBySignAndValue(
                 String.valueOf(parsedInputDimension.getSymbol()),
                 parsedInputDimension.getValueOfDimension());
         double valueOfNominalToleranceBySignAndValue = toleranceServiceByRepoImp.getValueOfRecordBySignAndValue(
-                "IT" + parsedInputDimension.getValueOfIT(),
+                "IT" + parsedInputDimension.getValueOfIt(),
                 parsedInputDimension.getValueOfDimension());
 
         valueOfBasicDeviation = modifyValueOfBasicDeviationIfIsSpeciallyDimension(
                 parsedInputDimension, valueOfBasicDeviation);
 
-        return new ValuesToDimensionDTO(valueOfBasicDeviation, valueOfNominalToleranceBySignAndValue);
+        return new ValuesToDimensionDto(valueOfBasicDeviation, valueOfNominalToleranceBySignAndValue);
     }
 
     private double createOppositeNumber(double valueOfDeviation){
@@ -48,16 +53,16 @@ public class ValueToDimensionDTOCreator {
             ParsedInputDimension parsedInputDimension,
             double valueOfBasicDeviation){
 
-        if (parsedInputDimension.getSymbol() < 97){
+        if (parsedInputDimension.getSymbol() < aInAscii){
             valueOfBasicDeviation = createOppositeNumber(valueOfBasicDeviation);
         }
         if (parsedInputDimension.isSymbolOverH() &&
-                parsedInputDimension.getSymbol() < 'P' &&
-                parsedInputDimension.getValueOfIT() >= 3 &&
-                parsedInputDimension.getValueOfIT() <= 8) {
+                parsedInputDimension.getSymbol() < PInAscii &&
+                parsedInputDimension.getValueOfIt() >= minValueOfItToModifyValueOfBasicDeviation &&
+                parsedInputDimension.getValueOfIt() <= maxValueOfItToModifyValueOfBasicDeviation) {
 
             valueOfBasicDeviation += additionalDataServiceByRepoImp.getValueOfRecordBySignAndValue(
-                    "IT" + parsedInputDimension.getValueOfIT(),
+                    "IT" + parsedInputDimension.getValueOfIt(),
                     parsedInputDimension.getValueOfDimension());
         }
         return valueOfBasicDeviation;

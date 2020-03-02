@@ -51,7 +51,7 @@ public class NominalToleranceTabularDataImp implements TabularData {
 
     @Override
     public String toString() {
-        return "NominalTolerance{" +
+        return "NominalToleranceTabularDataImp{" +
                 "id=" + id +
                 ", dimensionMin=" + dimensionMin +
                 ", dimensionMax=" + dimensionMax +

@@ -3,15 +3,15 @@ package com.CezaryZal.api.service.calculation.result;
 import com.CezaryZal.api.service.calculation.deviation.LowerDeviation;
 import com.CezaryZal.api.service.calculation.deviation.UpperDeviation;
 import com.CezaryZal.api.model.ParsedInputDimension;
-import com.CezaryZal.api.model.ValuesToDimensionDTO;
-import com.CezaryZal.api.model.dto.DimensionDTO;
+import com.CezaryZal.api.model.ValuesToDimensionDto;
+import com.CezaryZal.api.model.dto.DimensionDto;
 
 public abstract class Result {
     protected UpperDeviation upperDeviation;
     protected LowerDeviation lowerDeviation;
 
-    public DimensionDTO calculate (
-            ValuesToDimensionDTO valuesToDimensionDTO,
+    public DimensionDto calculate (
+            ValuesToDimensionDto valuesToDimensionDTO,
             ParsedInputDimension parsedInputDimension){
 
         if (parsedInputDimension.isSymbolOverH()){
@@ -26,12 +26,12 @@ public abstract class Result {
                 valuesToDimensionDTO.getValueOfNominalTolerance());
     }
 
-    abstract DimensionDTO calculateForSymbolOverH(
+    abstract DimensionDto calculateForSymbolOverH(
             int valueOfDimension,
             double valueOfDeviation,
             double valueOfNominalTolerance);
 
-    abstract DimensionDTO calculateForSymbolBelowAndWithH(
+    abstract DimensionDto calculateForSymbolBelowAndWithH(
             int valueOfDimension,
             double valueOfDeviation,
             double valueOfNominalTolerance);

@@ -4,17 +4,17 @@ public class ParsedInputDimension {
 
     private int valueOfDimension;
     private char symbol;
-    private int valueOfIT;
+    private int valueOfIt;
     private boolean isSymbolOverH;
 
     public ParsedInputDimension(
             int valueOfDimension,
             char symbol,
-            int valueOfIT,
+            int valueOfIt,
             boolean isSymbolOverH) {
         this.valueOfDimension = valueOfDimension;
         this.symbol = symbol;
-        this.valueOfIT = valueOfIT;
+        this.valueOfIt = valueOfIt;
         this.isSymbolOverH = isSymbolOverH;
     }
 
@@ -26,8 +26,8 @@ public class ParsedInputDimension {
         return symbol;
     }
 
-    public int getValueOfIT() {
-        return valueOfIT;
+    public int getValueOfIt() {
+        return valueOfIt;
     }
 
     public boolean isSymbolOverH() {
@@ -39,7 +39,7 @@ public class ParsedInputDimension {
         return "ParsedInputDimension{" +
                 "valueOfDimension=" + valueOfDimension +
                 ", symbol=" + symbol +
-                ", valueOfIT=" + valueOfIT +
+                ", valueOfIt=" + valueOfIt +
                 ", isSymbolOverH=" + isSymbolOverH +
                 '}';
     }

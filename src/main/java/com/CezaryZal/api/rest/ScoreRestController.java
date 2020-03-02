@@ -1,6 +1,6 @@
 package com.CezaryZal.api.rest;
 
-import com.CezaryZal.api.model.dto.DimensionDTO;
+import com.CezaryZal.api.model.dto.DimensionDto;
 import com.CezaryZal.api.service.DimensionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +20,7 @@ public class ScoreRestController {
     }
 
     @GetMapping("/value/{input}")
-    public DimensionDTO dimension(@PathVariable String input){
+    public DimensionDto dimension(@PathVariable String input){
         return service.createDimensionTolerance(input);
     }
 

@@ -1,6 +1,6 @@
 package com.CezaryZal.api.service.repo;
 
-import com.CezaryZal.api.repository.AdditionalDataToBasicDeviationsRepoDbImp;
+import com.CezaryZal.api.repository.AdditionalDataToBasicDeviationRepoDbImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -8,10 +8,10 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class AdditionalDataToBasicDeviationServiceRepoImp {
 
-    private final AdditionalDataToBasicDeviationsRepoDbImp additionalDataRepository;
+    private final AdditionalDataToBasicDeviationRepoDbImp additionalDataRepository;
 
     @Autowired
-    public AdditionalDataToBasicDeviationServiceRepoImp(AdditionalDataToBasicDeviationsRepoDbImp additionalDataRepository) {
+    public AdditionalDataToBasicDeviationServiceRepoImp(AdditionalDataToBasicDeviationRepoDbImp additionalDataRepository) {
         this.additionalDataRepository = additionalDataRepository;
     }
 

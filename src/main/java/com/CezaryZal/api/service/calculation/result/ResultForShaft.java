@@ -2,8 +2,8 @@ package com.CezaryZal.api.service.calculation.result;
 
 import com.CezaryZal.api.service.calculation.deviation.LowerDeviationForShaft;
 import com.CezaryZal.api.service.calculation.deviation.UpperDeviationForShaft;
-import com.CezaryZal.api.model.dto.DimensionDTO;
-import com.CezaryZal.api.model.dto.DimensionDTOImpl;
+import com.CezaryZal.api.model.dto.DimensionDto;
+import com.CezaryZal.api.model.dto.DimensionDtoImpl;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,24 +15,24 @@ public class ResultForShaft extends Result {
     }
 
     @Override
-    DimensionDTO calculateForSymbolOverH(
+    DimensionDto calculateForSymbolOverH(
             int valueOfDimension,
             double valueOfLowerDeviation,
             double valueOfNominalTolerance){
 
-        return new DimensionDTOImpl(
+        return new DimensionDtoImpl(
                 valueOfDimension,
                 valueOfLowerDeviation,
                 upperDeviation.calculateUpperDeviation(valueOfLowerDeviation, valueOfNominalTolerance));
     }
 
     @Override
-    DimensionDTO calculateForSymbolBelowAndWithH(
+    DimensionDto calculateForSymbolBelowAndWithH(
             int valueOfDimension,
             double valueOfUpperDeviation,
             double valueOfNominalTolerance){
 
-        return new DimensionDTOImpl(
+        return new DimensionDtoImpl(
                 valueOfDimension,
                 lowerDeviation.calculateLowerDeviation(valueOfUpperDeviation, valueOfNominalTolerance),
                 valueOfUpperDeviation);
