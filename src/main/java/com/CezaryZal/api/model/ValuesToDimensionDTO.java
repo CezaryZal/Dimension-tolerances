@@ -1,11 +1,11 @@
 package com.CezaryZal.api.model;
 
-public class ValuesFromRepoByInputDimension {
+public class ValuesToDimensionDTO {
 
     double valueOfBasicDeviations;
     double valueOfNominalTolerance;
 
-    public ValuesFromRepoByInputDimension(double valueOfBasicDeviations, double valueOfNominalTolerance) {
+    public ValuesToDimensionDTO(double valueOfBasicDeviations, double valueOfNominalTolerance) {
         this.valueOfBasicDeviations = valueOfBasicDeviations;
         this.valueOfNominalTolerance = valueOfNominalTolerance;
     }

@@ -3,11 +3,9 @@ package com.CezaryZal.api.service;
 import com.CezaryZal.api.service.calculation.result.ResultForHole;
 import com.CezaryZal.api.service.calculation.result.ResultForShaft;
 import com.CezaryZal.api.model.ParsedInputDimension;
-import com.CezaryZal.api.model.ValuesFromRepoByInputDimension;
+import com.CezaryZal.api.model.ValuesToDimensionDTO;
 import com.CezaryZal.api.model.dto.DimensionDTO;
-import com.CezaryZal.api.service.repo.AdditionalDataToBasicDeviationServiceRepoImp;
-import com.CezaryZal.api.service.repo.BasicDeviationServiceRepoImp;
-import com.CezaryZal.api.service.repo.NominalToleranceServiceRepoImp;
+import com.CezaryZal.api.service.creator.ValueToDimensionDTOCreator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,39 +17,34 @@ public class DimensionService {
 
     private final Pattern PATTERN = Pattern.compile("([1-9]\\d*)([a-zA-Z])([1-9][0-8]*)");
 
-    private final NominalToleranceServiceRepoImp toleranceServiceByRepoImp;
-    private final BasicDeviationServiceRepoImp deviationsServiceByRepoImp;
-    private final AdditionalDataToBasicDeviationServiceRepoImp additionalDataServiceByRepoImp;
     private final ResultForShaft resultForShaft;
     private final ResultForHole resultForHole;
+    private final ValueToDimensionDTOCreator valueToDimensionDTOCreator;
 
     @Autowired
-    public DimensionService(NominalToleranceServiceRepoImp toleranceServiceByRepoImp,
-                            BasicDeviationServiceRepoImp deviationsServiceByRepoImp,
-                            AdditionalDataToBasicDeviationServiceRepoImp additionalDataServiceByRepoImp,
-                            ResultForShaft resultForShaft,
-                            ResultForHole resultForHole) {
-        this.toleranceServiceByRepoImp = toleranceServiceByRepoImp;
-        this.deviationsServiceByRepoImp = deviationsServiceByRepoImp;
-        this.additionalDataServiceByRepoImp = additionalDataServiceByRepoImp;
+    public DimensionService(
+            ResultForShaft resultForShaft,
+            ResultForHole resultForHole,
+            ValueToDimensionDTOCreator valueToDimensionDTOCreator) {
         this.resultForShaft = resultForShaft;
         this.resultForHole = resultForHole;
+        this.valueToDimensionDTOCreator = valueToDimensionDTOCreator;
     }
 
     public DimensionDTO createDimensionTolerance(String input) {
-
         ParsedInputDimension parsedInputDimension = shareInput(input);
-        ValuesFromRepoByInputDimension valuesFromRepoByInputDimension = takeResultsFromRepository(parsedInputDimension);
-        if (Character.isLowerCase(parsedInputDimension.getSymbolFromInput())) {
-            return resultForShaft.calculate(valuesFromRepoByInputDimension, parsedInputDimension);
-        }
-        return resultForHole.calculate(valuesFromRepoByInputDimension, parsedInputDimension);
+        ValuesToDimensionDTO valuesToDimensionDTO =
+                valueToDimensionDTOCreator.createValuesToDimensionDTO(parsedInputDimension);
+
+        return (Character.isLowerCase(parsedInputDimension.getSymbol()) ?
+                resultForShaft.calculate(valuesToDimensionDTO, parsedInputDimension) :
+                resultForHole.calculate(valuesToDimensionDTO, parsedInputDimension));
     }
 
     private ParsedInputDimension shareInput(String input) {
-        char symbolFromInput = 'a';
-
+        char symbolFromInput;
         Matcher matcher = PATTERN.matcher(input);
+
         if (matcher.find()) {
             symbolFromInput = matcher.group(2).charAt(0);
 
@@ -63,35 +56,5 @@ public class DimensionService {
         }
         //add Exception class
         return null;
-    }
-
-    private ValuesFromRepoByInputDimension takeResultsFromRepository(ParsedInputDimension parsedInputDimension) {
-
-        double valueOfBasicDeviation =  deviationsServiceByRepoImp.getValueOfRecordBySignAndValue(
-                String.valueOf(parsedInputDimension.getSymbolFromInput()),
-                parsedInputDimension.getValueOfDimension());
-
-        Double valueOfNominalToleranceBySignAndValue = toleranceServiceByRepoImp.getValueOfRecordBySignAndValue(
-                "IT" + parsedInputDimension.getValueITFromInput(), parsedInputDimension.getValueOfDimension());
-
-        if (parsedInputDimension.getSymbolFromInput() < 97){
-            valueOfBasicDeviation = createOppositeNumber(valueOfBasicDeviation);
-        }
-
-        if (parsedInputDimension.isSymbolOverH() && parsedInputDimension.getSymbolFromInput() < 'P') {
-            if (!(parsedInputDimension.getValueITFromInput() < 3 || parsedInputDimension.getValueITFromInput() > 8)) {
-                double valueOfAdditionalData = additionalDataServiceByRepoImp.getValueOfRecordBySignAndValue(
-                        "IT" + parsedInputDimension.getValueITFromInput(),
-                        parsedInputDimension.getValueOfDimension());
-
-                valueOfBasicDeviation += valueOfAdditionalData;
-            }
-        }
-
-        return new ValuesFromRepoByInputDimension(valueOfBasicDeviation, valueOfNominalToleranceBySignAndValue);
-    }
-
-    private double createOppositeNumber(double valueOfDeviation){
-        return valueOfDeviation * -1;
     }
 }

@@ -3,18 +3,18 @@ package com.CezaryZal.api.model;
 public class ParsedInputDimension {
 
     private int valueOfDimension;
-    private char symbolFromInput;
-    private int valueITFromInput;
+    private char symbol;
+    private int valueOfIT;
     private boolean isSymbolOverH;
 
     public ParsedInputDimension(
             int valueOfDimension,
-            char symbolFromInput,
-            int valueITFromInput,
+            char symbol,
+            int valueOfIT,
             boolean isSymbolOverH) {
         this.valueOfDimension = valueOfDimension;
-        this.symbolFromInput = symbolFromInput;
-        this.valueITFromInput = valueITFromInput;
+        this.symbol = symbol;
+        this.valueOfIT = valueOfIT;
         this.isSymbolOverH = isSymbolOverH;
     }
 
@@ -22,12 +22,12 @@ public class ParsedInputDimension {
         return valueOfDimension;
     }
 
-    public char getSymbolFromInput() {
-        return symbolFromInput;
+    public char getSymbol() {
+        return symbol;
     }
 
-    public int getValueITFromInput() {
-        return valueITFromInput;
+    public int getValueOfIT() {
+        return valueOfIT;
     }
 
     public boolean isSymbolOverH() {
@@ -38,8 +38,8 @@ public class ParsedInputDimension {
     public String toString() {
         return "ParsedInputDimension{" +
                 "valueOfDimension=" + valueOfDimension +
-                ", symbolFromInput=" + symbolFromInput +
-                ", valueITFromInput=" + valueITFromInput +
+                ", symbol=" + symbol +
+                ", valueOfIT=" + valueOfIT +
                 ", isSymbolOverH=" + isSymbolOverH +
                 '}';
     }
