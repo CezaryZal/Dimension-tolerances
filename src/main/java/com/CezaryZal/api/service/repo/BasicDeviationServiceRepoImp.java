@@ -1,7 +1,6 @@
 package com.CezaryZal.api.service.repo;
 
-import com.CezaryZal.api.model.entity.BasicDeviations;
-import com.CezaryZal.api.repository.BasicDeviationsRepoDbImpl;
+import com.CezaryZal.api.repository.BasicDeviationsRepoDbImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -9,16 +8,16 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class BasicDeviationServiceRepoImp {
 
-    private final BasicDeviationsRepoDbImpl deviationsRepository;
+    private final BasicDeviationsRepoDbImp deviationsRepository;
 
     @Autowired
-    public BasicDeviationServiceRepoImp(BasicDeviationsRepoDbImpl deviationsRepository) {
+    public BasicDeviationServiceRepoImp(BasicDeviationsRepoDbImp deviationsRepository) {
         this.deviationsRepository = deviationsRepository;
     }
 
 //    @Override
     @Transactional
-    public BasicDeviations getRecordBySignAndValue(String inputSign, int inputValue) {
-        return deviationsRepository.getRecord(inputSign, inputValue);
+    public Double getValueOfRecordBySignAndValue(String inputSign, int inputValue) {
+        return deviationsRepository.getValueOfRecord(inputSign, inputValue);
     }
 }

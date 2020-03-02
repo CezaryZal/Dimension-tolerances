@@ -1,6 +1,5 @@
 package com.CezaryZal.api.repository;
 
-import com.CezaryZal.api.model.entity.NominalTolerance;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -9,24 +8,24 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 
-public class NominalToleranceRepoDbImpl implements RepositoryDb{
+public class NominalToleranceRepoDbImp implements RepositoryDb{
 
     private final SessionFactory sessionFactory;
 
     @Autowired
-    public NominalToleranceRepoDbImpl(SessionFactory sessionFactory) {
+    public NominalToleranceRepoDbImp(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
 
     @Override
-    public NominalTolerance getRecord(String inputSign, int inputValue) {
-
+    public Double getValueOfRecord(String inputSign, int inputDimension) {
         Session currentSession = sessionFactory.getCurrentSession();
 
-        Query<NominalTolerance> query = currentSession.createQuery("FROM NominalTolerance WHERE sign=:name " +
+        Query<Double> query = currentSession.createQuery(
+                "SELECT value FROM NominalToleranceTabularDataImp WHERE sign=:name " +
                 "AND :value BETWEEN nominal_dimension_min and nominal_dimension_max");
         query.setParameter("name", inputSign);
-        query.setParameter("value", inputValue);
+        query.setParameter("value", inputDimension);
 
         return query.getSingleResult();
     }

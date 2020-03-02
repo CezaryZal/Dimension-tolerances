@@ -5,7 +5,6 @@ import com.CezaryZal.api.service.calculation.result.ResultForShaft;
 import com.CezaryZal.api.model.ParsedInputDimension;
 import com.CezaryZal.api.model.ValuesFromRepoByInputDimension;
 import com.CezaryZal.api.model.dto.DimensionDTO;
-import com.CezaryZal.api.model.entity.NominalTolerance;
 import com.CezaryZal.api.service.repo.AdditionalDataToBasicDeviationServiceRepoImp;
 import com.CezaryZal.api.service.repo.BasicDeviationServiceRepoImp;
 import com.CezaryZal.api.service.repo.NominalToleranceServiceRepoImp;
@@ -50,29 +49,29 @@ public class DimensionService {
     }
 
     private ParsedInputDimension shareInput(String input) {
-        int valueOfDimension = 0;
         char symbolFromInput = 'a';
-        int valueITFromInput = 0;
-        boolean isSymbolOverH = false;
 
         Matcher matcher = PATTERN.matcher(input);
         if (matcher.find()) {
-            valueOfDimension = Integer.parseInt(matcher.group(1));
             symbolFromInput = matcher.group(2).charAt(0);
-            valueITFromInput = Integer.parseInt(matcher.group(3));
-            isSymbolOverH = Character.toLowerCase(symbolFromInput) > 'h';
+
+            return new ParsedInputDimension(
+                    Integer.parseInt(matcher.group(1)),
+                    symbolFromInput,
+                    Integer.parseInt(matcher.group(3)),
+                    Character.toLowerCase(symbolFromInput) > 'h');
         }
-        return new ParsedInputDimension(valueOfDimension, symbolFromInput, valueITFromInput, isSymbolOverH);
+        //add Exception class
+        return null;
     }
 
     private ValuesFromRepoByInputDimension takeResultsFromRepository(ParsedInputDimension parsedInputDimension) {
 
-        double valueOfBasicDeviation =  deviationsServiceByRepoImp.getRecordBySignAndValue(
+        double valueOfBasicDeviation =  deviationsServiceByRepoImp.getValueOfRecordBySignAndValue(
                 String.valueOf(parsedInputDimension.getSymbolFromInput()),
-                parsedInputDimension.getValueOfDimension())
-                .getValue();
+                parsedInputDimension.getValueOfDimension());
 
-        NominalTolerance nominalTolerance = toleranceServiceByRepoImp.getRecordBySignAndValue(
+        Double valueOfNominalToleranceBySignAndValue = toleranceServiceByRepoImp.getValueOfRecordBySignAndValue(
                 "IT" + parsedInputDimension.getValueITFromInput(), parsedInputDimension.getValueOfDimension());
 
         if (parsedInputDimension.getSymbolFromInput() < 97){
@@ -81,16 +80,15 @@ public class DimensionService {
 
         if (parsedInputDimension.isSymbolOverH() && parsedInputDimension.getSymbolFromInput() < 'P') {
             if (!(parsedInputDimension.getValueITFromInput() < 3 || parsedInputDimension.getValueITFromInput() > 8)) {
-                double valueOfAdditionalData = additionalDataServiceByRepoImp.getRecordBySignAndValue(
+                double valueOfAdditionalData = additionalDataServiceByRepoImp.getValueOfRecordBySignAndValue(
                         "IT" + parsedInputDimension.getValueITFromInput(),
-                        parsedInputDimension.getValueOfDimension())
-                        .getValue();
+                        parsedInputDimension.getValueOfDimension());
 
                 valueOfBasicDeviation += valueOfAdditionalData;
             }
         }
 
-        return new ValuesFromRepoByInputDimension(valueOfBasicDeviation, nominalTolerance.getValue());
+        return new ValuesFromRepoByInputDimension(valueOfBasicDeviation, valueOfNominalToleranceBySignAndValue);
     }
 
     private double createOppositeNumber(double valueOfDeviation){

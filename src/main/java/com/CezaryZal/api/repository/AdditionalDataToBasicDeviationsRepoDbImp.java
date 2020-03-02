@@ -1,6 +1,5 @@
 package com.CezaryZal.api.repository;
 
-import com.CezaryZal.api.model.entity.AdditionalDataToBasicDeviations;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -9,24 +8,24 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 
-public class AdditionalDataToBasicDeviationsRepoDbImpl implements RepositoryDb {
+public class AdditionalDataToBasicDeviationsRepoDbImp implements RepositoryDb {
 
     private final SessionFactory sessionFactory;
 
     @Autowired
-    public AdditionalDataToBasicDeviationsRepoDbImpl(SessionFactory sessionFactory) {
+    public AdditionalDataToBasicDeviationsRepoDbImp(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
 
     @Override
-    public AdditionalDataToBasicDeviations getRecord(String inputSign, int inputValue) {
-
+    public Double getValueOfRecord(String inputSign, int inputDimension) {
         Session currentSession = sessionFactory.getCurrentSession();
 
-        Query<AdditionalDataToBasicDeviations> query = currentSession.createQuery("FROM AdditionalDataToBasicDeviations " +
+        Query<Double> query = currentSession.createQuery(
+                "SELECT value FROM AdditionalDataToBasicDeviationsTabularDataImp " +
                 "WHERE sign=:name AND :value BETWEEN nominal_dimension_min and nominal_dimension_max");
         query.setParameter("name", inputSign);
-        query.setParameter("value", inputValue);
+        query.setParameter("value", inputDimension);
 
         return query.getSingleResult();
     }

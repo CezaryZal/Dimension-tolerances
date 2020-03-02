@@ -1,6 +1,6 @@
 package com.CezaryZal.api.model.entity;
 
-public interface EntityToDb {
+public interface TabularData {
 
     int getId();
 

@@ -1,8 +1,8 @@
 package com.CezaryZal.api.service.repo;
 
-import com.CezaryZal.api.model.entity.EntityToDb;
+import com.CezaryZal.api.model.entity.TabularData;
 
 public interface ServiceRepo {
 
-    EntityToDb getRecordBySignAndValue(String inputSign, int inputValue);
+    TabularData getRecordBySignAndValue(String inputSign, int inputValue);
 }
