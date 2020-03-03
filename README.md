@@ -38,6 +38,6 @@ Frontend:
 
 ## To do list
 - [ ] add valid input 
-- [ ] use design patterns
+- [x] use design patterns
 - [ ] add tests
 - [ ] add exception handling

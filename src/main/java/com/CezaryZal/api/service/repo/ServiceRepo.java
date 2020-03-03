@@ -1,8 +1,11 @@
 package com.CezaryZal.api.service.repo;
 
-import com.CezaryZal.api.model.entity.TabularData;
 
 public interface ServiceRepo {
 
-    TabularData getRecordBySignAndValue(String inputSign, int inputValue);
+    Double getValueOfAdditionalDataBySignAndValue(String inputSign, int inputValue);
+
+    Double getValueOfBasicDeviationBySignAndValue(String inputSign, int inputValue);
+
+    Double getValueOfNominalToleranceBySignAndValue(String inputSign, int inputValue);
 }
