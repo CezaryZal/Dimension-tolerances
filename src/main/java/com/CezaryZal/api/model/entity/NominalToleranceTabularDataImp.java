@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "nominal_tolerance")
-public class NominalToleranceTabularDataImp implements TabularData {
+public class NominalToleranceTabularDataImp {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,32 +24,26 @@ public class NominalToleranceTabularDataImp implements TabularData {
     private double value;
 
 
-    @Override
     public int getId() {
         return id;
     }
 
-    @Override
     public int getDimensionMin() {
         return dimensionMin;
     }
 
-    @Override
     public int getDimensionMax() {
         return dimensionMax;
     }
 
-    @Override
     public String getSign() {
         return sign;
     }
 
-    @Override
     public double getValue() {
         return value;
     }
 
-    @Override
     public String toString() {
         return "NominalToleranceTabularDataImp{" +
                 "id=" + id +

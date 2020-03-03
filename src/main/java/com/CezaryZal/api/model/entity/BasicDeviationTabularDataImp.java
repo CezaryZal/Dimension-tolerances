@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "basic_deviations")
-public class BasicDeviationTabularDataImp implements TabularData {
+public class BasicDeviationTabularDataImp {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,33 +24,26 @@ public class BasicDeviationTabularDataImp implements TabularData {
     private double value;
 
 
-    @Override
     public int getId() {
         return id;
     }
 
-    @Override
     public int getDimensionMin() {
         return dimensionMin;
     }
 
-    @Override
     public int getDimensionMax() {
         return dimensionMax;
     }
 
-    @Override
     public String getSign() {
         return sign;
     }
 
-    @Override
     public double getValue() {
         return value;
     }
 
-
-    @Override
     public String toString() {
         return "BasicDeviationTabularDataImp{" +
                 "id=" + id +
