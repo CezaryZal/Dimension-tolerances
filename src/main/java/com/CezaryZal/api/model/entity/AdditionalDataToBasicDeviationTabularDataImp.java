@@ -1,10 +1,10 @@
-package com.CezaryZal.entity;
+package com.CezaryZal.api.model.entity;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "nominal_tolerance")
-public class NominalTolerance implements EntityToDb {
+@Table(name = "addition_table_to_basic_deviations")
+public class AdditionalDataToBasicDeviationTabularDataImp {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,34 +24,28 @@ public class NominalTolerance implements EntityToDb {
     private double value;
 
 
-    @Override
     public int getId() {
         return id;
     }
 
-    @Override
     public int getDimensionMin() {
         return dimensionMin;
     }
 
-    @Override
     public int getDimensionMax() {
         return dimensionMax;
     }
 
-    @Override
     public String getSign() {
         return sign;
     }
 
-    @Override
     public double getValue() {
         return value;
     }
 
-    @Override
     public String toString() {
-        return "NominalTolerance{" +
+        return "AdditionalDataToBasicDeviationTabularDataImp{" +
                 "id=" + id +
                 ", dimensionMin=" + dimensionMin +
                 ", dimensionMax=" + dimensionMax +

@@ -1,32 +1,32 @@
-package com.CezaryZal.repository;
+package com.CezaryZal.api.repository;
 
-import com.CezaryZal.entity.AdditionalDataToBasicDeviations;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 @Repository
-
-public class AdditionalDataToBasicDeviationsRepoDbImpl implements RepositoryDb {
+@Qualifier("additionalData")
+public class AdditionalDataToBasicDeviationRepoDbImp implements RepositoryDb {
 
     private final SessionFactory sessionFactory;
 
     @Autowired
-    public AdditionalDataToBasicDeviationsRepoDbImpl(SessionFactory sessionFactory) {
+    public AdditionalDataToBasicDeviationRepoDbImp(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
 
     @Override
-    public AdditionalDataToBasicDeviations getRecord(String inputSign, int inputValue) {
-
+    public Double getValueOfRecord(String inputSign, int inputDimension) {
         Session currentSession = sessionFactory.getCurrentSession();
 
-        Query<AdditionalDataToBasicDeviations> query = currentSession.createQuery("FROM AdditionalDataToBasicDeviations " +
+        Query<Double> query = currentSession.createQuery(
+                "SELECT value FROM AdditionalDataToBasicDeviationTabularDataImp " +
                 "WHERE sign=:name AND :value BETWEEN nominal_dimension_min and nominal_dimension_max");
         query.setParameter("name", inputSign);
-        query.setParameter("value", inputValue);
+        query.setParameter("value", inputDimension);
 
         return query.getSingleResult();
     }

@@ -1,6 +1,6 @@
-package com.CezaryZal.dto;
+package com.CezaryZal.api.model.dto;
 
-public interface DimensionDTO {
+public interface DimensionDto {
 
 int getValueOfDimension();
 
