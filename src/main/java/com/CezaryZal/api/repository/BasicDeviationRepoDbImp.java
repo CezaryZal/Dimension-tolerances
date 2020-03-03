@@ -21,7 +21,7 @@ public class BasicDeviationRepoDbImp implements RepositoryDb {
         Session currentSession = sessionFactory.getCurrentSession();
 
         Query<Double> query = currentSession.createQuery(
-                "SELECT value FROM BasicDeviationsTabularDataImp WHERE sign=:name " +
+                "SELECT value FROM BasicDeviationTabularDataImp WHERE sign=:name " +
                 "AND :value BETWEEN nominal_dimension_min and nominal_dimension_max");
         query.setParameter("name", inputSign);
         query.setParameter("value", inputDimension);

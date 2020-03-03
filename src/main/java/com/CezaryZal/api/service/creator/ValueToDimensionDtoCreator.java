@@ -11,8 +11,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class ValueToDimensionDtoCreator {
 
-    private final int aInAscii = 97;
-    private final int PInAscii = 80;
     private final int minValueOfItToModifyValueOfBasicDeviation = 3;
     private final int maxValueOfItToModifyValueOfBasicDeviation = 8;
 
@@ -46,18 +44,18 @@ public class ValueToDimensionDtoCreator {
     }
 
     private double createOppositeNumber(double valueOfDeviation){
-        return valueOfDeviation * -1;
+        return -valueOfDeviation;
     }
 
     private double modifyValueOfBasicDeviationIfIsSpeciallyDimension(
             ParsedInputDimension parsedInputDimension,
             double valueOfBasicDeviation){
 
-        if (parsedInputDimension.getSymbol() < aInAscii){
+        if (parsedInputDimension.getSymbol() < 'a'){
             valueOfBasicDeviation = createOppositeNumber(valueOfBasicDeviation);
         }
         if (parsedInputDimension.isSymbolOverH() &&
-                parsedInputDimension.getSymbol() < PInAscii &&
+                parsedInputDimension.getSymbol() < 'P' &&
                 parsedInputDimension.getValueOfIt() >= minValueOfItToModifyValueOfBasicDeviation &&
                 parsedInputDimension.getValueOfIt() <= maxValueOfItToModifyValueOfBasicDeviation) {
 

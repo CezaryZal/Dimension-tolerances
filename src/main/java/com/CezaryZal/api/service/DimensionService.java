@@ -15,7 +15,6 @@ import java.util.regex.Pattern;
 @Service
 public class DimensionService {
 
-    private final int hInAscii = 104;
     private final Pattern pattern = Pattern.compile("([1-9]\\d*)([a-zA-Z])([1-9][0-8]*)");
 
     private final ResultForShaft resultForShaft;
@@ -53,7 +52,7 @@ public class DimensionService {
                     Integer.parseInt(matcher.group(1)),
                     symbolFromInput,
                     Integer.parseInt(matcher.group(3)),
-                    Character.toLowerCase(symbolFromInput) > hInAscii);
+                    Character.toLowerCase(symbolFromInput) > 'h');
         }
         //add Exception class
         return null;
