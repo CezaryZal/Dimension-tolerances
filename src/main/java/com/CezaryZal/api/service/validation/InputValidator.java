@@ -8,7 +8,7 @@ public class InputValidator extends Validator{
 
     public InputValidator() {
         firstGroupOfMatcher = new ValueOfDimensionValidator();
-
+        thirdGroupOfMatcher = new ValueOfItValidator();
 
     }
 
@@ -18,6 +18,8 @@ public class InputValidator extends Validator{
             throw new InvalidValueOfDimensionException("Input dimension value must be from 1 to 500 mm");
         }
 
-
+        if (!thirdGroupOfMatcher.isCorrect(valueITFromInput)){
+            throw new InvalidValueOfDimensionException("Input value Of IT must be from 1 to 18 mm");
+        }
     }
 }
