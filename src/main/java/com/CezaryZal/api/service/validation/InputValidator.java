@@ -1,7 +1,9 @@
 package com.CezaryZal.api.service.validation;
 
 import com.CezaryZal.exceptions.InvalidInputException;
+import com.CezaryZal.exceptions.InvalidSymbolsException;
 import com.CezaryZal.exceptions.InvalidValueOfDimensionException;
+import com.CezaryZal.exceptions.InvalidValueOfItException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -20,11 +22,11 @@ public class InputValidator extends Validator{
         }
 
         if (!secondGroupOfMatcher.isCorrect(symbolsFromInput)){
-            throw new InvalidValueOfDimensionException("Symbol entered is incorrect, should be ");
+            throw new InvalidSymbolsException("Symbol entered is incorrect, should be ");
         }
 
         if (!thirdGroupOfMatcher.isCorrect(valueITFromInput)){
-            throw new InvalidValueOfDimensionException("Input value Of IT must be from 1 to 18 mm");
+            throw new InvalidValueOfItException("Input value Of IT must be from 1 to 18 mm");
         }
     }
 
