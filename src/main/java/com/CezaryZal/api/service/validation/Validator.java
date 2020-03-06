@@ -10,5 +10,7 @@ public abstract class Validator {
     protected SecondGroupOfMatcher secondGroupOfMatcher;
     protected ThirdGroupOfMatcher thirdGroupOfMatcher;
 
-    abstract void validation(int valueOfDimension, String symbolsFromInput, int valueITFromInput);
+    public abstract void throwIfInputValuesIsIncorrect(int valueOfDimension, String symbolsFromInput, int valueITFromInput);
+
+    public abstract void throwIfInputDoesNotMatchPattern();
 }
