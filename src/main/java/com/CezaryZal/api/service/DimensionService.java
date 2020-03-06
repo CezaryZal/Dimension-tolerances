@@ -6,6 +6,7 @@ import com.CezaryZal.api.model.ParsedInputDimension;
 import com.CezaryZal.api.model.ValuesToDimensionDto;
 import com.CezaryZal.api.model.dto.DimensionDto;
 import com.CezaryZal.api.service.creator.ValueToDimensionDtoCreator;
+import com.CezaryZal.exceptions.InvalidInputException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,19 +43,18 @@ public class DimensionService {
     }
 
     private ParsedInputDimension shareInput(String input) {
-        char symbolFromInput;
         Matcher matcher = pattern.matcher(input);
 
         if (matcher.find()) {
-            symbolFromInput = matcher.group(2).charAt(0);
+            int valueOfDimension = Integer.parseInt(matcher.group(1));
+            String symbolsFromInput = String.valueOf(matcher.group(2));
+            int valueITFromInput = Integer.parseInt(matcher.group(3));
 
-            return new ParsedInputDimension(
-                    Integer.parseInt(matcher.group(1)),
-                    symbolFromInput,
-                    Integer.parseInt(matcher.group(3)),
-                    Character.toLowerCase(symbolFromInput) > 'h');
+            char symbolFromInput = symbolsFromInput.charAt(0);
+            boolean isSymbolOverH = Character.toLowerCase(symbolFromInput) > 'h';
+
+            return new ParsedInputDimension(valueOfDimension, symbolFromInput, valueITFromInput, isSymbolOverH);
         }
-        //add Exception class
-        return null;
+        throw new InvalidInputException("entered value is incorrect");
     }
 }
