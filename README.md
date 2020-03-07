@@ -37,7 +37,8 @@ Frontend:
 - Typescript
 
 ## To do list
-- [ ] add valid input 
+- [x] add valid input 
 - [x] use design patterns
+- [x] add exception handling (backend)
+- [ ] add exception handling (frontend)
 - [ ] add tests
-- [ ] add exception handling
