@@ -3,6 +3,8 @@ package com.CezaryZal.api.service.validation;
 import com.CezaryZal.api.service.validation.matcher.FirstGroupOfMatcher;
 
 public class ValueOfDimensionValidator implements NumberValidator, FirstGroupOfMatcher {
+    private final int minLengthOfDimensionValue = 1;
+    private final int maxLengthOfDimensionValue = 500;
 
     @Override
     public boolean isCorrect(Object valueOfDimension) {
@@ -11,7 +13,7 @@ public class ValueOfDimensionValidator implements NumberValidator, FirstGroupOfM
 
     @Override
     public boolean numberIsCorrect(Integer valueOfDimension) {
-        return valueOfDimension >= 1 && valueOfDimension <= 500;
+        return valueOfDimension >= minLengthOfDimensionValue && valueOfDimension <= maxLengthOfDimensionValue;
     }
 
 

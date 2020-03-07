@@ -32,9 +32,6 @@ public class InputDimensionParser {
 
         inputValidator.throwIfInputValuesIsIncorrect(valueOfDimension, symbolsFromInput, valueITFromInput);
 
-        char symbolFromInput = symbolsFromInput.charAt(0);
-        boolean isSymbolOverH = Character.toLowerCase(symbolFromInput) > 'h';
-
-        return new ParsedInputDimension(valueOfDimension, symbolFromInput, valueITFromInput, isSymbolOverH);
+        return new ParsedInputDimension(valueOfDimension, symbolsFromInput.charAt(0), valueITFromInput);
     }
 }

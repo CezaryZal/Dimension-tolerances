@@ -3,6 +3,8 @@ package com.CezaryZal.api.service.validation;
 import com.CezaryZal.api.service.validation.matcher.ThirdGroupOfMatcher;
 
 public class ValueOfItValidator implements NumberValidator, ThirdGroupOfMatcher {
+    private final int minLengthOfValueIt = 1;
+    private final int maxLengthOfValueIt = 18;
 
     @Override
     public boolean isCorrect(Object valueITFromInput) {
@@ -11,7 +13,7 @@ public class ValueOfItValidator implements NumberValidator, ThirdGroupOfMatcher 
 
     @Override
     public boolean numberIsCorrect(Integer valueITFromInput) {
-        return valueITFromInput >= 1 && valueITFromInput <= 18;
+        return valueITFromInput >= minLengthOfValueIt && valueITFromInput <= maxLengthOfValueIt;
     }
 
 

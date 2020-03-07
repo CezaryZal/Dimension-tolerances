@@ -10,14 +10,13 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 @ControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
-    public static final String DEFAULT_ERROR_VIEW = "error";
 
     @ExceptionHandler({
             InvalidInputException.class,
             InvalidSymbolsException.class,
             InvalidValueOfDimensionException.class,
             InvalidValueOfItException.class})
-    protected ResponseEntity<Object> handleValidationLoginAndPasswordExceptions(RuntimeException ex, WebRequest request) {
+    protected ResponseEntity<Object> handleValidationLoginAndPasswordExceptions(Exception ex, WebRequest request) {
         return handleExceptionInternal(ex, ex.getMessage(), new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
     }
 }

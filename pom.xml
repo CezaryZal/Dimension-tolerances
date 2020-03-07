@@ -67,6 +67,15 @@
             <version>${javax.servlet.version}</version>
         </dependency>
 
+        <!--        Lombok      -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.10</version>
+            <scope>provided</scope>
+        </dependency>
+
+
         <!-- to compensate for java 9 not including jaxb -->
 <!--        <dependency>-->
 <!--            <groupId>javax.xml.bind</groupId>-->

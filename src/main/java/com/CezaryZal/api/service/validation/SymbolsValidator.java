@@ -7,6 +7,7 @@ import java.util.List;
 
 public class SymbolsValidator implements StringValidator, SecondGroupOfMatcher {
     List<Character> incorrectSymbols = Arrays.asList('b', 'i', 'l', 'o', 'q');
+    private final int maxLengthOfSymbolsFromInput = 1;
 
     @Override
     public boolean isCorrect(Object symbolsFromInput) {
@@ -22,7 +23,7 @@ public class SymbolsValidator implements StringValidator, SecondGroupOfMatcher {
     }
 
     private boolean isOneLetter(String symbolsFromInput) {
-        return symbolsFromInput.length() == 1;
+        return symbolsFromInput.length() == maxLengthOfSymbolsFromInput;
     }
 
     private boolean isSymbolOverS(String symbolsFromInput) {
