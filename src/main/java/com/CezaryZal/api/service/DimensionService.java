@@ -6,55 +6,38 @@ import com.CezaryZal.api.model.ParsedInputDimension;
 import com.CezaryZal.api.model.ValuesToDimensionDto;
 import com.CezaryZal.api.model.dto.DimensionDto;
 import com.CezaryZal.api.service.creator.ValueToDimensionDtoCreator;
+import com.CezaryZal.api.service.validation.InputValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 @Service
 public class DimensionService {
 
-    private final Pattern pattern = Pattern.compile("([1-9]\\d*)([a-zA-Z])([1-9][0-8]*)");
-
     private final ResultForShaft resultForShaft;
     private final ResultForHole resultForHole;
     private final ValueToDimensionDtoCreator valueToDimensionDtoCreator;
+    private final InputDimensionParser inputDimensionParser;
 
     @Autowired
     public DimensionService(
             ResultForShaft resultForShaft,
             ResultForHole resultForHole,
-            ValueToDimensionDtoCreator valueToDimensionDtoCreator) {
+            ValueToDimensionDtoCreator valueToDimensionDtoCreator,
+            InputValidator inputValidator,
+            InputDimensionParser inputDimensionParser) {
         this.resultForShaft = resultForShaft;
         this.resultForHole = resultForHole;
         this.valueToDimensionDtoCreator = valueToDimensionDtoCreator;
+        this.inputDimensionParser = inputDimensionParser;
     }
 
     public DimensionDto createDimensionTolerance(String input) {
-        ParsedInputDimension parsedInputDimension = shareInput(input);
+        ParsedInputDimension parsedInputDimension = inputDimensionParser.parseInputDimension(input);
         ValuesToDimensionDto valuesToDimensionDto =
                 valueToDimensionDtoCreator.createValuesToDimensionDto(parsedInputDimension);
 
         return (Character.isLowerCase(parsedInputDimension.getSymbol()) ?
                 resultForShaft.calculate(valuesToDimensionDto, parsedInputDimension) :
                 resultForHole.calculate(valuesToDimensionDto, parsedInputDimension));
-    }
-
-    private ParsedInputDimension shareInput(String input) {
-        char symbolFromInput;
-        Matcher matcher = pattern.matcher(input);
-
-        if (matcher.find()) {
-            symbolFromInput = matcher.group(2).charAt(0);
-
-            return new ParsedInputDimension(
-                    Integer.parseInt(matcher.group(1)),
-                    symbolFromInput,
-                    Integer.parseInt(matcher.group(3)),
-                    Character.toLowerCase(symbolFromInput) > 'h');
-        }
-        //add Exception class
-        return null;
     }
 }

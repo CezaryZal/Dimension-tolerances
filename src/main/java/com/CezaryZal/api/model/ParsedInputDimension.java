@@ -7,15 +7,11 @@ public class ParsedInputDimension {
     private int valueOfIt;
     private boolean isSymbolOverH;
 
-    public ParsedInputDimension(
-            int valueOfDimension,
-            char symbol,
-            int valueOfIt,
-            boolean isSymbolOverH) {
+    public ParsedInputDimension(int valueOfDimension, char symbol, int valueOfIt) {
         this.valueOfDimension = valueOfDimension;
         this.symbol = symbol;
         this.valueOfIt = valueOfIt;
-        this.isSymbolOverH = isSymbolOverH;
+        this.isSymbolOverH = Character.toLowerCase(symbol) > 'h';
     }
 
     public int getValueOfDimension() {
