@@ -14,7 +14,12 @@ public abstract class Validator {
     protected SecondGroupOfMatcher secondGroupOfMatcher;
     protected ThirdGroupOfMatcher thirdGroupOfMatcher;
 
-    public abstract void throwIfInputValuesIsIncorrect(int valueOfDimension, String symbolsFromInput, int valueITFromInput) throws InvalidValueOfDimensionException, InvalidSymbolsException, InvalidValueOfItException;
+    public abstract void throwIfInputValuesIsIncorrect(
+            int valueOfDimension,
+            String symbolsFromInput,
+            int valueITFromInput) throws InvalidValueOfDimensionException,
+                                        InvalidSymbolsException,
+                                        InvalidValueOfItException;
 
     public abstract void throwIfInputDoesNotMatchPattern() throws InvalidInputException;
 }

@@ -4,7 +4,6 @@ import com.CezaryZal.exceptions.InvalidInputException;
 import com.CezaryZal.exceptions.InvalidSymbolsException;
 import com.CezaryZal.exceptions.InvalidValueOfDimensionException;
 import com.CezaryZal.exceptions.InvalidValueOfItException;
-import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
 
 @Service
