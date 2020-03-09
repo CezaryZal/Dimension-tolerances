@@ -12,25 +12,21 @@ public class ValueOfDimensionValidatorTest {
     public void setUp() throws Exception {
         valueOfDimensionValidator = new ValueOfDimensionValidator();
     }
+
     @Test
-    public void should_return_true_when_compare_with_correct_symbol() {
-        Assert.assertTrue(valueOfDimensionValidator.isCorrect(22));
-    }
-    @Test
-    public void should_return_true_when_compare_with_min_length_of_dimension_value() {
-        Assert.assertTrue(valueOfDimensionValidator.numberIsCorrect(1));
-    }
-    @Test
-    public void should_return_true_when_compare_with_max_length_of_dimension_value() {
-        Assert.assertTrue(valueOfDimensionValidator.numberIsCorrect(500));
+    public void is_correct_should_be_in_range_of_numbers_1_to_500() {
+        Assert.assertTrue(valueOfDimensionValidator.isCorrect(1));
+        Assert.assertTrue(valueOfDimensionValidator.isCorrect(500));
+        Assert.assertFalse(valueOfDimensionValidator.isCorrect(0));
+        Assert.assertFalse(valueOfDimensionValidator.isCorrect(501));
     }
 
     @Test
-    public void should_return_false_when_compare_with_0_number() {
+    public void number_is_correct_should_be_in_range_of_numbers_1_to_500() {
+        Assert.assertTrue(valueOfDimensionValidator.numberIsCorrect(1));
+        Assert.assertTrue(valueOfDimensionValidator.numberIsCorrect(500));
         Assert.assertFalse(valueOfDimensionValidator.numberIsCorrect(0));
-    }
-    @Test
-    public void should_return_false_when_compare_with_501_number() {
         Assert.assertFalse(valueOfDimensionValidator.numberIsCorrect(501));
     }
+
 }

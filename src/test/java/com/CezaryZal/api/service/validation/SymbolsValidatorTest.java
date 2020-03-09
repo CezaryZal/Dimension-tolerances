@@ -4,9 +4,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Arrays;
-import java.util.List;
-
 public class SymbolsValidatorTest {
 
     SymbolsValidator symbolsValidator;
@@ -17,44 +14,50 @@ public class SymbolsValidatorTest {
     }
 
     @Test
-    public void should_return_true_when_compare_with_correct_symbol() {
-        Assert.assertTrue(symbolsValidator.isCorrect("a"));
-    }
-    @Test
-    public void should_return_true_when_compare_with_correct_symbol_in_lower_case() {
-        Assert.assertTrue(symbolsValidator.symbolsIsCorrect("a"));
-    }
-    @Test
-    public void should_return_true_when_compare_with_correct_symbol_in_upper_case() {
-        Assert.assertTrue(symbolsValidator.symbolsIsCorrect("C"));
+    public void is_correct_should_be_symbol_match_to_expected() {
+        Assert.assertTrue(symbolsValidator.isCorrect("c"));
+        Assert.assertTrue(symbolsValidator.isCorrect("C"));
+        Assert.assertFalse(symbolsValidator.isCorrect(""));
+        Assert.assertFalse(symbolsValidator.isCorrect("aa"));
+        Assert.assertFalse(symbolsValidator.isCorrect("t"));
+        Assert.assertFalse(symbolsValidator.isCorrect("T"));
     }
 
     @Test
-    public void should_return_false_when_compare_with_empty_String() {
+    public void is_correct_should_not_commit_incorrect_symbols() {
+        Assert.assertFalse(symbolsValidator.isCorrect("b"));
+        Assert.assertFalse(symbolsValidator.isCorrect("i"));
+        Assert.assertFalse(symbolsValidator.isCorrect("l"));
+        Assert.assertFalse(symbolsValidator.isCorrect("o"));
+        Assert.assertFalse(symbolsValidator.isCorrect("q"));
+        Assert.assertFalse(symbolsValidator.isCorrect("B"));
+        Assert.assertFalse(symbolsValidator.isCorrect("I"));
+        Assert.assertFalse(symbolsValidator.isCorrect("L"));
+        Assert.assertFalse(symbolsValidator.isCorrect("O"));
+        Assert.assertFalse(symbolsValidator.isCorrect("Q"));
+    }
+
+    @Test
+    public void symbols_is_correct_should_be_symbol_match_to_expected() {
+        Assert.assertTrue(symbolsValidator.symbolsIsCorrect("c"));
+        Assert.assertTrue(symbolsValidator.symbolsIsCorrect("C"));
         Assert.assertFalse(symbolsValidator.symbolsIsCorrect(""));
-    }
-    @Test
-    public void should_return_false_when_compare_with_long_String() {
         Assert.assertFalse(symbolsValidator.symbolsIsCorrect("aa"));
-    }
-    @Test
-    public void should_return_false_when_compare_with_lower_case_symbol_over_S() {
         Assert.assertFalse(symbolsValidator.symbolsIsCorrect("t"));
-    }
-    @Test
-    public void should_return_false_when_compare_with_upper_case_symbol_over_S() {
         Assert.assertFalse(symbolsValidator.symbolsIsCorrect("T"));
     }
+
     @Test
-    public void should_return_false_when_compare_with_incorrect_symbols() {
-        List<String> incorrectSymbols = Arrays.asList("b", "i", "l", "o", "q");
-        boolean result = false;
-        for (String incorrectSymbol : incorrectSymbols) {
-            if (symbolsValidator.symbolsIsCorrect(incorrectSymbol)) {
-                result = true;
-                break;
-            }
-        }
-        Assert.assertFalse(result);
+    public void symbols_is_correct_should_not_commit_incorrect_symbols() {
+        Assert.assertFalse(symbolsValidator.symbolsIsCorrect("b"));
+        Assert.assertFalse(symbolsValidator.symbolsIsCorrect("i"));
+        Assert.assertFalse(symbolsValidator.symbolsIsCorrect("l"));
+        Assert.assertFalse(symbolsValidator.symbolsIsCorrect("o"));
+        Assert.assertFalse(symbolsValidator.symbolsIsCorrect("q"));
+        Assert.assertFalse(symbolsValidator.symbolsIsCorrect("B"));
+        Assert.assertFalse(symbolsValidator.symbolsIsCorrect("I"));
+        Assert.assertFalse(symbolsValidator.symbolsIsCorrect("L"));
+        Assert.assertFalse(symbolsValidator.symbolsIsCorrect("O"));
+        Assert.assertFalse(symbolsValidator.symbolsIsCorrect("Q"));
     }
 }
