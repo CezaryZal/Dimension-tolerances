@@ -19,9 +19,7 @@ public class InputValidator extends Validator {
     public void throwIfInputValuesIsIncorrect(
             int valueOfDimension,
             String symbolsFromInput,
-            int valueITFromInput) throws InvalidValueOfDimensionException,
-                                        InvalidSymbolsException,
-                                        InvalidValueOfItException {
+            int valueITFromInput) throws InvalidInputException {
         if (!firstGroupOfMatcher.isCorrect(valueOfDimension)) {
             throw new InvalidValueOfDimensionException("Input dimension value must be from 1 to 500 mm");
         }

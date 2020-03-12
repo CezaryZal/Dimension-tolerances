@@ -36,10 +36,7 @@ public class DimensionService {
         this.inputDimensionParser = inputDimensionParser;
     }
 
-    @SneakyThrows({InvalidInputException.class,
-            InvalidSymbolsException.class,
-            InvalidValueOfItException.class,
-            InvalidValueOfDimensionException.class})
+    @SneakyThrows(InvalidInputException.class)
     public DimensionDto createDimensionTolerance(String input) {
         ParsedInputDimension parsedInputDimension = inputDimensionParser.parseInputDimension(input);
         ValuesToDimensionDto valuesToDimensionDto =
