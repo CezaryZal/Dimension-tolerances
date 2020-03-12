@@ -20,7 +20,7 @@ public abstract class Result {
                     valuesToDimensionDTO.getValueOfBasicDeviations(),
                     valuesToDimensionDTO.getValueOfNominalTolerance());
         }
-        return calculateForSymbolBelowAndWithH(
+        return calculateForSymbolBelowOrEqualH(
                 parsedInputDimension.getValueOfDimension(),
                 valuesToDimensionDTO.getValueOfBasicDeviations(),
                 valuesToDimensionDTO.getValueOfNominalTolerance());
@@ -31,7 +31,7 @@ public abstract class Result {
             double valueOfDeviation,
             double valueOfNominalTolerance);
 
-    abstract DimensionDto calculateForSymbolBelowAndWithH(
+    abstract DimensionDto calculateForSymbolBelowOrEqualH(
             int valueOfDimension,
             double valueOfDeviation,
             double valueOfNominalTolerance);
