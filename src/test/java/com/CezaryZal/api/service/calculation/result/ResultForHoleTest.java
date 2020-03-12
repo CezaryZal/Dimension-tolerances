@@ -21,11 +21,11 @@ public class ResultForHoleTest {
     @Spy
     ResultForHole resultForHole;
 
-    private DimensionDtoImpl tmpDimensionDtoImp;
+    private DimensionDtoImpl testClassOfDimensionDtoImp;
 
     @Before
     public void setUp() throws Exception {
-        tmpDimensionDtoImp = new DimensionDtoImpl(110, -8, 5);
+        testClassOfDimensionDtoImp = new DimensionDtoImpl(110, -8, 5);
     }
 
     //100J5 : 5 (lower), 20 (upper)
@@ -45,7 +45,7 @@ public class ResultForHoleTest {
         DimensionDtoImpl dimensionDtoImpFrom100K6 = new DimensionDtoImpl(100, 5, 20);
 
         Assert.assertEquals(dimensionDtoExpectedFrom100J5, dimensionDtoImpFrom100K6);
-        Assert.assertNotEquals(dimensionDtoExpectedFrom100J5, tmpDimensionDtoImp);
+        Assert.assertNotEquals(dimensionDtoExpectedFrom100J5, testClassOfDimensionDtoImp);
     }
 
     //30H8 : 0 (lower), 33 (upper)
@@ -65,7 +65,7 @@ public class ResultForHoleTest {
         DimensionDtoImpl dimensionDtoImpFrom30H8 = new DimensionDtoImpl(30, 0, 33);
 
         Assert.assertEquals(dimensionDtoExpectedFrom30H8, dimensionDtoImpFrom30H8);
-        Assert.assertNotEquals(dimensionDtoExpectedFrom30H8, tmpDimensionDtoImp);
+        Assert.assertNotEquals(dimensionDtoExpectedFrom30H8, testClassOfDimensionDtoImp);
 
 
         given(resultForHole.calculateForSymbolBelowOrEqualH(30, 50, 46))
@@ -81,6 +81,6 @@ public class ResultForHoleTest {
         DimensionDtoImpl dimensionDtoImpFrom200F7 = new DimensionDtoImpl(200, 50, 96);
 
         Assert.assertEquals(dimensionDtoExpectedFrom200F7, dimensionDtoImpFrom200F7);
-        Assert.assertNotEquals(dimensionDtoExpectedFrom200F7, tmpDimensionDtoImp);
+        Assert.assertNotEquals(dimensionDtoExpectedFrom200F7, testClassOfDimensionDtoImp);
     }
 }

@@ -8,7 +8,7 @@ import static org.junit.Assert.*;
 
 public class UpperDeviationForShaftTest {
 
-    UpperDeviationForShaft upperDeviationForShaft;
+    UpperDeviation upperDeviationForShaft;
 
     @Before
     public void setUp() throws Exception {

@@ -6,7 +6,7 @@ import org.junit.Test;
 
 public class LowerDeviationForShaftTest {
 
-    LowerDeviationForShaft calculateLowerDeviation;
+    LowerDeviation calculateLowerDeviation;
 
     @Before
     public void setUp() throws Exception {

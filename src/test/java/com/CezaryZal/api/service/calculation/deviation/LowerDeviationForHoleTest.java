@@ -8,7 +8,7 @@ import static org.junit.Assert.*;
 
 public class LowerDeviationForHoleTest {
 
-    LowerDeviationForHole lowerDeviationForHole;
+    LowerDeviation lowerDeviationForHole;
 
     @Before
     public void setUp() throws Exception {
