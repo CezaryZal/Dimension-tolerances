@@ -15,8 +15,8 @@ public class SymbolsValidatorTest {
 
     @Test
     public void is_correct_should_be_symbol_match_to_expected() {
-        Assert.assertTrue(symbolsValidator.isCorrect("c"));
-        Assert.assertTrue(symbolsValidator.isCorrect("C"));
+        Assert.assertTrue(symbolsValidator.isCorrect("s"));
+        Assert.assertTrue(symbolsValidator.isCorrect("S"));
         Assert.assertFalse(symbolsValidator.isCorrect(""));
         Assert.assertFalse(symbolsValidator.isCorrect("aa"));
         Assert.assertFalse(symbolsValidator.isCorrect("t"));
@@ -39,8 +39,8 @@ public class SymbolsValidatorTest {
 
     @Test
     public void symbols_is_correct_should_be_symbol_match_to_expected() {
-        Assert.assertTrue(symbolsValidator.symbolsIsCorrect("c"));
-        Assert.assertTrue(symbolsValidator.symbolsIsCorrect("C"));
+        Assert.assertTrue(symbolsValidator.symbolsIsCorrect("s"));
+        Assert.assertTrue(symbolsValidator.symbolsIsCorrect("S"));
         Assert.assertFalse(symbolsValidator.symbolsIsCorrect(""));
         Assert.assertFalse(symbolsValidator.symbolsIsCorrect("aa"));
         Assert.assertFalse(symbolsValidator.symbolsIsCorrect("t"));

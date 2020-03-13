@@ -1,5 +1,7 @@
 package com.CezaryZal.api.model;
 
+import java.util.Objects;
+
 public class ParsedInputDimension {
 
     private int valueOfDimension;
@@ -28,6 +30,21 @@ public class ParsedInputDimension {
 
     public boolean isSymbolOverH() {
         return isSymbolOverH;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ParsedInputDimension)) return false;
+        ParsedInputDimension that = (ParsedInputDimension) o;
+        return valueOfDimension == that.valueOfDimension &&
+                symbol == that.symbol &&
+                valueOfIt == that.valueOfIt;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(valueOfDimension, symbol, valueOfIt);
     }
 
     @Override

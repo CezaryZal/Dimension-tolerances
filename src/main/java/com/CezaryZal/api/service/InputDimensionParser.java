@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
 
 @Service
 public class InputDimensionParser {
-    private final Pattern pattern = Pattern.compile("(^[0-9]\\d*)([a-zA-Z]+)([0-9]*)\\z");
+    private final Pattern pattern = Pattern.compile("(^[0-9]\\d*)([a-zA-Z]+)([0-9]+)\\z");
 
     private final Validator inputValidator;
 

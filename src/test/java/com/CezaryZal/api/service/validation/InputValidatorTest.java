@@ -21,10 +21,10 @@ public class InputValidatorTest {
     public void throw_if_input_values_is_incorrect_should_throw_exceptions() {
         Assert.assertThrows(
                 InvalidValueOfDimensionException.class,
-                () -> inputValidator.throwIfInputValuesIsIncorrect(0, "a", 2));
+                () -> inputValidator.throwIfInputValuesIsIncorrect(0, "s", 2));
         Assert.assertThrows(
                 InvalidValueOfDimensionException.class,
-                () -> inputValidator.throwIfInputValuesIsIncorrect(501, "a", 2));
+                () -> inputValidator.throwIfInputValuesIsIncorrect(501, "s", 2));
         Assert.assertThrows(
                 InvalidSymbolsException.class,
                 () -> inputValidator.throwIfInputValuesIsIncorrect(1, "", 2));
@@ -78,9 +78,9 @@ public class InputValidatorTest {
     @Test
     public void throw_if_input_values_is_incorrect_should_not_throw_exceptions() {
         try {
-            inputValidator.throwIfInputValuesIsIncorrect(1, "a", 2);
-            inputValidator.throwIfInputValuesIsIncorrect(500, "a", 2);
-            inputValidator.throwIfInputValuesIsIncorrect(1, "C", 2);
+            inputValidator.throwIfInputValuesIsIncorrect(1, "s", 2);
+            inputValidator.throwIfInputValuesIsIncorrect(500, "s", 2);
+            inputValidator.throwIfInputValuesIsIncorrect(1, "S", 2);
             inputValidator.throwIfInputValuesIsIncorrect(1, "a", 2);
             inputValidator.throwIfInputValuesIsIncorrect(18, "a", 2);
         } catch (InvalidInputException exception) {
