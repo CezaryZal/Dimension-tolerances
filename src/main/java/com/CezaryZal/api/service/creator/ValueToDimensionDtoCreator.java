@@ -38,7 +38,8 @@ public class ValueToDimensionDtoCreator {
             ParsedInputDimension parsedInputDimension,
             double valueOfBasicDeviation){
 
-            valueOfBasicDeviation = modifyValueOfBasicDeviationIfSymbolIsInUpperCase(valueOfBasicDeviation);
+            valueOfBasicDeviation = modifyValueOfBasicDeviationIfSymbolIsInUpperCase(
+                    parsedInputDimension.getSymbol(), valueOfBasicDeviation);
 
         if (parsedInputDimension.isSymbolOverH() &&
                 parsedInputDimension.getSymbol() < 'P' &&
@@ -52,8 +53,10 @@ public class ValueToDimensionDtoCreator {
         return valueOfBasicDeviation;
     }
 
-    private double modifyValueOfBasicDeviationIfSymbolIsInUpperCase(double valueOfBasicDeviation){
-        if (!(valueOfBasicDeviation < 'a') || valueOfBasicDeviation == 0){
+    private double modifyValueOfBasicDeviationIfSymbolIsInUpperCase(
+            char symbol,  double valueOfBasicDeviation){
+
+        if (!(symbol < 'a') || valueOfBasicDeviation == 0){
             return valueOfBasicDeviation;
         }
         return  -valueOfBasicDeviation;

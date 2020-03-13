@@ -2,39 +2,35 @@ package com.CezaryZal.api.service.creator;
 
 import com.CezaryZal.api.model.ParsedInputDimension;
 import com.CezaryZal.api.model.ValuesToDimensionDto;
+import com.CezaryZal.api.repository.AdditionalDataToBasicDeviationRepoDbImp;
 import com.CezaryZal.api.repository.BasicDeviationRepoDbImp;
 import com.CezaryZal.api.repository.NominalToleranceRepoDbImp;
-import com.CezaryZal.api.repository.RepositoryDb;
 import com.CezaryZal.api.service.repo.ServiceRepo;
-import com.CezaryZal.api.service.repo.ServiceRepoImp;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ValueToDimensionDtoCreatorTest {
 
-    private ServiceRepo serviceRepoImp;
-    private ValueToDimensionDtoCreator valueToDimensionDtoCreator;
+    @Mock
+    AdditionalDataToBasicDeviationRepoDbImp additionalDataToBasicDeviationRepoDbImp;
+    @Mock
+    BasicDeviationRepoDbImp basicDeviationRepoDbImp;
+    @Mock
+    NominalToleranceRepoDbImp nominalToleranceRepoDbImp;
+    @Mock
+    ServiceRepo serviceRepoImp;
+
+    @InjectMocks
+    ValueToDimensionDtoCreator valueToDimensionDtoCreator;
 
     private ValuesToDimensionDto testValuesToDimensionDto = new ValuesToDimensionDto(5, 2);
-
-    @Before
-    public void setUp() {
-        RepositoryDb additionalDataRepository = mock(NominalToleranceRepoDbImp.class);
-        RepositoryDb  basicDeviationsRepository = mock(BasicDeviationRepoDbImp.class);
-        RepositoryDb  nominalToleranceRepository = mock(NominalToleranceRepoDbImp.class);
-
-        serviceRepoImp = new ServiceRepoImp(
-                additionalDataRepository, basicDeviationsRepository, nominalToleranceRepository
-        );
-        valueToDimensionDtoCreator = new ValueToDimensionDtoCreator(serviceRepoImp);
-    }
 
     @Test
     public void create_values_to_dimension_dto_testing_for_symbol_upper_case_and_over_H() {
@@ -82,13 +78,13 @@ public class ValueToDimensionDtoCreatorTest {
 
 
         when(serviceRepoImp.getValueOfBasicDeviationBySignAndValue("J", 110))
-                .thenReturn(34.0);
+                .thenReturn(-15.0);
         when(serviceRepoImp.getValueOfNominalToleranceBySignAndValue("IT8", 110))
                 .thenReturn(54.0);
         when(serviceRepoImp.getValueOfAdditionalDataBySignAndValue("IT8", 110))
                 .thenReturn(19.0);
 
-        ValuesToDimensionDto expectedValuesToDimensionDtoFrom110J8 = new ValuesToDimensionDto(-15, 54);
+        ValuesToDimensionDto expectedValuesToDimensionDtoFrom110J8 = new ValuesToDimensionDto(34, 54);
         ValuesToDimensionDto valuesToDimensionDtoFrom110J8 = valueToDimensionDtoCreator.createValuesToDimensionDto(
                 new ParsedInputDimension(110, 'J', 8)
         );
@@ -97,13 +93,13 @@ public class ValueToDimensionDtoCreatorTest {
 
 
         when(serviceRepoImp.getValueOfBasicDeviationBySignAndValue("J", 210))
-                .thenReturn(47.0);
+                .thenReturn(-21.0);
         when(serviceRepoImp.getValueOfNominalToleranceBySignAndValue("IT3", 210))
                 .thenReturn(10.0);
         when(serviceRepoImp.getValueOfAdditionalDataBySignAndValue("IT3", 210))
                 .thenReturn(3.0);
 
-        ValuesToDimensionDto expectedValuesToDimensionDtoFrom210J3 = new ValuesToDimensionDto(-44, 10);
+        ValuesToDimensionDto expectedValuesToDimensionDtoFrom210J3 = new ValuesToDimensionDto(24, 10);
         ValuesToDimensionDto valuesToDimensionDtoFrom210J3 = valueToDimensionDtoCreator.createValuesToDimensionDto(
                 new ParsedInputDimension(210, 'J', 3)
         );
@@ -144,16 +140,16 @@ public class ValueToDimensionDtoCreatorTest {
     @Test
     public void create_values_to_dimension_dto_testing_for_symbol_lower_case_and_below_H() {
         when(serviceRepoImp.getValueOfBasicDeviationBySignAndValue("j", 25))
-                .thenReturn(8.0);
+                .thenReturn(-8.0);
         when(serviceRepoImp.getValueOfNominalToleranceBySignAndValue("IT3", 25))
                 .thenReturn(4.0);
 
         ValuesToDimensionDto expectedValuesToDimensionDtoFrom25j3 = new ValuesToDimensionDto(-8, 4);
-        ValuesToDimensionDto valuesToDimensionDtoFrom2j3 = valueToDimensionDtoCreator.createValuesToDimensionDto(
+        ValuesToDimensionDto valuesToDimensionDtoFrom25j3 = valueToDimensionDtoCreator.createValuesToDimensionDto(
                 new ParsedInputDimension(25, 'j', 3)
         );
-        Assert.assertEquals(expectedValuesToDimensionDtoFrom25j3, valuesToDimensionDtoFrom2j3);
-        Assert.assertNotEquals(testValuesToDimensionDto, valuesToDimensionDtoFrom2j3);
+        Assert.assertEquals(expectedValuesToDimensionDtoFrom25j3, valuesToDimensionDtoFrom25j3);
+        Assert.assertNotEquals(testValuesToDimensionDto, valuesToDimensionDtoFrom25j3);
 
 
         when(serviceRepoImp.getValueOfBasicDeviationBySignAndValue("h", 50))
