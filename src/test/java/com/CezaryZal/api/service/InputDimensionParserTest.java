@@ -15,7 +15,6 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import static com.CezaryZal.constant.DescriptionOfConstants.DESCRIPTION_OF_FAIL_FOR_COMPARING_OBJECT;
 import static org.assertj.core.api.BDDAssertions.then;
-import static org.junit.Assert.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class InputDimensionParserTest {
@@ -26,70 +25,50 @@ public class InputDimensionParserTest {
     @InjectMocks
     private InputDimensionParser inputDimensionParser;
 
-    @Test
+    @SneakyThrows
+    @Test(expected = InvalidValueOfDimensionException.class)
     public void parse_input_dimension_should_throw_invalid_value_of_dimension_exception() {
-        assertThrows(
-                InvalidValueOfDimensionException.class, () -> inputDimensionParser.parseInputDimension("0a2"));
-        assertThrows(
-                InvalidValueOfDimensionException.class, () -> inputDimensionParser.parseInputDimension("501a2"));
+        inputDimensionParser.parseInputDimension("0a2");
+        inputDimensionParser.parseInputDimension("501a2");
     }
 
-    @Test
+    @SneakyThrows
+    @Test(expected = InvalidSymbolsException.class)
     public void parse_input_dimension_should_throw_invalid_symbols_exception() {
-        assertThrows(
-                InvalidSymbolsException.class, () -> inputDimensionParser.parseInputDimension("1aa2"));
-        assertThrows(
-                InvalidSymbolsException.class, () -> inputDimensionParser.parseInputDimension("1t2"));
-        assertThrows(
-                InvalidSymbolsException.class, () -> inputDimensionParser.parseInputDimension("1T2"));
-        assertThrows(
-                InvalidSymbolsException.class, () -> inputDimensionParser.parseInputDimension("1b2"));
-        assertThrows(
-                InvalidSymbolsException.class, () -> inputDimensionParser.parseInputDimension("1i2"));
-        assertThrows(
-                InvalidSymbolsException.class, () -> inputDimensionParser.parseInputDimension("1l2"));
-        assertThrows(
-                InvalidSymbolsException.class, () -> inputDimensionParser.parseInputDimension("1o2"));
-        assertThrows(
-                InvalidSymbolsException.class, () -> inputDimensionParser.parseInputDimension("1q2"));
-        assertThrows(
-                InvalidSymbolsException.class, () -> inputDimensionParser.parseInputDimension("1B2"));
-        assertThrows(
-                InvalidSymbolsException.class, () -> inputDimensionParser.parseInputDimension("1I2"));
-        assertThrows(
-                InvalidSymbolsException.class, () -> inputDimensionParser.parseInputDimension("1L2"));
-        assertThrows(
-                InvalidSymbolsException.class, () -> inputDimensionParser.parseInputDimension("1O2"));
-        assertThrows(
-                InvalidSymbolsException.class, () -> inputDimensionParser.parseInputDimension("1Q2"));
+        inputDimensionParser.parseInputDimension("1aa2");
+        inputDimensionParser.parseInputDimension("1aa2");
+        inputDimensionParser.parseInputDimension("1t2");
+        inputDimensionParser.parseInputDimension("1T2");
+        inputDimensionParser.parseInputDimension("1b2");
+        inputDimensionParser.parseInputDimension("1i2");
+        inputDimensionParser.parseInputDimension("1l2");
+        inputDimensionParser.parseInputDimension("1o2");
+        inputDimensionParser.parseInputDimension("1q2");
+        inputDimensionParser.parseInputDimension("1B2");
+        inputDimensionParser.parseInputDimension("1I2");
+        inputDimensionParser.parseInputDimension("1L2");
+        inputDimensionParser.parseInputDimension("1O2");
+        inputDimensionParser.parseInputDimension("1Q2");
     }
 
-    @Test
+    @SneakyThrows
+    @Test(expected = InvalidValueOfItException.class)
     public void parse_input_dimension_should_throw_invalid_value_of_IT_exception() {
-        assertThrows(
-                InvalidValueOfItException.class, () -> inputDimensionParser.parseInputDimension("1a0"));
-        assertThrows(
-                InvalidValueOfItException.class, () -> inputDimensionParser.parseInputDimension("1a19"));
+        inputDimensionParser.parseInputDimension("1a0");
+        inputDimensionParser.parseInputDimension("1a19");
     }
 
-    @Test
+    @SneakyThrows
+    @Test(expected = InvalidInputException.class)
     public void parse_input_dimension_should_throw_invalid_input_exception() {
-        assertThrows(
-                InvalidInputException.class, () -> inputDimensionParser.parseInputDimension(""));
-        assertThrows(
-                InvalidInputException.class, () -> inputDimensionParser.parseInputDimension("4%5E5k7"));
-        assertThrows(
-                InvalidInputException.class, () -> inputDimensionParser.parseInputDimension("5^1k8"));
-        assertThrows(
-                InvalidInputException.class, () -> inputDimensionParser.parseInputDimension("50t8k"));
-        assertThrows(
-                InvalidInputException.class, () -> inputDimensionParser.parseInputDimension("50t8k6"));
-        assertThrows(
-                InvalidInputException.class, () -> inputDimensionParser.parseInputDimension("58"));
-        assertThrows(
-                InvalidInputException.class, () -> inputDimensionParser.parseInputDimension("k8"));
-        assertThrows(
-                InvalidInputException.class, () -> inputDimensionParser.parseInputDimension("80G"));
+        inputDimensionParser.parseInputDimension("");
+        inputDimensionParser.parseInputDimension("4%5E5k7");
+        inputDimensionParser.parseInputDimension("5^1k8");
+        inputDimensionParser.parseInputDimension("50t8k");
+        inputDimensionParser.parseInputDimension("50t8k6");
+        inputDimensionParser.parseInputDimension("58");
+        inputDimensionParser.parseInputDimension("k8");
+        inputDimensionParser.parseInputDimension("80G");
     }
 
     @SneakyThrows
