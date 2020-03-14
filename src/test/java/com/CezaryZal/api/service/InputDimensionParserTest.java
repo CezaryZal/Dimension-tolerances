@@ -24,13 +24,15 @@ public class InputDimensionParserTest {
     InputDimensionParser inputDimensionParser;
 
     @Test
-    public void parse_input_dimension_should_throw_exceptions() {
-
+    public void parse_input_dimension_should_throw_invalid_value_of_dimension_exception() {
         Assert.assertThrows(
                 InvalidValueOfDimensionException.class, () -> inputDimensionParser.parseInputDimension("0a2"));
         Assert.assertThrows(
                 InvalidValueOfDimensionException.class, () -> inputDimensionParser.parseInputDimension("501a2"));
+    }
 
+    @Test
+    public void parse_input_dimension_should_throw_invalid_symbols_exception() {
         Assert.assertThrows(
                 InvalidSymbolsException.class, () -> inputDimensionParser.parseInputDimension("1aa2"));
         Assert.assertThrows(
@@ -57,12 +59,18 @@ public class InputDimensionParserTest {
                 InvalidSymbolsException.class, () -> inputDimensionParser.parseInputDimension("1O2"));
         Assert.assertThrows(
                 InvalidSymbolsException.class, () -> inputDimensionParser.parseInputDimension("1Q2"));
+    }
 
+    @Test
+    public void parse_input_dimension_should_throw_invalid_value_of_IT_exception() {
         Assert.assertThrows(
                 InvalidValueOfItException.class, () -> inputDimensionParser.parseInputDimension("1a0"));
         Assert.assertThrows(
                 InvalidValueOfItException.class, () -> inputDimensionParser.parseInputDimension("1a19"));
+    }
 
+    @Test
+    public void parse_input_dimension_should_throw_invalid_input_exception() {
         Assert.assertThrows(
                 InvalidInputException.class, () -> inputDimensionParser.parseInputDimension(""));
         Assert.assertThrows(

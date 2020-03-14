@@ -6,11 +6,7 @@ import com.CezaryZal.api.model.ParsedInputDimension;
 import com.CezaryZal.api.model.ValuesToDimensionDto;
 import com.CezaryZal.api.model.dto.DimensionDto;
 import com.CezaryZal.api.service.creator.ValueToDimensionDtoCreator;
-import com.CezaryZal.api.service.validation.InputValidator;
 import com.CezaryZal.exceptions.InvalidInputException;
-import com.CezaryZal.exceptions.InvalidSymbolsException;
-import com.CezaryZal.exceptions.InvalidValueOfDimensionException;
-import com.CezaryZal.exceptions.InvalidValueOfItException;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,7 +24,6 @@ public class DimensionService {
             ResultForShaft resultForShaft,
             ResultForHole resultForHole,
             ValueToDimensionDtoCreator valueToDimensionDtoCreator,
-            InputValidator inputValidator,
             InputDimensionParser inputDimensionParser) {
         this.resultForShaft = resultForShaft;
         this.resultForHole = resultForHole;

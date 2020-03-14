@@ -33,7 +33,7 @@ public class ValueToDimensionDtoCreatorTest {
     private ValuesToDimensionDto testValuesToDimensionDto = new ValuesToDimensionDto(5, 2);
 
     @Test
-    public void create_values_to_dimension_dto_testing_for_symbol_upper_case_and_over_H() {
+    public void create_values_to_dimension_testing_for_symbol_upper_case_and_over_H_and_without_additional_data() {
         when(serviceRepoImp.getValueOfBasicDeviationBySignAndValue("P", 35))
                 .thenReturn(26.0);
         when(serviceRepoImp.getValueOfNominalToleranceBySignAndValue("IT5", 35))
@@ -45,8 +45,10 @@ public class ValueToDimensionDtoCreatorTest {
         );
         Assert.assertEquals(expectedValuesToDimensionDtoFrom35P5, valuesToDimensionDtoFrom35P5);
         Assert.assertNotEquals(testValuesToDimensionDto, valuesToDimensionDtoFrom35P5);
+    }
 
-
+    @Test
+    public void create_values_to_dimension_testing_for_symbol_upper_case_and_over_H_and_with_additional_data() {
         when(serviceRepoImp.getValueOfBasicDeviationBySignAndValue("N", 15))
                 .thenReturn(12.0);
         when(serviceRepoImp.getValueOfNominalToleranceBySignAndValue("IT8", 15))
@@ -108,7 +110,7 @@ public class ValueToDimensionDtoCreatorTest {
     }
 
     @Test
-    public void create_values_to_dimension_dto_testing_for_symbol_upper_case_and_below_H() {
+    public void create_values_to_dimension_dto_testing_for_symbol_upper_case_and_below_or_with_H() {
         when(serviceRepoImp.getValueOfBasicDeviationBySignAndValue("H", 200))
                 .thenReturn(0.0);
         when(serviceRepoImp.getValueOfNominalToleranceBySignAndValue("IT7", 200))
@@ -138,7 +140,7 @@ public class ValueToDimensionDtoCreatorTest {
     }
 
     @Test
-    public void create_values_to_dimension_dto_testing_for_symbol_lower_case_and_below_H() {
+    public void create_values_to_dimension_dto_testing_for_symbol_lower_case_and_below_or_with_H() {
         when(serviceRepoImp.getValueOfBasicDeviationBySignAndValue("j", 25))
                 .thenReturn(-8.0);
         when(serviceRepoImp.getValueOfNominalToleranceBySignAndValue("IT3", 25))
