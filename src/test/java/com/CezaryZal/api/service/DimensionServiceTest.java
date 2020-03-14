@@ -52,7 +52,8 @@ public class DimensionServiceTest {
 
 
     private DimensionService dimensionService;
-    private DimensionDto notExpectedDimensionDtoFrom40g5 = new DimensionDtoImpl(35, -20, -9);
+    private final DimensionDto notExpectedDimensionDtoFrom40g5 =
+            new DimensionDtoImpl(35, -20, -9);
 
     @Before
     public void setUp() {
