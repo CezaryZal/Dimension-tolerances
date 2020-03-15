@@ -1,29 +1,33 @@
 package com.CezaryZal.api.service.calculation.deviation;
 
-import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static com.CezaryZal.constant.DescriptionOfConstants.DESCRIPTION_OF_FAIL_FOR_COMPARING_OBJECT;
+import static com.CezaryZal.constant.DescriptionOfConstants.DESCRIPTION_OF_FAIL_WHEN_COMPARED_OBJECT_ARE_EQUALS;
+import static org.assertj.core.api.BDDAssertions.then;
 
 public class UpperDeviationForShaftTest {
 
-    UpperDeviation upperDeviationForShaft;
+    private final UpperDeviation upperDeviationForShaft = new UpperDeviationForShaft();
 
-    @Before
-    public void setUp() throws Exception {
-        upperDeviationForShaft = new UpperDeviationForShaft();
-    }
 
     @Test
     public void calculate_upper_deviation_should_be_4_when_add_3_to_1() {
         double calculatedUpperDeviation = upperDeviationForShaft.calculateUpperDeviation(3.0, 1.0);
-        Assert.assertEquals(Double.valueOf(calculatedUpperDeviation), Double.valueOf(4.0));
+
+        Double expectedValue = Double.valueOf(4.0);
+        then(calculatedUpperDeviation)
+                .as(DESCRIPTION_OF_FAIL_FOR_COMPARING_OBJECT + calculatedUpperDeviation)
+                .isEqualTo(expectedValue);
     }
 
     @Test
     public void calculate_upper_deviation_should_not_be_5_when_add_3_to_1() {
         double calculatedUpperDeviation = upperDeviationForShaft.calculateUpperDeviation(3.0, 1.0);
-        Assert.assertNotEquals(Double.valueOf(calculatedUpperDeviation), Double.valueOf(5.0));
+
+        Double notExpectedValue = Double.valueOf(5.0);
+        then(calculatedUpperDeviation)
+                .as(DESCRIPTION_OF_FAIL_WHEN_COMPARED_OBJECT_ARE_EQUALS + calculatedUpperDeviation)
+                .isNotEqualTo(notExpectedValue);
     }
 }
