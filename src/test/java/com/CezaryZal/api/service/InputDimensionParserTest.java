@@ -74,14 +74,23 @@ public class InputDimensionParserTest {
     @SneakyThrows
     @Test
     public void parse_input_dimension_should_not_throw_exceptions() {
-        ParsedInputDimension parsedInputDimensionFrom1M7 = inputDimensionParser.parseInputDimension("1M7");
-        ParsedInputDimension parsedInputDimensionFrom500m5 = inputDimensionParser.parseInputDimension("500m5");
-        ParsedInputDimension parsedInputDimensionFrom55a3 = inputDimensionParser.parseInputDimension("55a3");
-        ParsedInputDimension parsedInputDimensionFrom72s4 = inputDimensionParser.parseInputDimension("72s4");
-        ParsedInputDimension parsedInputDimensionFrom8A2 = inputDimensionParser.parseInputDimension("8A2");
-        ParsedInputDimension parsedInputDimensionFrom43S4 = inputDimensionParser.parseInputDimension("43S4");
-        ParsedInputDimension parsedInputDimensionFrom22n1 = inputDimensionParser.parseInputDimension("22n1");
-        ParsedInputDimension parsedInputDimensionFrom89K18 = inputDimensionParser.parseInputDimension("89K18");
+        String dimension1M7 = "1M7";
+        String dimension500m5 = "500m5";
+        String dimension55a3 = "55a3";
+        String dimension72s4 = "72s4";
+        String dimension8A2 = "8A2";
+        String dimension43S4 = "43S4";
+        String dimension22n1 = "22n1";
+        String dimension89K18 = "89K18";
+
+        ParsedInputDimension parsedInputDimensionFrom1M7 = inputDimensionParser.parseInputDimension(dimension1M7);
+        ParsedInputDimension parsedInputDimensionFrom500m5 = inputDimensionParser.parseInputDimension(dimension500m5);
+        ParsedInputDimension parsedInputDimensionFrom55a3 = inputDimensionParser.parseInputDimension(dimension55a3);
+        ParsedInputDimension parsedInputDimensionFrom72s4 = inputDimensionParser.parseInputDimension(dimension72s4);
+        ParsedInputDimension parsedInputDimensionFrom8A2 = inputDimensionParser.parseInputDimension(dimension8A2);
+        ParsedInputDimension parsedInputDimensionFrom43S4 = inputDimensionParser.parseInputDimension(dimension43S4);
+        ParsedInputDimension parsedInputDimensionFrom22n1 = inputDimensionParser.parseInputDimension(dimension22n1);
+        ParsedInputDimension parsedInputDimensionFrom89K18 = inputDimensionParser.parseInputDimension(dimension89K18);
 
         ParsedInputDimension expectedParsedInputDimensionFrom1M7 = new ParsedInputDimension(1, 'M', 7);
         ParsedInputDimension expectedParsedInputDimensionFrom500m5 = new ParsedInputDimension(500, 'm', 5);
@@ -93,28 +102,28 @@ public class InputDimensionParserTest {
         ParsedInputDimension expectedParsedInputDimensionFrom89K18 = new ParsedInputDimension(89, 'K', 18);
 
         then(parsedInputDimensionFrom1M7)
-                .as(DESCRIPTION_OF_FAIL_FOR_COMPARING_OBJECT)
+                .as(DESCRIPTION_OF_FAIL_FOR_COMPARING_OBJECT + dimension1M7)
                 .isEqualTo(expectedParsedInputDimensionFrom1M7);
         then(parsedInputDimensionFrom500m5)
-                .as(DESCRIPTION_OF_FAIL_FOR_COMPARING_OBJECT)
+                .as(DESCRIPTION_OF_FAIL_FOR_COMPARING_OBJECT + dimension500m5)
                 .isEqualTo(expectedParsedInputDimensionFrom500m5);
         then(parsedInputDimensionFrom55a3)
-                .as(DESCRIPTION_OF_FAIL_FOR_COMPARING_OBJECT)
+                .as(DESCRIPTION_OF_FAIL_FOR_COMPARING_OBJECT + dimension55a3)
                 .isEqualTo(expectedParsedInputDimensionFrom55a3);
         then(parsedInputDimensionFrom72s4)
-                .as(DESCRIPTION_OF_FAIL_FOR_COMPARING_OBJECT)
+                .as(DESCRIPTION_OF_FAIL_FOR_COMPARING_OBJECT + dimension72s4)
                 .isEqualTo(expectedParsedInputDimensionFrom72s4);
         then(parsedInputDimensionFrom8A2)
-                .as(DESCRIPTION_OF_FAIL_FOR_COMPARING_OBJECT)
+                .as(DESCRIPTION_OF_FAIL_FOR_COMPARING_OBJECT + dimension8A2)
                 .isEqualTo(expectedParsedInputDimensionFrom8A2);
         then(parsedInputDimensionFrom43S4)
-                .as(DESCRIPTION_OF_FAIL_FOR_COMPARING_OBJECT)
+                .as(DESCRIPTION_OF_FAIL_FOR_COMPARING_OBJECT + dimension43S4)
                 .isEqualTo(expectedParsedInputDimensionFrom43S4);
         then(parsedInputDimensionFrom22n1)
-                .as(DESCRIPTION_OF_FAIL_FOR_COMPARING_OBJECT)
+                .as(DESCRIPTION_OF_FAIL_FOR_COMPARING_OBJECT + dimension22n1)
                 .isEqualTo(expectedParsedInputDimensionFrom22n1);
         then(parsedInputDimensionFrom89K18)
-                .as(DESCRIPTION_OF_FAIL_FOR_COMPARING_OBJECT)
+                .as(DESCRIPTION_OF_FAIL_FOR_COMPARING_OBJECT + dimension89K18)
                 .isEqualTo(expectedParsedInputDimensionFrom89K18);
     }
 }

@@ -25,7 +25,6 @@ import org.mockito.junit.MockitoJUnitRunner;
 import static com.CezaryZal.constant.DescriptionOfConstants.DESCRIPTION_OF_FAIL_FOR_COMPARING_OBJECT;
 import static com.CezaryZal.constant.DescriptionOfConstants.DESCRIPTION_OF_FAIL_WHEN_COMPARED_OBJECT_ARE_EQUALS;
 import static org.assertj.core.api.BDDAssertions.then;
-import static org.junit.Assert.*;
 import static org.mockito.BDDMockito.given;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -78,10 +77,10 @@ public class DimensionServiceTest {
 
         DimensionDto expectedDimensionDtoFrom35P5 = new DimensionDtoImpl(35, -37, -26);
         then(dimensionToleranceFrom35P5)
-                .as(DESCRIPTION_OF_FAIL_FOR_COMPARING_OBJECT)
+                .as(DESCRIPTION_OF_FAIL_FOR_COMPARING_OBJECT + dimension35P5)
                 .isEqualTo(expectedDimensionDtoFrom35P5);
         then(dimensionToleranceFrom35P5)
-                .as(DESCRIPTION_OF_FAIL_WHEN_COMPARED_OBJECT_ARE_EQUALS)
+                .as(DESCRIPTION_OF_FAIL_WHEN_COMPARED_OBJECT_ARE_EQUALS + dimension35P5)
                 .isNotEqualTo(notExpectedDimensionDtoFrom40g5);
 
 
@@ -95,10 +94,10 @@ public class DimensionServiceTest {
 
         DimensionDto expectedDimensionDtoFrom65M9 = new DimensionDtoImpl(65, -85, -11);
         then(dimensionToleranceFrom65M9)
-                .as(DESCRIPTION_OF_FAIL_FOR_COMPARING_OBJECT)
+                .as(DESCRIPTION_OF_FAIL_FOR_COMPARING_OBJECT + dimension65M9)
                 .isEqualTo(expectedDimensionDtoFrom65M9);
         then(dimensionToleranceFrom65M9)
-                .as(DESCRIPTION_OF_FAIL_WHEN_COMPARED_OBJECT_ARE_EQUALS)
+                .as(DESCRIPTION_OF_FAIL_WHEN_COMPARED_OBJECT_ARE_EQUALS + dimension65M9)
                 .isNotEqualTo(notExpectedDimensionDtoFrom40g5);
 
 
@@ -112,10 +111,10 @@ public class DimensionServiceTest {
 
         DimensionDto expectedDimensionDtoFrom95K2 = new DimensionDtoImpl(95, -7, -3);
         then(dimensionToleranceFrom95K2)
-                .as(DESCRIPTION_OF_FAIL_FOR_COMPARING_OBJECT)
+                .as(DESCRIPTION_OF_FAIL_FOR_COMPARING_OBJECT + dimension95K2)
                 .isEqualTo(expectedDimensionDtoFrom95K2);
         then(dimensionToleranceFrom95K2)
-                .as(DESCRIPTION_OF_FAIL_WHEN_COMPARED_OBJECT_ARE_EQUALS)
+                .as(DESCRIPTION_OF_FAIL_WHEN_COMPARED_OBJECT_ARE_EQUALS + dimension95K2)
                 .isNotEqualTo(notExpectedDimensionDtoFrom40g5);
     }
 
@@ -133,10 +132,10 @@ public class DimensionServiceTest {
 
         DimensionDto expectedDimensionDtoFrom15N8 = new DimensionDtoImpl(15, -30, -3);
         then(dimensionToleranceFrom15N8)
-                .as(DESCRIPTION_OF_FAIL_FOR_COMPARING_OBJECT)
+                .as(DESCRIPTION_OF_FAIL_FOR_COMPARING_OBJECT + dimension15N8)
                 .isEqualTo(expectedDimensionDtoFrom15N8);
         then(dimensionToleranceFrom15N8)
-                .as(DESCRIPTION_OF_FAIL_WHEN_COMPARED_OBJECT_ARE_EQUALS)
+                .as(DESCRIPTION_OF_FAIL_WHEN_COMPARED_OBJECT_ARE_EQUALS + dimension15N8)
                 .isNotEqualTo(notExpectedDimensionDtoFrom40g5);
 
 
@@ -152,10 +151,10 @@ public class DimensionServiceTest {
 
         DimensionDto expectedDimensionDtoFrom40N3 = new DimensionDtoImpl(40, -19.5, -15.5);
         then(dimensionToleranceFrom40N3)
-                .as(DESCRIPTION_OF_FAIL_FOR_COMPARING_OBJECT)
+                .as(DESCRIPTION_OF_FAIL_FOR_COMPARING_OBJECT + dimension40N3)
                 .isEqualTo(expectedDimensionDtoFrom40N3);
         then(dimensionToleranceFrom40N3)
-                .as(DESCRIPTION_OF_FAIL_WHEN_COMPARED_OBJECT_ARE_EQUALS)
+                .as(DESCRIPTION_OF_FAIL_WHEN_COMPARED_OBJECT_ARE_EQUALS + dimension40N3)
                 .isNotEqualTo(notExpectedDimensionDtoFrom40g5);
 
 
@@ -171,10 +170,10 @@ public class DimensionServiceTest {
 
         DimensionDto expectedDimensionDtoFrom110J8 = new DimensionDtoImpl(110, -20, 34);
         then(dimensionToleranceFrom110J8)
-                .as(DESCRIPTION_OF_FAIL_FOR_COMPARING_OBJECT)
+                .as(DESCRIPTION_OF_FAIL_FOR_COMPARING_OBJECT + dimension110J8)
                 .isEqualTo(expectedDimensionDtoFrom110J8);
         then(dimensionToleranceFrom110J8)
-                .as(DESCRIPTION_OF_FAIL_WHEN_COMPARED_OBJECT_ARE_EQUALS)
+                .as(DESCRIPTION_OF_FAIL_WHEN_COMPARED_OBJECT_ARE_EQUALS + dimension110J8)
                 .isNotEqualTo(notExpectedDimensionDtoFrom40g5);
 
 
@@ -190,10 +189,10 @@ public class DimensionServiceTest {
 
         DimensionDto expectedDimensionDtoFrom210J3 = new DimensionDtoImpl(210, 14, 24);
         then(dimensionToleranceFrom210J3)
-                .as(DESCRIPTION_OF_FAIL_FOR_COMPARING_OBJECT)
+                .as(DESCRIPTION_OF_FAIL_FOR_COMPARING_OBJECT + dimension210J3)
                 .isEqualTo(expectedDimensionDtoFrom210J3);
         then(dimensionToleranceFrom210J3)
-                .as(DESCRIPTION_OF_FAIL_WHEN_COMPARED_OBJECT_ARE_EQUALS)
+                .as(DESCRIPTION_OF_FAIL_WHEN_COMPARED_OBJECT_ARE_EQUALS + dimension210J3)
                 .isNotEqualTo(notExpectedDimensionDtoFrom40g5);
     }
 
@@ -209,10 +208,10 @@ public class DimensionServiceTest {
 
         DimensionDto expectedDimensionDtoFrom200H7 = new DimensionDtoImpl(200, 0, 46);
         then(dimensionToleranceFrom200H7)
-                .as(DESCRIPTION_OF_FAIL_FOR_COMPARING_OBJECT)
+                .as(DESCRIPTION_OF_FAIL_FOR_COMPARING_OBJECT + dimension200H7)
                 .isEqualTo(expectedDimensionDtoFrom200H7);
         then(dimensionToleranceFrom200H7)
-                .as(DESCRIPTION_OF_FAIL_WHEN_COMPARED_OBJECT_ARE_EQUALS)
+                .as(DESCRIPTION_OF_FAIL_WHEN_COMPARED_OBJECT_ARE_EQUALS + dimension200H7)
                 .isNotEqualTo(notExpectedDimensionDtoFrom40g5);
     }
 
@@ -228,10 +227,10 @@ public class DimensionServiceTest {
 
         DimensionDto expectedDimensionDtoFrom70p8 = new DimensionDtoImpl(70, 32, 78);
         then(dimensionToleranceFrom70p8)
-                .as(DESCRIPTION_OF_FAIL_FOR_COMPARING_OBJECT)
+                .as(DESCRIPTION_OF_FAIL_FOR_COMPARING_OBJECT + dimension70p8)
                 .isEqualTo(expectedDimensionDtoFrom70p8);
         then(dimensionToleranceFrom70p8)
-                .as(DESCRIPTION_OF_FAIL_WHEN_COMPARED_OBJECT_ARE_EQUALS)
+                .as(DESCRIPTION_OF_FAIL_WHEN_COMPARED_OBJECT_ARE_EQUALS + dimension70p8)
                 .isNotEqualTo(notExpectedDimensionDtoFrom40g5);
     }
 
@@ -247,10 +246,10 @@ public class DimensionServiceTest {
 
         DimensionDto expectedDimensionDtoFrom25j3 = new DimensionDtoImpl(25, -8, -4);
         then(dimensionToleranceFrom25j3)
-                .as(DESCRIPTION_OF_FAIL_FOR_COMPARING_OBJECT)
+                .as(DESCRIPTION_OF_FAIL_FOR_COMPARING_OBJECT + dimension25j3)
                 .isEqualTo(expectedDimensionDtoFrom25j3);
         then(dimensionToleranceFrom25j3)
-                .as(DESCRIPTION_OF_FAIL_WHEN_COMPARED_OBJECT_ARE_EQUALS)
+                .as(DESCRIPTION_OF_FAIL_WHEN_COMPARED_OBJECT_ARE_EQUALS + dimension25j3)
                 .isNotEqualTo(notExpectedDimensionDtoFrom40g5);
     }
 
@@ -266,10 +265,10 @@ public class DimensionServiceTest {
 
         DimensionDto expectedDimensionDtoFrom1F3 = new DimensionDtoImpl(1, 6, 8);
         then(dimensionToleranceFrom1F3)
-                .as(DESCRIPTION_OF_FAIL_FOR_COMPARING_OBJECT)
+                .as(DESCRIPTION_OF_FAIL_FOR_COMPARING_OBJECT + dimension1F3)
                 .isEqualTo(expectedDimensionDtoFrom1F3);
         then(dimensionToleranceFrom1F3)
-                .as(DESCRIPTION_OF_FAIL_WHEN_COMPARED_OBJECT_ARE_EQUALS)
+                .as(DESCRIPTION_OF_FAIL_WHEN_COMPARED_OBJECT_ARE_EQUALS + dimension1F3)
                 .isNotEqualTo(notExpectedDimensionDtoFrom40g5);
 
 
@@ -283,10 +282,10 @@ public class DimensionServiceTest {
 
         DimensionDto expectedDimensionDtoFrom500n6 = new DimensionDtoImpl(500, 40, 80);
         then(dimensionToleranceFrom500n6)
-                .as(DESCRIPTION_OF_FAIL_FOR_COMPARING_OBJECT)
+                .as(DESCRIPTION_OF_FAIL_FOR_COMPARING_OBJECT + dimension500n6)
                 .isEqualTo(expectedDimensionDtoFrom500n6);
         then(dimensionToleranceFrom500n6)
-                .as(DESCRIPTION_OF_FAIL_WHEN_COMPARED_OBJECT_ARE_EQUALS)
+                .as(DESCRIPTION_OF_FAIL_WHEN_COMPARED_OBJECT_ARE_EQUALS + dimension500n6)
                 .isNotEqualTo(notExpectedDimensionDtoFrom40g5);
     }
 
@@ -302,10 +301,10 @@ public class DimensionServiceTest {
 
         DimensionDto expectedDimensionDtoFrom25g1 = new DimensionDtoImpl(25, -8.5, -7);
         then(dimensionToleranceFrom25g1)
-                .as(DESCRIPTION_OF_FAIL_FOR_COMPARING_OBJECT)
+                .as(DESCRIPTION_OF_FAIL_FOR_COMPARING_OBJECT + dimension25g1)
                 .isEqualTo(expectedDimensionDtoFrom25g1);
         then(dimensionToleranceFrom25g1)
-                .as(DESCRIPTION_OF_FAIL_WHEN_COMPARED_OBJECT_ARE_EQUALS)
+                .as(DESCRIPTION_OF_FAIL_WHEN_COMPARED_OBJECT_ARE_EQUALS + dimension25g1)
                 .isNotEqualTo(notExpectedDimensionDtoFrom40g5);
 
 
@@ -319,76 +318,51 @@ public class DimensionServiceTest {
 
         DimensionDto expectedDimensionDtoFrom50P18 = new DimensionDtoImpl(50, -3926, -26);
         then(dimensionToleranceFrom50P18)
-                .as(DESCRIPTION_OF_FAIL_FOR_COMPARING_OBJECT)
+                .as(DESCRIPTION_OF_FAIL_FOR_COMPARING_OBJECT + dimension50P18)
                 .isEqualTo(expectedDimensionDtoFrom50P18);
         then(dimensionToleranceFrom50P18)
-                .as(DESCRIPTION_OF_FAIL_WHEN_COMPARED_OBJECT_ARE_EQUALS)
+                .as(DESCRIPTION_OF_FAIL_WHEN_COMPARED_OBJECT_ARE_EQUALS + dimension50P18)
                 .isNotEqualTo(notExpectedDimensionDtoFrom40g5);
     }
 
-    @Test
+    @Test(expected = InvalidValueOfDimensionException.class)
     public void create_dimension_to_tolerance_should_throw_invalid_value_of_dimension_exception() {
-        assertThrows(
-                InvalidValueOfDimensionException.class, () -> dimensionService.createDimensionTolerance("0a2"));
-        assertThrows(
-                InvalidValueOfDimensionException.class, () -> dimensionService.createDimensionTolerance("501a2"));
+        dimensionService.createDimensionTolerance("0a2");
+        dimensionService.createDimensionTolerance("501a2");
     }
 
-    @Test
+    @Test(expected = InvalidSymbolsException.class)
     public void create_dimension_to_tolerance_should_throw_invalid_symbols_exception() {
-        assertThrows(
-                InvalidSymbolsException.class, () -> dimensionService.createDimensionTolerance("1aa2"));
-        assertThrows(
-                InvalidSymbolsException.class, () -> dimensionService.createDimensionTolerance("1t2"));
-        assertThrows(
-                InvalidSymbolsException.class, () -> dimensionService.createDimensionTolerance("1T2"));
-        assertThrows(
-                InvalidSymbolsException.class, () -> dimensionService.createDimensionTolerance("1b2"));
-        assertThrows(
-                InvalidSymbolsException.class, () -> dimensionService.createDimensionTolerance("1i2"));
-        assertThrows(
-                InvalidSymbolsException.class, () -> dimensionService.createDimensionTolerance("1l2"));
-        assertThrows(
-                InvalidSymbolsException.class, () -> dimensionService.createDimensionTolerance("1o2"));
-        assertThrows(
-                InvalidSymbolsException.class, () -> dimensionService.createDimensionTolerance("1q2"));
-        assertThrows(
-                InvalidSymbolsException.class, () -> dimensionService.createDimensionTolerance("1B2"));
-        assertThrows(
-                InvalidSymbolsException.class, () -> dimensionService.createDimensionTolerance("1I2"));
-        assertThrows(
-                InvalidSymbolsException.class, () -> dimensionService.createDimensionTolerance("1L2"));
-        assertThrows(
-                InvalidSymbolsException.class, () -> dimensionService.createDimensionTolerance("1O2"));
-        assertThrows(
-                InvalidSymbolsException.class, () -> dimensionService.createDimensionTolerance("1Q2"));
+        dimensionService.createDimensionTolerance("1aa2");
+        dimensionService.createDimensionTolerance("1t2");
+        dimensionService.createDimensionTolerance("1T2");
+        dimensionService.createDimensionTolerance("1b2");
+        dimensionService.createDimensionTolerance("1i2");
+        dimensionService.createDimensionTolerance("1l2");
+        dimensionService.createDimensionTolerance("1o2");
+        dimensionService.createDimensionTolerance("1q2");
+        dimensionService.createDimensionTolerance("1B2");
+        dimensionService.createDimensionTolerance("1I2");
+        dimensionService.createDimensionTolerance("1L2");
+        dimensionService.createDimensionTolerance("1O2");
+        dimensionService.createDimensionTolerance("1Q2");
     }
 
-    @Test
+    @Test(expected = InvalidValueOfItException.class)
     public void create_dimension_to_tolerance_should_throw_invalid_value_of_IT_exception() {
-        assertThrows(
-                InvalidValueOfItException.class, () -> dimensionService.createDimensionTolerance("1a0"));
-        assertThrows(
-                InvalidValueOfItException.class, () -> dimensionService.createDimensionTolerance("1a19"));
+        dimensionService.createDimensionTolerance("1a0");
+        dimensionService.createDimensionTolerance("1a19");
     }
 
-    @Test
+    @Test(expected = InvalidInputException.class)
     public void create_dimension_to_tolerance_should_throw_invalid_input_exception() {
-        assertThrows(
-                InvalidInputException.class, () -> dimensionService.createDimensionTolerance(""));
-        assertThrows(
-                InvalidInputException.class, () -> dimensionService.createDimensionTolerance("4%5E5k7"));
-        assertThrows(
-                InvalidInputException.class, () -> dimensionService.createDimensionTolerance("5^1k8"));
-        assertThrows(
-                InvalidInputException.class, () -> dimensionService.createDimensionTolerance("50t8k"));
-        assertThrows(
-                InvalidInputException.class, () -> dimensionService.createDimensionTolerance("50t8k6"));
-        assertThrows(
-                InvalidInputException.class, () -> dimensionService.createDimensionTolerance("58"));
-        assertThrows(
-                InvalidInputException.class, () -> dimensionService.createDimensionTolerance("k8"));
-        assertThrows(
-                InvalidInputException.class, () -> dimensionService.createDimensionTolerance("80G"));
+        dimensionService.createDimensionTolerance("");
+        dimensionService.createDimensionTolerance("4%5E5k7");
+        dimensionService.createDimensionTolerance("5^1k8");
+        dimensionService.createDimensionTolerance("50t8k");
+        dimensionService.createDimensionTolerance("50t8k6");
+        dimensionService.createDimensionTolerance("58");
+        dimensionService.createDimensionTolerance("k8");
+        dimensionService.createDimensionTolerance("80G");
     }
 }
