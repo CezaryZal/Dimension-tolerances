@@ -27,7 +27,7 @@ public class ResultForHole extends Result {
     }
 
     @Override
-    DimensionDto calculateForSymbolBelowAndWithH(
+    DimensionDto calculateForSymbolBelowOrEqualH(
             int valueOfDimension,
             double valueOfLowerDeviation,
             double valueOfNominalTolerance) {

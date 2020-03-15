@@ -2,6 +2,7 @@ package com.CezaryZal.api.service;
 
 import com.CezaryZal.api.model.ParsedInputDimension;
 import com.CezaryZal.api.service.validation.Validator;
+import com.CezaryZal.exceptions.InvalidInputException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +11,7 @@ import java.util.regex.Pattern;
 
 @Service
 public class InputDimensionParser {
-    private final Pattern pattern = Pattern.compile("(^[0-9]\\d*)([a-zA-Z]+)([0-9]*)\\z");
+    private final Pattern pattern = Pattern.compile("(^[0-9]\\d*)([a-zA-Z]+)([0-9]+)\\z");
 
     private final Validator inputValidator;
 
@@ -19,7 +20,8 @@ public class InputDimensionParser {
         this.inputValidator = inputValidator;
     }
 
-    ParsedInputDimension parseInputDimension(String input) {
+    ParsedInputDimension parseInputDimension(String input) throws InvalidInputException {
+
         Matcher matcher = pattern.matcher(input);
 
         if (!matcher.find()) {

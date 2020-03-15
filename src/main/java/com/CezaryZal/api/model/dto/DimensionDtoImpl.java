@@ -1,5 +1,7 @@
 package com.CezaryZal.api.model.dto;
 
+import java.util.Objects;
+
 public class DimensionDtoImpl implements DimensionDto {
 
     private int valueOfDimension;
@@ -25,6 +27,21 @@ public class DimensionDtoImpl implements DimensionDto {
     @Override
     public double getUpperDeviation() {
         return upperDeviation;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof DimensionDtoImpl)) return false;
+        DimensionDtoImpl that = (DimensionDtoImpl) o;
+        return valueOfDimension == that.valueOfDimension &&
+                Double.compare(that.lowerDeviation, lowerDeviation) == 0 &&
+                Double.compare(that.upperDeviation, upperDeviation) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(valueOfDimension, lowerDeviation, upperDeviation);
     }
 
     @Override

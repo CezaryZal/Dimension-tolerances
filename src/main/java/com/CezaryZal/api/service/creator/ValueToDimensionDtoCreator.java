@@ -34,17 +34,13 @@ public class ValueToDimensionDtoCreator {
         return new ValuesToDimensionDto(valueOfBasicDeviation, valueOfNominalToleranceBySignAndValue);
     }
 
-    private double createOppositeNumber(double valueOfDeviation){
-        return -valueOfDeviation;
-    }
-
     private double modifyValueOfBasicDeviationIfIsSpeciallyDimension(
             ParsedInputDimension parsedInputDimension,
             double valueOfBasicDeviation){
 
-        if (parsedInputDimension.getSymbol() < 'a'){
-            valueOfBasicDeviation = createOppositeNumber(valueOfBasicDeviation);
-        }
+            valueOfBasicDeviation = modifyValueOfBasicDeviationIfSymbolIsInUpperCase(
+                    parsedInputDimension.getSymbol(), valueOfBasicDeviation);
+
         if (parsedInputDimension.isSymbolOverH() &&
                 parsedInputDimension.getSymbol() < 'P' &&
                 parsedInputDimension.getValueOfIt() >= minValueOfItToModifyValueOfBasicDeviation &&
@@ -55,5 +51,14 @@ public class ValueToDimensionDtoCreator {
                     parsedInputDimension.getValueOfDimension());
         }
         return valueOfBasicDeviation;
+    }
+
+    private double modifyValueOfBasicDeviationIfSymbolIsInUpperCase(
+            char symbol,  double valueOfBasicDeviation){
+
+        if (!(symbol < 'a') || valueOfBasicDeviation == 0){
+            return valueOfBasicDeviation;
+        }
+        return  -valueOfBasicDeviation;
     }
 }

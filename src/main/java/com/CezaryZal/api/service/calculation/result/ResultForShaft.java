@@ -27,7 +27,7 @@ public class ResultForShaft extends Result {
     }
 
     @Override
-    DimensionDto calculateForSymbolBelowAndWithH(
+    DimensionDto calculateForSymbolBelowOrEqualH(
             int valueOfDimension,
             double valueOfUpperDeviation,
             double valueOfNominalTolerance){
