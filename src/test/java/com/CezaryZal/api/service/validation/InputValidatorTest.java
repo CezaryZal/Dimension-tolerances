@@ -15,64 +15,32 @@ import org.mockito.junit.MockitoJUnitRunner;
 public class InputValidatorTest {
 
     @Spy
-    InputValidator inputValidator;
+    private InputValidator inputValidator;
 
-    @Test
+    @SneakyThrows
+    @Test(expected = InvalidValueOfDimensionException.class)
     public void throw_if_input_values_is_incorrect_should_throw_exceptions() {
-        Assert.assertThrows(
-                InvalidValueOfDimensionException.class,
-                () -> inputValidator.throwIfInputValuesIsIncorrect(0, "s", 2));
-        Assert.assertThrows(
-                InvalidValueOfDimensionException.class,
-                () -> inputValidator.throwIfInputValuesIsIncorrect(501, "s", 2));
-        Assert.assertThrows(
-                InvalidSymbolsException.class,
-                () -> inputValidator.throwIfInputValuesIsIncorrect(1, "", 2));
-        Assert.assertThrows(
-                InvalidSymbolsException.class,
-                () -> inputValidator.throwIfInputValuesIsIncorrect(1, "aa", 2));
-        Assert.assertThrows(
-                InvalidSymbolsException.class,
-                () -> inputValidator.throwIfInputValuesIsIncorrect(1, "t", 2));
-        Assert.assertThrows(
-                InvalidSymbolsException.class,
-                () -> inputValidator.throwIfInputValuesIsIncorrect(1, "T", 2));
-        Assert.assertThrows(
-                InvalidSymbolsException.class,
-                () -> inputValidator.throwIfInputValuesIsIncorrect(1, "b", 2));
-        Assert.assertThrows(
-                InvalidSymbolsException.class,
-                () -> inputValidator.throwIfInputValuesIsIncorrect(1, "i", 2));
-        Assert.assertThrows(
-                InvalidSymbolsException.class,
-                () -> inputValidator.throwIfInputValuesIsIncorrect(1, "l", 2));
-        Assert.assertThrows(
-                InvalidSymbolsException.class,
-                () -> inputValidator.throwIfInputValuesIsIncorrect(1, "o", 2));
-        Assert.assertThrows(
-                InvalidSymbolsException.class,
-                () -> inputValidator.throwIfInputValuesIsIncorrect(1, "q", 2));
-        Assert.assertThrows(
-                InvalidSymbolsException.class,
-                () -> inputValidator.throwIfInputValuesIsIncorrect(1, "B", 2));
-        Assert.assertThrows(
-                InvalidSymbolsException.class,
-                () -> inputValidator.throwIfInputValuesIsIncorrect(1, "I", 2));
-        Assert.assertThrows(
-                InvalidSymbolsException.class,
-                () -> inputValidator.throwIfInputValuesIsIncorrect(1, "L", 2));
-        Assert.assertThrows(
-                InvalidSymbolsException.class,
-                () -> inputValidator.throwIfInputValuesIsIncorrect(1, "O", 2));
-        Assert.assertThrows(
-                InvalidSymbolsException.class,
-                () -> inputValidator.throwIfInputValuesIsIncorrect(1, "Q", 2));
-        Assert.assertThrows(
-                InvalidValueOfItException.class,
-                () -> inputValidator.throwIfInputValuesIsIncorrect(1, "a", 0));
-        Assert.assertThrows(
-                InvalidValueOfItException.class,
-                () -> inputValidator.throwIfInputValuesIsIncorrect(1, "a", 19));
+        inputValidator.throwIfInputValuesIsIncorrect(0, "s", 2);
+        inputValidator.throwIfInputValuesIsIncorrect(501, "s", 2);
+        inputValidator.throwIfInputValuesIsIncorrect(1, "", 2);
+        inputValidator.throwIfInputValuesIsIncorrect(1, "aa", 2);
+        inputValidator.throwIfInputValuesIsIncorrect(1, "aa", 2);
+        inputValidator.throwIfInputValuesIsIncorrect(1, "aa", 2);
+        inputValidator.throwIfInputValuesIsIncorrect(1, "aa", 2);
+        inputValidator.throwIfInputValuesIsIncorrect(1, "t", 2);
+        inputValidator.throwIfInputValuesIsIncorrect(1, "T", 2);
+        inputValidator.throwIfInputValuesIsIncorrect(1, "b", 2);
+        inputValidator.throwIfInputValuesIsIncorrect(1, "i", 2);
+        inputValidator.throwIfInputValuesIsIncorrect(1, "l", 2);
+        inputValidator.throwIfInputValuesIsIncorrect(1, "o", 2);
+        inputValidator.throwIfInputValuesIsIncorrect(1, "q", 2);
+        inputValidator.throwIfInputValuesIsIncorrect(1, "B", 2);
+        inputValidator.throwIfInputValuesIsIncorrect(1, "I", 2);
+        inputValidator.throwIfInputValuesIsIncorrect(1, "L", 2);
+        inputValidator.throwIfInputValuesIsIncorrect(1, "O", 2);
+        inputValidator.throwIfInputValuesIsIncorrect(1, "Q", 2);
+        inputValidator.throwIfInputValuesIsIncorrect(1, "a", 0);
+        inputValidator.throwIfInputValuesIsIncorrect(1, "a", 19);
     }
 
     @Test
