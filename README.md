@@ -15,8 +15,12 @@ most of the dimensions were calculated manually.
 
 #### Usage
 
-To use the calculator, open the web application by choosing the following *link*.
-//screenShot
+To use the calculator, open the web application by choosing the following 
+*[Dimension-tolerances](http://164.132.97.42:8081/dimension-tolerances/)*.
+![Screenshot of main_view](https://raw.githubusercontent.com/CezaryZal/Dimension-tolerances/master/src/main/web/screenshots/ScreenshotFromDimensionTolerances.png)
+###### View of the main page
+
+___
 
 Then enter the dimension from which you would like to get the upper and lower deviation.
 After pressing the enter or 'CALCULATE' button you will get the result.
@@ -28,6 +32,7 @@ Backend:
 - Spring Framework
 - Hibernate
 - REST API
+- JUnit
 - Lombok (to get logs)
 - application container Tomcat
 
@@ -40,5 +45,6 @@ Frontend:
 - [x] add valid input 
 - [x] use design patterns
 - [x] add exception handling (backend)
+- [x] add tests
 - [ ] add exception handling (frontend)
-- [ ] add tests
+
