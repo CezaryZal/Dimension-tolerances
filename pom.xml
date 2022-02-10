@@ -12,7 +12,7 @@
     <properties>
         <springframework.version>5.2.3.RELEASE</springframework.version>
         <javax.servlet.version>3.1.0</javax.servlet.version>
-        <hibernate.version>5.4.1.Final</hibernate.version>
+        <hibernate.version>5.4.24.Final</hibernate.version>
         <hibernate-c3p0.version>5.3.6.Final</hibernate-c3p0.version>
         <mysql.connector.version>8.0.16</mysql.connector.version>
 
